@@ -1,0 +1,790 @@
+;; Object semanticdb-project-database-file
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table"
+      :major-mode c-mode
+      :tags 
+        '( ("SkRefCnt_DEFINED" variable (:constant-flag t) nil [199 215])
+            ("../private/SkTLogic.h" include nil nil [217 249])
+            ("SkTypes.h" include nil nil [250 270])
+            ("atomic" include (:system-flag t) nil [271 288])
+            ("functional" include (:system-flag t) nil [289 310])
+            ("memory" include (:system-flag t) nil [311 328])
+            ("type_traits" include (:system-flag t) nil [329 351])
+            ("utility" include (:system-flag t) nil [352 370])
+            ("SkNoncopyable" variable (:type "int") nil [942 3922])
+            ("SkRefCntBase" variable (:type "int") nil [4168 4359])
+            ("SkRefCnt_SafeAssign" variable (:constant-flag t) nil [5551 5570])
+            ("SkRef" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type ("T" type (:type "class") nil nil)
+                :arguments 
+                  ( ("obj" variable
+                       (:pointer 1
+                        :type ("T" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [5893 5900]))                  
+                :typemodifiers ("static" "inline")
+                :pointer 1)
+                nil [5848 5955])
+            ("SkSafeRef" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type ("T" type (:type "class") nil nil)
+                :arguments 
+                  ( ("obj" variable
+                       (:pointer 1
+                        :type ("T" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [6092 6099]))                  
+                :typemodifiers ("static" "inline")
+                :pointer 1)
+                nil [6043 6160])
+            ("SkSafeUnref" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "void"
+                :arguments 
+                  ( ("obj" variable
+                       (:pointer 1
+                        :type ("T" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [6287 6294]))                  
+                :typemodifiers ("static" "inline"))
+                nil [6234 6341])
+            ("SkSafeSetNull" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "void"
+                :arguments 
+                  ( ("" variable
+                       (:pointer 1
+                        :type ("T" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [6397 6400])
+                    ("" variable (:type ("obj" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6401 6405]))                  
+                :typemodifiers ("static" "inline"))
+                nil [6343 6475])
+            ("SkNVRefCnt" type
+               (:template 
+                  ( ("Derived" type (:type "class") nil nil))                  
+                :type "class"
+                :members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [6806 6813])
+                    ("SkNVRefCnt" function
+                       (:constructor-flag t
+                        :type ("SkNVRefCnt" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [6818 6846])
+                    ("SkNVRefCnt" function
+                       (:destructor-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [6851 6929])
+                    ("unique" function
+                       (:methodconst-flag t
+                        :type "bool")
+                        (reparse-symbol classsubparts) [7259 7335])
+                    ("ref" function
+                       (:methodconst-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [7340 7416])
+                    ("unref" function
+                       (:methodconst-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [7421 7695])
+                    ("deref" function
+                       (:methodconst-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [7700 7738])
+                    ("private" label nil (reparse-symbol classsubparts) [7740 7748])
+                    ("fRefCnt" variable
+                       (:typemodifiers ("mutable")
+                        :type ("std::atomic" type
+                             (:template-specifier 
+                                ( ("int32_t" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [7753 7790])
+                    ("getRefCnt" function
+                       (:methodconst-flag t
+                        :type ("int32_t" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [7795 7884]))                  
+                :superclasses 
+                  ( ("SkNoncopyable" type
+                       (:protection "unspecified"
+                        :type "class")
+                        nil nil))                  )
+                nil [6743 7887])
+            ("sk_sp" type
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "class"
+                :members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [8509 8516])
+                    ("element_type" variable
+                       (:default-value "T"
+                        :type "int")
+                        (reparse-symbol classsubparts) [8527 8544])
+                    ("sk_sp" function
+                       (:constructor-flag t
+                        :type ("constexpr" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [8550 8586])
+                    ("sk_sp" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8607 8622]))                          
+                        :type ("constexpr" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [8591 8641])
+                    ("sk_sp" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("that" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("sk_sp" type
+                                     (:template-specifier 
+                                        ( ("T" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil))
+                                (reparse-symbol arg-sub-list) [8815 8836]))                          
+                        :type ("sk_sp" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [8809 8869])
+                    ("sk_sp" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("that" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("sk_sp" type
+                                     (:template-specifier 
+                                        ( ("U" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil))
+                                (reparse-symbol arg-sub-list) [8973 8994]))                          
+                        :type ("sk_sp" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [8967 9027])
+                    ("sk_sp" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :type ("sk_sp" type
+                                     (:template-specifier 
+                                        ( ("T" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil))
+                                (reparse-symbol arg-sub-list) [9298 9308])
+                            ("" variable (:type ("that" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9309 9314]))                          
+                        :type ("sk_sp" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [9292 9340])
+                    ("sk_sp" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :type ("sk_sp" type
+                                     (:template-specifier 
+                                        ( ("U" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil))
+                                (reparse-symbol arg-sub-list) [9444 9454])
+                            ("" variable (:type ("that" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9455 9460]))                          
+                        :type ("sk_sp" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [9438 9486])
+                    ("sk_sp" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("obj" variable
+                               (:pointer 1
+                                :type ("T" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [9634 9641]))                          
+                        :type ("sk_sp" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [9628 9656])
+                    ("sk_sp" function
+                       (:destructor-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [9734 9814])
+                    ("=" function
+                       (:operator-flag t
+                        :arguments 
+                          ( ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9840 9855]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [9820 9888])
+                    ("=" function
+                       (:operator-flag t
+                        :arguments 
+                          ( ("that" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("sk_sp" type
+                                     (:template-specifier 
+                                        ( ("T" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil))
+                                (reparse-symbol arg-sub-list) [10141 10162]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [10121 10236])
+                    ("=" function
+                       (:operator-flag t
+                        :arguments 
+                          ( ("that" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("sk_sp" type
+                                     (:template-specifier 
+                                        ( ("U" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil))
+                                (reparse-symbol arg-sub-list) [10354 10375]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [10334 10449])
+                    ("=" function
+                       (:operator-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :type ("sk_sp" type
+                                     (:template-specifier 
+                                        ( ("T" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil))
+                                (reparse-symbol arg-sub-list) [10704 10714])
+                            ("" variable (:type ("that" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10715 10720]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [10684 10787])
+                    ("=" function
+                       (:operator-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :type ("sk_sp" type
+                                     (:template-specifier 
+                                        ( ("U" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil))
+                                (reparse-symbol arg-sub-list) [10905 10915])
+                            ("" variable (:type ("that" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10916 10921]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [10885 10988])
+                    ("" function
+                       (:methodconst-flag t
+                        :operator-flag t
+                        :function-pointer t
+                        :type ("T" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [10994 11093])
+                    ("unspecified_bool_type" function
+                       (:methodconst-flag t
+                        :type "int")
+                        (reparse-symbol classsubparts) [11407 11485])
+                    ("!" function
+                       (:methodconst-flag t
+                        :operator-flag t
+                        :type "bool")
+                        (reparse-symbol classsubparts) [11490 11547])
+                    ("get" function
+                       (:methodconst-flag t
+                        :pointer 1
+                        :type ("T" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [11553 11584])
+                    ("->" function
+                       (:methodconst-flag t
+                        :operator-flag t
+                        :pointer 1
+                        :type ("T" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [11589 11627])
+                    ("reset" function
+                       (:arguments 
+                          ( ("ptr" variable
+                               (:pointer 1
+                                :default-value "nullptr"
+                                :type ("T" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [11797 11813]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [11786 12064])
+                    ("release" function (:type ("SK_WARN_UNUSED_RESULT" type (:type "class") nil nil)) (reparse-symbol classsubparts) [12308 12414])
+                    ("swap" function
+                       (:arguments 
+                          ( ("that" variable
+                               (:reference 1
+                                :type ("sk_sp" type
+                                     (:template-specifier 
+                                        ( ("T" type nil nil nil))                                        
+                                      :type "class")
+                                      nil nil))
+                                (reparse-symbol arg-sub-list) [12430 12445]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [12420 12522])
+                    ("private" label nil (reparse-symbol classsubparts) [12524 12532])
+                    ("fPtr" variable
+                       (:pointer 1
+                        :type ("T" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [12537 12546]))                  )
+                nil [8351 12549])
+            ("swap" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "void"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12590 12602])
+                    ("b" variable
+                       (:reference 1
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12603 12615]))                  
+                :typemodifiers ("inline"))
+                nil [12551 12647])
+            ("==" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil)
+                    ("U" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12706 12724])
+                    ("b" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("U" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12725 12743]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [12649 12778])
+            ("==" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12824 12842])
+                    ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12843 12858]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [12779 12890])
+            ("==" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12936 12951])
+                    ("b" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12952 12970]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [12891 13002])
+            ("!=" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil)
+                    ("U" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [13061 13079])
+                    ("b" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("U" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [13080 13098]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [13004 13133])
+            ("!=" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [13179 13197])
+                    ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13198 13213]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [13134 13263])
+            ("!=" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13309 13324])
+                    ("b" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [13325 13343]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [13264 13393])
+            ("<" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil)
+                    ("U" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [13451 13469])
+                    ("b" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("U" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [13470 13488]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [13395 13699])
+            ("<" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [13744 13762])
+                    ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13763 13778]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [13700 13828])
+            ("<" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13873 13888])
+                    ("b" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [13889 13907]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [13829 13957])
+            ("<=" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil)
+                    ("U" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14016 14034])
+                    ("b" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("U" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14035 14053]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [13959 14078])
+            ("<=" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14124 14142])
+                    ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [14143 14158]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [14079 14189])
+            ("<=" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [14235 14250])
+                    ("b" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14251 14269]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [14190 14300])
+            (">" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil)
+                    ("U" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14358 14376])
+                    ("b" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("U" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14377 14395]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [14302 14417])
+            (">" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14462 14480])
+                    ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [14481 14496]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [14418 14524])
+            (">" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [14569 14584])
+                    ("b" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14585 14603]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [14525 14631])
+            (">=" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil)
+                    ("U" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14690 14708])
+                    ("b" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("U" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14709 14727]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [14633 14752])
+            (">=" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("a" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14798 14816])
+                    ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [14817 14832]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [14753 14863])
+            (">=" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type "bool"
+                :arguments 
+                  ( ("" variable (:type ("std::nullptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [14909 14924])
+                    ("b" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14925 14943]))                  
+                :typemodifiers ("inline")
+                :operator-flag t)
+                nil [14864 14974])
+            ("sk_make_sp" function
+               (:arguments 
+                  ( ("" variable
+                       (:reference 1
+                        :type ("Args" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [15036 15042])
+                    ("" variable (:type ("args" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [15046 15051]))                  
+                :type ("sk_sp" type
+                     (:template-specifier 
+                        ( ("T" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [15016 15112])
+            ("sk_ref_sp" function
+               (:template 
+                  ( ("T" type (:type "class") nil nil))                  
+                :type ("sk_sp" type
+                     (:template-specifier 
+                        ( ("T" type nil nil nil))                        
+                      :type "class")
+                      nil nil)
+                :arguments 
+                  ( ("obj" variable
+                       (:pointer 1
+                        :type ("T" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [15374 15381]))                  )
+                nil [15333 15422]))          
+      :file "SkRefCnt.h"
+      :pointmax 15431
+      :fsize 15430
+      :lastmodtime '(23060 12272 609732 634000)
+      :unmatched-syntax '((punctuation 15044 . 15045) (punctuation 15043 . 15044) (punctuation 15042 . 15043) (punctuation 15041 . 15042) (punctuation 15014 . 15015) (symbol 15010 . 15014) (punctuation 15008 . 15009) (punctuation 15007 . 15008) (punctuation 15006 . 15007) (TYPENAME 14998 . 15006) (punctuation 14996 . 14997) (symbol 14995 . 14996) (TYPENAME 14986 . 14994) (punctuation 14985 . 14986) (TEMPLATE 14976 . 14984) (punctuation 12306 . 12307) (symbol 12305 . 12306) (OPERATOR 11398 . 11406) (punctuation 10914 . 10915) (punctuation 10879 . 10880) (punctuation 10878 . 10879) (symbol 10873 . 10878) (punctuation 10872 . 10873) (punctuation 10871 . 10872) (punctuation 10870 . 10871) (punctuation 10869 . 10870) (symbol 10868 . 10869) (punctuation 10866 . 10867) (punctuation 10865 . 10866) (symbol 10864 . 10865) (punctuation 10863 . 10864) (symbol 10849 . 10863) (punctuation 10848 . 10849) (punctuation 10847 . 10848) (symbol 10844 . 10847) (punctuation 10843 . 10844) (symbol 10832 . 10843) (punctuation 10831 . 10832) (punctuation 10830 . 10831) (symbol 10825 . 10830) (punctuation 10823 . 10824) (TYPENAME 10814 . 10822) (punctuation 10812 . 10813) (symbol 10811 . 10812) (TYPENAME 10802 . 10810) (punctuation 10801 . 10802) (TEMPLATE 10792 . 10800) (punctuation 10713 . 10714) (punctuation 10328 . 10329) (punctuation 10327 . 10328) (symbol 10322 . 10327) (punctuation 10321 . 10322) (punctuation 10320 . 10321) (punctuation 10319 . 10320) (punctuation 10318 . 10319) (symbol 10317 . 10318) (punctuation 10315 . 10316) (punctuation 10314 . 10315) (symbol 10313 . 10314) (punctuation 10312 . 10313) (symbol 10298 . 10312) (punctuation 10297 . 10298) (punctuation 10296 . 10297) (symbol 10293 . 10296) (punctuation 10292 . 10293) (symbol 10281 . 10292) (punctuation 10280 . 10281) (punctuation 10279 . 10280) (symbol 10274 . 10279) (punctuation 10272 . 10273) (TYPENAME 10263 . 10271) (punctuation 10261 . 10262) (symbol 10260 . 10261) (TYPENAME 10251 . 10259) (punctuation 10250 . 10251) (TEMPLATE 10241 . 10249) (EXPLICIT 9619 . 9627) (punctuation 9453 . 9454) (punctuation 9432 . 9433) (punctuation 9431 . 9432) (symbol 9426 . 9431) (punctuation 9425 . 9426) (punctuation 9424 . 9425) (punctuation 9423 . 9424) (punctuation 9422 . 9423) (symbol 9421 . 9422) (punctuation 9419 . 9420) (punctuation 9418 . 9419) (symbol 9417 . 9418) (punctuation 9416 . 9417) (symbol 9402 . 9416) (punctuation 9401 . 9402) (punctuation 9400 . 9401) (symbol 9397 . 9400) (punctuation 9396 . 9397) (symbol 9385 . 9396) (punctuation 9384 . 9385) (punctuation 9383 . 9384) (symbol 9378 . 9383) (punctuation 9376 . 9377) (TYPENAME 9367 . 9375) (punctuation 9365 . 9366) (symbol 9364 . 9365) (TYPENAME 9355 . 9363) (punctuation 9354 . 9355) (TEMPLATE 9345 . 9353) (punctuation 9307 . 9308) (punctuation 8961 . 8962) (punctuation 8960 . 8961) (symbol 8955 . 8960) (punctuation 8954 . 8955) (punctuation 8953 . 8954) (punctuation 8952 . 8953) (punctuation 8951 . 8952) (symbol 8950 . 8951) (punctuation 8948 . 8949) (punctuation 8947 . 8948) (symbol 8946 . 8947) (punctuation 8945 . 8946) (symbol 8931 . 8945) (punctuation 8930 . 8931) (punctuation 8929 . 8930) (symbol 8926 . 8929) (punctuation 8925 . 8926) (symbol 8914 . 8925) (punctuation 8913 . 8914) (punctuation 8912 . 8913) (symbol 8907 . 8912) (punctuation 8905 . 8906) (TYPENAME 8896 . 8904) (punctuation 8894 . 8895) (symbol 8893 . 8894) (TYPENAME 8884 . 8892) (punctuation 8883 . 8884) (TEMPLATE 8874 . 8882) (USING 8521 . 8526) (punctuation 8507 . 8508) (punctuation 8506 . 8507) (punctuation 8505 . 8506) (punctuation 8504 . 8505) (symbol 8499 . 8504) (punctuation 8497 . 8498) (symbol 8496 . 8497) (punctuation 8494 . 8495) (symbol 8472 . 8493) (USING 8466 . 8471) (punctuation 6399 . 6400) (PUBLIC 4161 . 4167) (punctuation 4159 . 4160) (symbol 4150 . 4158) (symbol 4143 . 4149) (CLASS 4137 . 4142) (punctuation 940 . 941) (symbol 927 . 939) (symbol 920 . 926) (CLASS 914 . 919))
+      :lexical-table 
+        '(("SkRefCnt_DEFINED")
+          ("SkRefCnt_SafeAssign" (spp-arg-list ("dst" "src") 5570 . 5580) . 
+              ((DO "do" 5589 . 5591) (semantic-list "{                                \\
+        if (src) src->ref();            \\
+        if (dst) dst->unref();          \\
+        dst = src;                      \\
+    }" 5592 . 5758) (WHILE "while" 5759 . 5764) (semantic-list "(0)" 5765 . 5768)))
+          )
+)
+    (semanticdb-table "semanticdb-table"
+      :file "SkTypes.h"
+      :fsize 13450
+      :lastmodtime '(23060 12272 609732 634000)))
+  :file "!home!shaobo!work!skia!skia!include!core!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

@@ -1,0 +1,84 @@
+;; Object semanticdb-project-database-file
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table"
+      :major-mode c-mode
+      :tags 
+        '( ("sk_tools_Registry_DEFINED" variable (:constant-flag t) nil [208 233])
+            ("SkTypes.h" include nil nil [235 255])
+            ("sk_tools" type
+               (:members 
+                  ( ("Registry" type
+                       (:template 
+                          ( ("T" type (:type "class") nil nil))                          
+                        :type "class"
+                        :members 
+                          ( ("public" label nil (reparse-symbol classsubparts) [541 548])
+                            ("Factory" type
+                               (:typedef ("T" type (:type "class") nil nil)
+                                :type "typedef")
+                                (reparse-symbol classsubparts) [553 571])
+                            ("Registry" function
+                               (:constructor-flag t
+                                :arguments 
+                                  ( ("fact" variable (:type ("T" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [595 602]))                                  
+                                :type ("Registry" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [586 970])
+                            ("Head" function
+                               (:pointer 1
+                                :typemodifiers ("static")
+                                :constant-flag t
+                                :type ("Registry" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [976 1023])
+                            ("next" function
+                               (:methodconst-flag t
+                                :pointer 1
+                                :constant-flag t
+                                :type ("Registry" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [1029 1076])
+                            ("factory" function
+                               (:methodconst-flag t
+                                :constant-flag t
+                                :type ("Factory" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [1081 1129])
+                            ("private" label nil (reparse-symbol classsubparts) [1131 1139])
+                            ("fFact" variable (:type ("Factory" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1144 1160])
+                            ("fChain" variable
+                               (:pointer 1
+                                :type ("Registry" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [1165 1182])
+                            ("gHead" variable
+                               (:pointer 1
+                                :typemodifiers ("static")
+                                :type ("Registry" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [1188 1211]))                          
+                        :superclasses 
+                          ( ("SkNoncopyable" type
+                               (:protection "unspecified"
+                                :type "class")
+                                nil nil))                          )
+                        (reparse-symbol namespacesubparts) [486 1214])
+                    ("Registry::gHead" variable
+                       (:pointer 1
+                        :type ("Registry" type
+                             (:template-specifier 
+                                ( ("T" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol namespacesubparts) [1283 1337]))                  
+                :type "namespace")
+                nil [257 1340]))          
+      :file "Registry.h"
+      :pointmax 1372
+      :fsize 1371
+      :lastmodtime '(23060 12273 25732 634000)
+      :unmatched-syntax '((EXPLICIT 577 . 585))
+      :lexical-table 
+        '(("sk_tools_Registry_DEFINED")
+          )
+))
+  :file "!home!shaobo!work!skia!skia!tools!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

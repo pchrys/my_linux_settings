@@ -1,0 +1,2907 @@
+;; Object semanticdb-project-database-file
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("GrTextureProducer.h" include nil nil [146 176])
+            ("GrClip.h" include nil nil [177 196])
+            ("GrRenderTargetContext.h" include nil nil [197 231])
+            ("GrResourceProvider.h" include nil nil [232 263])
+            ("GrTextureProxy.h" include nil nil [264 291])
+            ("effects/GrBicubicEffect.h" include nil nil [292 328])
+            ("effects/GrSimpleTextureEffect.h" include nil nil [329 371])
+            ("effects/GrTextureDomain.h" include nil nil [372 408])
+            ("CopyOnGpu" function
+               (:parent "GrTextureProducer"
+                :arguments 
+                  ( ("context" variable
+                       (:pointer 1
+                        :type ("GrContext" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [461 480])
+                    ("inputProxy" variable (:type ("sk_sp" type
+                         (:template-specifier 
+                            ( ("GrTextureProxy" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol arg-sub-list) [532 565])
+                    ("copyParams" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("CopyParams" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [617 646])
+                    ("dstWillRequireMipMaps" variable (:type "bool") (reparse-symbol arg-sub-list) [698 725]))                  
+                :type ("sk_sp" type
+                     (:template-specifier 
+                        ( ("GrTextureProxy" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [410 2601])
+            ("DetermineDomainMode" function
+               (:parent "GrTextureProducer"
+                :arguments 
+                  ( ("constraintRect" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [3514 3543])
+                    ("filterConstraint" variable (:type ("FilterConstraint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3552 3586])
+                    ("coordsLimitedToConstraintRect" variable (:type "bool") (reparse-symbol arg-sub-list) [3595 3630])
+                    ("proxy" variable
+                       (:pointer 1
+                        :type ("GrTextureProxy" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [3639 3661])
+                    ("filterModeOrNullForBicubic" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrSamplerState::Filter" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [3670 3727])
+                    ("domainRect" variable
+                       (:pointer 1
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [3736 3755]))                  
+                :type ("GrTextureProducer::DomainMode" type (:type "class") nil nil))
+                nil [3436 8011])
+            ("CreateFragmentProcessorForDomainAndFilter" function
+               (:parent "GrTextureProducer"
+                :arguments 
+                  ( ("proxy" variable (:type ("sk_sp" type
+                         (:template-specifier 
+                            ( ("GrTextureProxy" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol arg-sub-list) [8120 8148])
+                    ("textureMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [8157 8187])
+                    ("domainMode" variable (:type ("DomainMode" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8196 8218])
+                    ("domain" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [8227 8248])
+                    ("filterOrNullForBicubic" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrSamplerState::Filter" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [8257 8310]))                  
+                :type ("std::unique_ptr" type
+                     (:template-specifier 
+                        ( ("GrFragmentProcessor" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [8013 9329]))          
+      :file "GrTextureProducer.cpp"
+      :pointmax 9330
+      :fsize 9329
+      :lastmodtime '(23060 12272 833732 634000)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table"
+      :file "GrTextureProducer.h"
+      :fsize 6538
+      :lastmodtime '(23060 12272 833732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrClip.h"
+      :fsize 8305
+      :lastmodtime '(23060 12272 821732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrRenderTargetContext.h"
+      :fsize 19380
+      :lastmodtime '(23060 12272 829732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrResourceProvider.h"
+      :fsize 12489
+      :lastmodtime '(23060 12272 829732 634000))
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("GrPathRange.h" include nil nil [146 170])
+            ("SkPath.h" include nil nil [171 190])
+            ("GrPathRange" function
+               (:constructor-flag t
+                :parent "GrPathRange"
+                :arguments 
+                  ( ("gpu" variable
+                       (:pointer 1
+                        :type ("GrGpu" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [217 228])
+                    ("pathGenerator" variable
+                       (:pointer 1
+                        :type ("PathGenerator" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [254 283]))                  
+                :type ("GrPathRange" type (:type "class") nil nil))
+                nil [192 616])
+            ("GrPathRange" function
+               (:constructor-flag t
+                :parent "GrPathRange"
+                :arguments 
+                  ( ("gpu" variable
+                       (:pointer 1
+                        :type ("GrGpu" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [643 654])
+                    ("numPaths" variable (:type "int") (reparse-symbol arg-sub-list) [680 693]))                  
+                :type ("GrPathRange" type (:type "class") nil nil))
+                nil [618 745])
+            ("loadPathsIfNeeded" function
+               (:methodconst-flag t
+                :parent "GrPathRange"
+                :arguments 
+                  ( ("indices" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [783 803])
+                    ("indexType" variable (:type ("PathIndexType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [804 828])
+                    ("count" variable (:type "int") (reparse-symbol arg-sub-list) [829 839]))                  
+                :type "void")
+                nil [747 1328]))          
+      :file "GrPathRange.cpp"
+      :pointmax 1937
+      :fsize 1936
+      :lastmodtime '(23060 12272 825732 634000)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table"
+      :major-mode c-mode
+      :tags 
+        '( ("GrPathRange_DEFINED" variable (:constant-flag t) nil [182 201])
+            ("GrGpuResource.h" include nil nil [203 229])
+            ("SkPath.h" include nil nil [230 249])
+            ("SkRefCnt.h" include nil nil [250 271])
+            ("SkTArray.h" include nil nil [272 293])
+            ("SkDescriptor" type
+               (:prototype t
+                :type "class")
+                nil [295 314])
+            ("GrPathRange" type
+               (:superclasses 
+                  ( ("GrGpuResource" type
+                       (:protection "public"
+                        :type "class")
+                        nil nil))                  
+                :members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [521 528])
+                    ("PathIndexType" type
+                       (:members 
+                          ( ("kU8_PathIndexType" variable
+                               (:constant-flag t
+                                :type "int")
+                                (reparse-symbol enumsubparts) [564 582])
+                            ("kU16_PathIndexType" variable
+                               (:constant-flag t
+                                :type "int")
+                                (reparse-symbol enumsubparts) [606 625])
+                            ("kU32_PathIndexType" variable
+                               (:constant-flag t
+                                :type "int")
+                                (reparse-symbol enumsubparts) [649 668])
+                            ("kLast_PathIndexType" variable
+                               (:constant-flag t
+                                :default-value (715 733)
+                                :type "int")
+                                (reparse-symbol enumsubparts) [693 733]))                          
+                        :type "enum")
+                        (reparse-symbol classsubparts) [535 740])
+                    ("PathIndexSizeInBytes" function
+                       (:typemodifiers ("static" "inline")
+                        :arguments 
+                          ( ("type" variable (:type ("PathIndexType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [785 804]))                          
+                        :type "int")
+                        (reparse-symbol classsubparts) [746 1060])
+                    ("PathGenerator" type
+                       (:superclasses 
+                          ( ("SkRefCnt" type
+                               (:protection "public"
+                                :type "class")
+                                nil nil))                          
+                        :members 
+                          ( ("public" label nil (reparse-symbol classsubparts) [1186 1193])
+                            ("getNumPaths" function
+                               (:pure-virtual-flag t
+                                :prototype-flag t
+                                :typemodifiers ("virtual")
+                                :type "int")
+                                (reparse-symbol classsubparts) [1202 1232])
+                            ("generatePath" function
+                               (:pure-virtual-flag t
+                                :prototype-flag t
+                                :typemodifiers ("virtual")
+                                :arguments 
+                                  ( ("index" variable (:type "int") (reparse-symbol arg-sub-list) [1267 1277])
+                                    ("out" variable
+                                       (:pointer 1
+                                        :type ("SkPath" type (:type "class") nil nil))
+                                        (reparse-symbol arg-sub-list) [1278 1290]))                                  
+                                :type "void")
+                                (reparse-symbol classsubparts) [1241 1295])
+                            ("PathGenerator" function
+                               (:destructor-flag t
+                                :typemodifiers ("virtual")
+                                :type "void")
+                                (reparse-symbol classsubparts) [1403 1430]))                          
+                        :type "class")
+                        (reparse-symbol classsubparts) [1142 1437])
+                    ("GrPathRange" function
+                       (:prototype-flag t
+                        :constructor-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:pointer 1
+                                :type ("GrGpu" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1649 1656])
+                            ("" variable
+                               (:pointer 1
+                                :type ("PathGenerator" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1657 1672]))                          
+                        :type ("GrPathRange" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [1637 1673])
+                    ("GrPathRange" function
+                       (:prototype-flag t
+                        :constructor-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:pointer 1
+                                :type ("GrGpu" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1841 1848])
+                            ("numPaths" variable (:type "int") (reparse-symbol arg-sub-list) [1849 1862]))                          
+                        :type ("GrPathRange" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [1829 1863])
+                    ("getNumPaths" function
+                       (:methodconst-flag t
+                        :type "int")
+                        (reparse-symbol classsubparts) [1869 1914])
+                    ("getPathGenerator" function
+                       (:methodconst-flag t
+                        :pointer 1
+                        :constant-flag t
+                        :type ("PathGenerator" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [1919 1997])
+                    ("loadPathsIfNeeded" function
+                       (:prototype-flag t
+                        :methodconst-flag t
+                        :arguments 
+                          ( ("indices" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type "void")
+                                (reparse-symbol arg-sub-list) [2026 2046])
+                            ("" variable (:type ("PathIndexType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2047 2061])
+                            ("count" variable (:type "int") (reparse-symbol arg-sub-list) [2062 2072]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [2003 2079])
+                    ("loadPathsIfNeeded" function
+                       (:template 
+                          ( ("IndexType" type (:type "class") nil nil))                          
+                        :type "void"
+                        :arguments 
+                          ( ("indices" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("IndexType" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2137 2162])
+                            ("count" variable (:type "int") (reparse-symbol arg-sub-list) [2163 2173]))                          
+                        :methodconst-flag t)
+                        (reparse-symbol classsubparts) [2085 3468])
+                    ("protected" label nil (reparse-symbol classsubparts) [4253 4263])
+                    ("onInitPath" function
+                       (:pure-virtual-flag t
+                        :prototype-flag t
+                        :methodconst-flag t
+                        :typemodifiers ("virtual")
+                        :arguments 
+                          ( ("index" variable (:type "int") (reparse-symbol arg-sub-list) [4532 4542])
+                            ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("SkPath" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [4543 4557]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [4508 4568])
+                    ("private" label nil (reparse-symbol classsubparts) [4570 4578])
+                    ("" type
+                       (:members 
+                          ( ("kPathsPerGroup" variable
+                               (:constant-flag t
+                                :default-value (4615 4617)
+                                :type "int")
+                                (reparse-symbol enumsubparts) [4598 4617]))                          
+                        :type "enum")
+                        (reparse-symbol classsubparts) [4583 4679])
+                    ("fPathGenerator" variable
+                       (:typemodifiers ("mutable")
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("PathGenerator" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [4685 4729])
+                    ("fGeneratedPaths" variable
+                       (:typemodifiers ("mutable")
+                        :type ("SkTArray" type
+                             (:template-specifier 
+                                ( ("uint8_t" type nil nil nil)
+                                  ("true" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [4734 4795])
+                    ("fNumPaths" variable
+                       (:constant-flag t
+                        :type "int")
+                        (reparse-symbol classsubparts) [4800 4820])
+                    ("INHERITED" type
+                       (:typedef ("GrGpuResource" type (:type "class") nil nil)
+                        :type "typedef")
+                        (reparse-symbol classsubparts) [4826 4858]))                  
+                :type "class")
+                nil [478 4861]))          
+      :file "GrPathRange.h"
+      :pointmax 4870
+      :fsize 4869
+      :lastmodtime '(23060 12272 825732 634000)
+      :unmatched-syntax nil
+      :lexical-table 
+        '(("GrPathRange_DEFINED")
+          )
+)
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("GrGpu.h" include nil nil [146 164])
+            ("GrPathRendering.h" include nil nil [165 193])
+            ("SkDescriptor.h" include nil nil [194 219])
+            ("SkScalerContext.h" include nil nil [220 248])
+            ("SkGlyph.h" include nil nil [249 269])
+            ("SkMatrix.h" include nil nil [270 291])
+            ("SkTypeface.h" include nil nil [292 315])
+            ("GrPathRange.h" include nil nil [316 340])
+            ("GetStencilPassSettings" function
+               (:parent "GrPathRendering"
+                :constant-flag t
+                :arguments 
+                  ( ("fill" variable (:type ("FillType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [411 425]))                  
+                :type ("GrUserStencilSettings" type (:type "class") nil nil))
+                nil [342 1467])
+            ("GlyphGenerator" type
+               (:superclasses 
+                  ( ("GrPathRange::PathGenerator" type
+                       (:protection "public"
+                        :type "class")
+                        nil nil))                  
+                :members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [1528 1535])
+                    ("GlyphGenerator" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("typeface" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("SkTypeface" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1555 1582])
+                            ("effects" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("SkScalerContextEffects" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1583 1621])
+                            ("desc" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("SkDescriptor" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1641 1666]))                          
+                        :type ("GlyphGenerator" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [1540 1796])
+                    ("private" label nil (reparse-symbol classsubparts) [2108 2116])
+                    ("fScalerContext" variable
+                       (:constant-flag t
+                        :type ("std::unique_ptr" type
+                             (:template-specifier 
+                                ( ("SkScalerContext" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [2121 2175]))                  
+                :type "class")
+                nil [1469 2248])
+            ("createGlyphs" function
+               (:parent "GrPathRendering"
+                :arguments 
+                  ( ("typeface" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("SkTypeface" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2299 2326])
+                    ("effects" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkScalerContextEffects" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2376 2414])
+                    ("desc" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("SkDescriptor" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2464 2489])
+                    ("style" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrStyle" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2539 2560]))                  
+                :type ("sk_sp" type
+                     (:template-specifier 
+                        ( ("GrPathRange" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [2250 3679])
+            ("stencilPath" function
+               (:parent "GrPathRendering"
+                :arguments 
+                  ( ("args" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("StencilPathArgs" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [3715 3743])
+                    ("path" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrPath" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [3744 3763]))                  
+                :type "void")
+                nil [3681 3836])
+            ("drawPath" function
+               (:parent "GrPathRendering"
+                :arguments 
+                  ( ("pipeline" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrPipeline" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [3869 3896])
+                    ("primProc" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrPrimitiveProcessor" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [3928 3965])
+                    ("stencilPassSettings" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrStencilSettings" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4064 4109])
+                    ("path" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrPath" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4141 4160]))                  
+                :type "void")
+                nil [3838 4419])
+            ("drawPaths" function
+               (:parent "GrPathRendering"
+                :arguments 
+                  ( ("pipeline" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrPipeline" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4453 4480])
+                    ("primProc" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrPrimitiveProcessor" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4513 4550])
+                    ("stencilPassSettings" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrStencilSettings" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4651 4696])
+                    ("pathRange" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrPathRange" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4729 4758])
+                    ("indices" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [4791 4811])
+                    ("indexType" variable (:type ("PathIndexType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4844 4868])
+                    ("transformValues" variable
+                       (:dereference 1
+                        :constant-flag t
+                        :type "float")
+                        (reparse-symbol arg-sub-list) [4901 4931])
+                    ("transformType" variable (:type ("PathTransformType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4964 4996])
+                    ("count" variable (:type "int") (reparse-symbol arg-sub-list) [5029 5039]))                  
+                :type "void")
+                nil [4421 5469]))          
+      :file "GrPathRendering.cpp"
+      :pointmax 5470
+      :fsize 5469
+      :lastmodtime '(23060 12272 825732 634000)
+      :unmatched-syntax '((semantic-list 1943 . 1997) (symbol 1934 . 1942) (semantic-list 1907 . 1933) (symbol 1895 . 1907) (VOID 1890 . 1894) (semantic-list 1829 . 1884) (symbol 1820 . 1828) (semantic-list 1817 . 1819) (symbol 1806 . 1817) (INT 1802 . 1805)))
+    (semanticdb-table "semanticdb-table"
+      :file "GrGpu.h"
+      :fsize 31593
+      :lastmodtime '(23060 12272 825732 634000))
+    (semanticdb-table "semanticdb-table"
+      :major-mode c-mode
+      :tags 
+        '( ("GrPathRendering_DEFINED" variable (:constant-flag t) nil [186 209])
+            ("SkPath.h" include nil nil [211 230])
+            ("GrPathRange.h" include nil nil [231 255])
+            ("GrPipeline.h" include nil nil [256 279])
+            ("GrGpu" type
+               (:prototype t
+                :type "class")
+                nil [281 293])
+            ("GrPath" type
+               (:prototype t
+                :type "class")
+                nil [294 307])
+            ("GrStencilSettings" type
+               (:prototype t
+                :type "class")
+                nil [308 332])
+            ("GrStyle" type
+               (:prototype t
+                :type "class")
+                nil [333 347])
+            ("SkScalerContextEffects" type
+               (:prototype t
+                :type "struct")
+                nil [348 378])
+            ("SkDescriptor" type
+               (:prototype t
+                :type "class")
+                nil [379 398])
+            ("SkTypeface" type
+               (:prototype t
+                :type "class")
+                nil [399 416])
+            ("GrPathRendering" type
+               (:members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [1009 1016])
+                    ("GrPathRendering" function
+                       (:destructor-flag t
+                        :typemodifiers ("virtual")
+                        :type "void")
+                        (reparse-symbol classsubparts) [1021 1051])
+                    ("PathIndexType" type
+                       (:typedef ("GrPathRange::PathIndexType" type (:type "class") nil nil)
+                        :type "typedef")
+                        (reparse-symbol classsubparts) [1057 1106])
+                    ("PathTransformType" type
+                       (:members 
+                          ( ("kNone_PathTransformType" variable
+                               (:constant-flag t
+                                :type "int")
+                                (reparse-symbol enumsubparts) [1145 1169])
+                            ("kTranslateX_PathTransformType" variable
+                               (:constant-flag t
+                                :type "int")
+                                (reparse-symbol enumsubparts) [1193 1223])
+                            ("kTranslateY_PathTransformType" variable
+                               (:constant-flag t
+                                :type "int")
+                                (reparse-symbol enumsubparts) [1249 1279])
+                            ("kTranslate_PathTransformType" variable
+                               (:constant-flag t
+                                :type "int")
+                                (reparse-symbol enumsubparts) [1305 1334])
+                            ("kAffine_PathTransformType" variable
+                               (:constant-flag t
+                                :type "int")
+                                (reparse-symbol enumsubparts) [1371 1397])
+                            ("kLast_PathTransformType" variable
+                               (:constant-flag t
+                                :default-value (1502 1527)
+                                :type "int")
+                                (reparse-symbol enumsubparts) [1476 1527]))                          
+                        :type "enum")
+                        (reparse-symbol classsubparts) [1112 1534])
+                    ("PathTransformSize" function
+                       (:typemodifiers ("static" "inline")
+                        :arguments 
+                          ( ("type" variable (:type ("PathTransformType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [1576 1599]))                          
+                        :type "int")
+                        (reparse-symbol classsubparts) [1540 2079])
+                    ("FillType" type
+                       (:members 
+                          ( ("kWinding_FillType" variable
+                               (:constant-flag t
+                                :type "int")
+                                (reparse-symbol enumsubparts) [2273 2291])
+                            ("kEvenOdd_FillType" variable
+                               (:constant-flag t
+                                :type "int")
+                                (reparse-symbol enumsubparts) [2406 2424]))                          
+                        :type "enum")
+                        (reparse-symbol classsubparts) [2135 2431])
+                    ("GetStencilPassSettings" function
+                       (:prototype-flag t
+                        :typemodifiers ("static")
+                        :constant-flag t
+                        :arguments 
+                          ( ("" variable (:type ("FillType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2496 2505]))                          
+                        :type ("GrUserStencilSettings" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [2437 2506])
+                    ("createPath" function
+                       (:pure-virtual-flag t
+                        :prototype-flag t
+                        :typemodifiers ("virtual")
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("SkPath" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2860 2874])
+                            ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrStyle" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2875 2890]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("GrPath" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [2827 2895])
+                    ("createPathRange" function
+                       (:pure-virtual-flag t
+                        :prototype-flag t
+                        :typemodifiers ("virtual")
+                        :arguments 
+                          ( ("" variable
+                               (:pointer 1
+                                :type ("GrPathRange::PathGenerator" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [3300 3328])
+                            ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrStyle" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [3329 3344]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("GrPathRange" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [3257 3349])
+                    ("createGlyphs" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("SkTypeface" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [4872 4890])
+                            ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("SkScalerContextEffects" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [4891 4921])
+                            ("" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("SkDescriptor" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [4958 4978])
+                            ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrStyle" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [4979 4994]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("GrPathRange" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [4840 4995])
+                    ("StencilPathArgs" type
+                       (:members 
+                          ( ("StencilPathArgs" function
+                               (:constructor-flag t
+                                :arguments 
+                                  ( ("useHWAA" variable (:type "bool") (reparse-symbol arg-sub-list) [5139 5152])
+                                    ("proxy" variable
+                                       (:pointer 1
+                                        :type ("GrRenderTargetProxy" type (:type "class") nil nil))
+                                        (reparse-symbol arg-sub-list) [5177 5204])
+                                    ("viewMatrix" variable
+                                       (:pointer 1
+                                        :constant-flag t
+                                        :type ("SkMatrix" type (:type "class") nil nil))
+                                        (reparse-symbol arg-sub-list) [5229 5256])
+                                    ("scissor" variable
+                                       (:pointer 1
+                                        :constant-flag t
+                                        :type ("GrScissorState" type (:type "class") nil nil))
+                                        (reparse-symbol arg-sub-list) [5281 5311])
+                                    ("stencil" variable
+                                       (:pointer 1
+                                        :constant-flag t
+                                        :type ("GrStencilSettings" type (:type "class") nil nil))
+                                        (reparse-symbol arg-sub-list) [5336 5369]))                                  
+                                :type ("StencilPathArgs" type (:type "struct") nil nil))
+                                (reparse-symbol classsubparts) [5123 5543])
+                            ("fUseHWAA" variable (:type "bool") (reparse-symbol classsubparts) [5552 5586])
+                            ("fProxy" variable
+                               (:pointer 1
+                                :type ("GrRenderTargetProxy" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [5595 5627])
+                            ("fViewMatrix" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("SkMatrix" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [5636 5673])
+                            ("fScissor" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("GrScissorState" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [5682 5716])
+                            ("fStencil" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("GrStencilSettings" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [5725 5759]))                          
+                        :type "struct")
+                        (reparse-symbol classsubparts) [5090 5766])
+                    ("stencilPath" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("args" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("StencilPathArgs" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [5789 5817])
+                            ("path" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("GrPath" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [5818 5837]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [5772 5838])
+                    ("drawPath" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("pipeline" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrPipeline" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [5858 5885])
+                            ("primProc" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrPrimitiveProcessor" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [5904 5941])
+                            ("stencilPassSettings" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrStencilSettings" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [5960 6005])
+                            ("path" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("GrPath" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6060 6079]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [5844 6080])
+                    ("drawPaths" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("pipeline" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrPipeline" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6101 6128])
+                            ("primProc" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrPrimitiveProcessor" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6148 6185])
+                            ("stencilPassSettings" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrStencilSettings" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6205 6250])
+                            ("pathRange" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("GrPathRange" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6306 6335])
+                            ("indices" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type "void")
+                                (reparse-symbol arg-sub-list) [6355 6375])
+                            ("indexType" variable (:type ("PathIndexType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6395 6419])
+                            ("transformValues" variable
+                               (:dereference 1
+                                :constant-flag t
+                                :type "float")
+                                (reparse-symbol arg-sub-list) [6439 6469])
+                            ("transformType" variable (:type ("PathTransformType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6489 6521])
+                            ("count" variable (:type "int") (reparse-symbol arg-sub-list) [6541 6551]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [6086 6552])
+                    ("protected" label nil (reparse-symbol classsubparts) [6554 6564])
+                    ("GrPathRendering" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("gpu" variable
+                               (:pointer 1
+                                :type ("GrGpu" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6585 6596]))                          
+                        :type ("GrPathRendering" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [6569 6612])
+                    ("onStencilPath" function
+                       (:pure-virtual-flag t
+                        :prototype-flag t
+                        :typemodifiers ("virtual")
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("StencilPathArgs" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6645 6668])
+                            ("" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("GrPath" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6669 6683]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [6618 6688])
+                    ("onDrawPath" function
+                       (:pure-virtual-flag t
+                        :prototype-flag t
+                        :typemodifiers ("virtual")
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrPipeline" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6717 6735])
+                            ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrPrimitiveProcessor" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6764 6792])
+                            ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrStencilSettings" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6821 6846])
+                            ("" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("GrPath" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6875 6889]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [6693 6894])
+                    ("onDrawPaths" function
+                       (:pure-virtual-flag t
+                        :prototype-flag t
+                        :typemodifiers ("virtual")
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrPipeline" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6924 6942])
+                            ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrPrimitiveProcessor" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6972 7000])
+                            ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrStencilSettings" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [7030 7055])
+                            ("" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("GrPathRange" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [7085 7104])
+                            ("indices" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type "void")
+                                (reparse-symbol arg-sub-list) [7134 7154])
+                            ("" variable (:type ("PathIndexType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7184 7198])
+                            ("transformValues" variable
+                               (:dereference 1
+                                :constant-flag t
+                                :type "float")
+                                (reparse-symbol arg-sub-list) [7228 7258])
+                            ("" variable (:type ("PathTransformType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7288 7306])
+                            ("count" variable (:type "int") (reparse-symbol arg-sub-list) [7336 7346]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [6899 7351])
+                    ("fGpu" variable
+                       (:pointer 1
+                        :type ("GrGpu" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [7357 7369])
+                    ("private" label nil (reparse-symbol classsubparts) [7370 7378])
+                    ("=" function
+                       (:prototype-flag t
+                        :operator-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrPathRendering" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [7410 7433]))                          
+                        :type ("GrPathRendering" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [7383 7434]))                  
+                :type "class")
+                nil [985 7437]))          
+      :file "GrPathRendering.h"
+      :pointmax 7446
+      :fsize 7445
+      :lastmodtime '(23060 12272 825732 634000)
+      :unmatched-syntax nil
+      :lexical-table 
+        '(("GrPathRendering_DEFINED")
+          )
+)
+    (semanticdb-table "semanticdb-table"
+      :file "GrPipeline.h"
+      :fsize 8872
+      :lastmodtime '(23060 12272 825732 634000))
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("GrPathProcessor.h" include nil nil [141 169])
+            ("GrShaderCaps.h" include nil nil [171 196])
+            ("gl/GrGLGpu.h" include nil nil [197 220])
+            ("glsl/GrGLSLFragmentShaderBuilder.h" include nil nil [221 266])
+            ("glsl/GrGLSLUniformHandler.h" include nil nil [267 305])
+            ("glsl/GrGLSLVarying.h" include nil nil [306 337])
+            ("GrGLPathProcessor" type
+               (:superclasses 
+                  ( ("GrGLSLPrimitiveProcessor" type
+                       (:protection "public"
+                        :type "class")
+                        nil nil))                  
+                :members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [399 406])
+                    ("GrGLPathProcessor" function
+                       (:constructor-flag t
+                        :type ("GrGLPathProcessor" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [411 459])
+                    ("GenKey" function
+                       (:typemodifiers ("static")
+                        :arguments 
+                          ( ("pathProc" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrPathProcessor" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [484 516])
+                            ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrShaderCaps" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [540 560])
+                            ("b" variable
+                               (:pointer 1
+                                :type ("GrProcessorKeyBuilder" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [584 609]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [465 684])
+                    ("emitTransforms" function
+                       (:arguments 
+                          ( ("varyingHandler" variable
+                               (:pointer 1
+                                :type ("GrGLSLVaryingHandler" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1708 1745])
+                            ("transformHandler" variable
+                               (:pointer 1
+                                :type ("FPCoordTransformHandler" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1770 1812]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [1688 2780])
+                    ("private" label nil (reparse-symbol classsubparts) [4036 4044])
+                    ("VaryingHandle" type
+                       (:typedef ("GrGLSLProgramDataManager::VaryingHandle" type (:type "class") nil nil)
+                        :type "typedef")
+                        (reparse-symbol classsubparts) [4049 4111])
+                    ("TransformVarying" type
+                       (:members 
+                          ( ("fHandle" variable (:type ("VaryingHandle" type (:type "class") nil nil)) (reparse-symbol classsubparts) [4150 4173])
+                            ("fCurrentValue" variable
+                               (:default-value "SkMatrix::InvalidMatrix()"
+                                :type ("SkMatrix" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [4182 4239])
+                            ("fType" variable
+                               (:default-value "kVoid_GrSLType"
+                                :type ("GrSLType" type (:type "class") nil nil))
+                                (reparse-symbol classsubparts) [4248 4286]))                          
+                        :type "struct")
+                        (reparse-symbol classsubparts) [4116 4293])
+                    ("fInstalledTransforms" variable (:type ("SkTArray" type
+                         (:template-specifier 
+                            ( ("TransformVarying" type nil nil nil)
+                              ("true" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol classsubparts) [4299 4353])
+                    ("fColorUniform" variable (:type ("UniformHandle" type (:type "class") nil nil)) (reparse-symbol classsubparts) [4359 4387])
+                    ("fColor" variable (:type ("GrColor" type (:type "class") nil nil)) (reparse-symbol classsubparts) [4392 4407])
+                    ("INHERITED" type
+                       (:typedef ("GrGLSLPrimitiveProcessor" type (:type "class") nil nil)
+                        :type "typedef")
+                        (reparse-symbol classsubparts) [4413 4456]))                  
+                :type "class")
+                nil [339 4459])
+            ("GrPathProcessor" function
+               (:constructor-flag t
+                :parent "GrPathProcessor"
+                :arguments 
+                  ( ("color" variable (:type ("GrColor" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4494 4508])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4542 4569])
+                    ("localMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4603 4631]))                  
+                :type ("GrPathProcessor" type (:type "class") nil nil))
+                nil [4461 4774])
+            ("getGLSLProcessorKey" function
+               (:methodconst-flag t
+                :parent "GrPathProcessor"
+                :arguments 
+                  ( ("caps" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrShaderCaps" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4818 4843])
+                    ("b" variable
+                       (:pointer 1
+                        :type ("GrProcessorKeyBuilder" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4886 4911]))                  
+                :type "void")
+                nil [4776 4982])
+            ("createGLSLInstance" function
+               (:methodconst-flag t
+                :pointer 1
+                :parent "GrPathProcessor"
+                :arguments 
+                  ( ("caps" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrShaderCaps" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [5046 5071]))                  
+                :type ("GrGLSLPrimitiveProcessor" type (:type "class") nil nil))
+                nil [4984 5185]))          
+      :file "GrPathProcessor.cpp"
+      :pointmax 5186
+      :fsize 5185
+      :lastmodtime '(23073 31189 705708 800000)
+      :unmatched-syntax '((semantic-list 2954 . 4034) (symbol 2945 . 2953) (semantic-list 2798 . 2944) (symbol 2791 . 2798) (punctuation 2928 . 2929) (VOID 2786 . 2790) (punctuation 2928 . 2929) (semantic-list 729 . 1682) (symbol 720 . 728) (semantic-list 703 . 719) (symbol 695 . 703) (VOID 690 . 694)))
+    (semanticdb-table "semanticdb-table"
+      :file "GrPathProcessor.h"
+      :fsize 1693
+      :lastmodtime '(23060 12272 825732 634000))
+    (semanticdb-table "semanticdb-table"
+      :major-mode c-mode
+      :tags 
+        '( ("GrPathRenderer_DEFINED" variable (:constant-flag t) nil [185 207])
+            ("GrCaps.h" include nil nil [209 228])
+            ("GrRenderTargetContext.h" include nil nil [229 263])
+            ("GrPaint.h" include nil nil [264 284])
+            ("GrShape.h" include nil nil [285 305])
+            ("GrUserStencilSettings.h" include nil nil [306 340])
+            ("SkDrawProcs.h" include nil nil [342 366])
+            ("SkTArray.h" include nil nil [367 388])
+            ("SkPath" type
+               (:prototype t
+                :type "class")
+                nil [390 403])
+            ("GrFixedClip" type
+               (:prototype t
+                :type "class")
+                nil [404 422])
+            ("GrHardClip" type
+               (:prototype t
+                :type "class")
+                nil [423 440])
+            ("GrPoint" type
+               (:prototype t
+                :type "struct")
+                nil [441 456])
+            ("SkRefCnt" variable (:type "int") nil [553 10481]))          
+      :file "GrPathRenderer.h"
+      :pointmax 10490
+      :fsize 10489
+      :lastmodtime '(23060 12272 825732 634000)
+      :unmatched-syntax '((PUBLIC 546 . 552) (punctuation 544 . 545) (symbol 529 . 543) (symbol 522 . 528) (CLASS 516 . 521))
+      :lexical-table 
+        '(("GrPathRenderer_DEFINED")
+          )
+)
+    (semanticdb-table "semanticdb-table"
+      :file "GrPaint.h"
+      :fsize 6167
+      :lastmodtime '(23060 12272 825732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrShape.h"
+      :fsize 19378
+      :lastmodtime '(23060 12272 829732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrUserStencilSettings.h"
+      :fsize 12221
+      :lastmodtime '(23060 12272 833732 634000))
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("GrRenderTargetContext.h" include nil nil [146 180])
+            ("../private/GrAuditTrail.h" include nil nil [181 217])
+            ("../private/SkShadowFlags.h" include nil nil [218 255])
+            ("GrAppliedClip.h" include nil nil [256 282])
+            ("GrBackendSemaphore.h" include nil nil [283 314])
+            ("GrBlurUtils.h" include nil nil [315 339])
+            ("GrColor.h" include nil nil [340 360])
+            ("GrContextPriv.h" include nil nil [361 387])
+            ("GrDrawingManager.h" include nil nil [388 417])
+            ("GrFixedClip.h" include nil nil [418 442])
+            ("GrGpuResourcePriv.h" include nil nil [443 473])
+            ("GrOpList.h" include nil nil [474 495])
+            ("GrPathRenderer.h" include nil nil [496 523])
+            ("GrQuad.h" include nil nil [524 543])
+            ("GrRenderTarget.h" include nil nil [544 571])
+            ("GrRenderTargetContextPriv.h" include nil nil [572 610])
+            ("GrResourceProvider.h" include nil nil [611 642])
+            ("GrStencilAttachment.h" include nil nil [643 675])
+            ("GrTracing.h" include nil nil [676 698])
+            ("SkDrawShadowInfo.h" include nil nil [699 728])
+            ("SkGr.h" include nil nil [729 746])
+            ("SkLatticeIter.h" include nil nil [747 773])
+            ("SkMatrixPriv.h" include nil nil [774 799])
+            ("SkShadowUtils.h" include nil nil [800 826])
+            ("SkSurfacePriv.h" include nil nil [827 853])
+            ("effects/GrRRectEffect.h" include nil nil [854 888])
+            ("instanced/InstancedRendering.h" include nil nil [889 930])
+            ("ops/GrAtlasTextOp.h" include nil nil [931 961])
+            ("ops/GrClearOp.h" include nil nil [962 988])
+            ("ops/GrClearStencilClipOp.h" include nil nil [989 1026])
+            ("ops/GrDebugMarkerOp.h" include nil nil [1027 1059])
+            ("ops/GrDrawAtlasOp.h" include nil nil [1060 1090])
+            ("ops/GrDrawOp.h" include nil nil [1091 1116])
+            ("ops/GrDrawVerticesOp.h" include nil nil [1117 1150])
+            ("ops/GrLatticeOp.h" include nil nil [1151 1179])
+            ("ops/GrOp.h" include nil nil [1180 1201])
+            ("ops/GrOvalOpFactory.h" include nil nil [1202 1234])
+            ("ops/GrRectOpFactory.h" include nil nil [1235 1267])
+            ("ops/GrRegionOp.h" include nil nil [1268 1295])
+            ("ops/GrSemaphoreOp.h" include nil nil [1296 1326])
+            ("ops/GrShadowRRectOp.h" include nil nil [1327 1359])
+            ("ops/GrStencilPathOp.h" include nil nil [1360 1392])
+            ("ops/GrTextureOp.h" include nil nil [1393 1421])
+            ("text/GrAtlasTextContext.h" include nil nil [1422 1458])
+            ("text/GrStencilAndCoverTextContext.h" include nil nil [1459 1505])
+            ("text/GrTextUtils.h" include nil nil [1506 1535])
+            ("TextTarget" type
+               (:parent "GrRenderTargetContext"
+                :superclasses 
+                  ( ("GrTextUtils::Target" type
+                       (:protection "public"
+                        :type "class")
+                        nil nil))                  
+                :members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [1608 1615])
+                    ("TextTarget" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("renderTargetContext" variable
+                               (:pointer 1
+                                :type ("GrRenderTargetContext" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1631 1674]))                          
+                        :type ("TextTarget" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [1620 1875])
+                    ("addDrawOp" function
+                       (:arguments 
+                          ( ("clip" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrClip" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1896 1915])
+                            ("op" variable (:type ("std::unique_ptr" type
+                                 (:template-specifier 
+                                    ( ("GrAtlasTextOp" type nil nil nil))                                    
+                                  :type "class")
+                                  nil nil)) (reparse-symbol arg-sub-list) [1916 1950]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [1881 2020])
+                    ("drawPath" function
+                       (:arguments 
+                          ( ("clip" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrClip" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2040 2059])
+                            ("path" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("SkPath" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2060 2079])
+                            ("paint" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("SkPaint" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2080 2101])
+                            ("viewMatrix" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("SkMatrix" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2120 2147])
+                            ("pathMatrix" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("SkMatrix" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2148 2175])
+                            ("clipBounds" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("SkIRect" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2194 2220]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [2026 2477])
+                    ("makeGrPaint" function
+                       (:arguments 
+                          ( ("maskFormat" variable (:type ("GrMaskFormat" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2500 2524])
+                            ("skPaint" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("SkPaint" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2525 2548])
+                            ("viewMatrix" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("SkMatrix" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2549 2576])
+                            ("grPaint" variable
+                               (:pointer 1
+                                :type ("GrPaint" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2598 2615]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [2483 3024])
+                    ("private" label nil (reparse-symbol classsubparts) [3026 3034])
+                    ("fRenderTargetContext" variable
+                       (:pointer 1
+                        :type ("GrRenderTargetContext" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [3039 3083]))                  
+                :type "class")
+                nil [1537 3086])
+            ("ASSERT_OWNED_RESOURCE" variable (:constant-flag t) nil [3096 3117])
+            ("ASSERT_SINGLE_OWNER" variable (:constant-flag t) nil [3205 3224])
+            ("ASSERT_SINGLE_OWNER_PRIV" variable (:constant-flag t) nil [3319 3343])
+            ("RETURN_IF_ABANDONED" variable (:constant-flag t) nil [3454 3473])
+            ("RETURN_IF_ABANDONED_PRIV" variable (:constant-flag t) nil [3545 3569])
+            ("RETURN_FALSE_IF_ABANDONED" variable (:constant-flag t) nil [3652 3677])
+            ("RETURN_FALSE_IF_ABANDONED_PRIV" variable (:constant-flag t) nil [3749 3779])
+            ("RETURN_NULL_IF_ABANDONED" variable (:constant-flag t) nil [3867 3891])
+            ("GrChooseAAType" function
+               (:arguments 
+                  ( ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4063 4071])
+                    ("fsaaType" variable (:type ("GrFSAAType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4072 4092])
+                    ("allowMixedSamples" variable (:type ("GrAllowMixedSamples" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4093 4131])
+                    ("caps" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrCaps" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4156 4175]))                  
+                :type ("GrAAType" type (:type "class") nil nil))
+                nil [4039 4958])
+            ("AutoCheckFlush" type
+               (:members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [5063 5070])
+                    ("AutoCheckFlush" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("drawingManager" variable
+                               (:pointer 1
+                                :type ("GrDrawingManager" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [5090 5123]))                          
+                        :type ("AutoCheckFlush" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [5075 5200])
+                    ("AutoCheckFlush" function
+                       (:destructor-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [5205 5263])
+                    ("private" label nil (reparse-symbol classsubparts) [5265 5273])
+                    ("fDrawingManager" variable
+                       (:pointer 1
+                        :type ("GrDrawingManager" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [5278 5312]))                  
+                :type "class")
+                nil [5040 5315])
+            ("wasAbandoned" function
+               (:methodconst-flag t
+                :parent "GrRenderTargetContext"
+                :type "bool")
+                nil [5317 5420])
+            ("GrRenderTargetContext" function
+               (:constructor-flag t
+                :parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("context" variable
+                       (:pointer 1
+                        :type ("GrContext" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [5781 5800])
+                    ("drawingMgr" variable
+                       (:pointer 1
+                        :type ("GrDrawingManager" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [5846 5875])
+                    ("rtp" variable (:type ("sk_sp" type
+                         (:template-specifier 
+                            ( ("GrRenderTargetProxy" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol arg-sub-list) [5921 5952])
+                    ("colorSpace" variable (:type ("sk_sp" type
+                         (:template-specifier 
+                            ( ("SkColorSpace" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol arg-sub-list) [5998 6029])
+                    ("surfaceProps" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("SkSurfaceProps" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [6075 6110])
+                    ("auditTrail" variable
+                       (:pointer 1
+                        :type ("GrAuditTrail" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [6156 6181])
+                    ("singleOwner" variable
+                       (:pointer 1
+                        :type ("GrSingleOwner" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [6227 6254])
+                    ("managedOpList" variable (:type "bool") (reparse-symbol arg-sub-list) [6300 6319]))                  
+                :type ("GrRenderTargetContext" type (:type "class") nil nil))
+                nil [5736 7125])
+            ("GrRenderTargetContext" function
+               (:destructor-flag t
+                :parent "GrRenderTargetContext"
+                :type "void")
+                nil [7400 7475])
+            ("asTextureProxy" function
+               (:pointer 1
+                :parent "GrRenderTargetContext"
+                :type ("GrTextureProxy" type (:type "class") nil nil))
+                nil [7477 7585])
+            ("asTextureProxy" function
+               (:methodconst-flag t
+                :pointer 1
+                :parent "GrRenderTargetContext"
+                :constant-flag t
+                :type ("GrTextureProxy" type (:type "class") nil nil))
+                nil [7587 7707])
+            ("asTextureProxyRef" function
+               (:parent "GrRenderTargetContext"
+                :type ("sk_sp" type
+                     (:template-specifier 
+                        ( ("GrTextureProxy" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [7709 7837])
+            ("mipMapped" function
+               (:methodconst-flag t
+                :parent "GrRenderTargetContext"
+                :type ("GrMipMapped" type (:type "class") nil nil))
+                nil [7839 8029])
+            ("getRTOpList" function
+               (:pointer 1
+                :parent "GrRenderTargetContext"
+                :type ("GrRenderTargetOpList" type (:type "class") nil nil))
+                nil [8031 8326])
+            ("getOpList" function
+               (:pointer 1
+                :parent "GrRenderTargetContext"
+                :type ("GrOpList" type (:type "class") nil nil))
+                nil [8328 8408])
+            ("drawText" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [8447 8466])
+                    ("skPaint" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [8467 8490])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [8528 8555])
+                    ("text" variable
+                       (:dereference 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [8556 8574])
+                    ("byteLength" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8612 8630])
+                    ("x" variable (:type ("SkScalar" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8631 8642])
+                    ("y" variable (:type ("SkScalar" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8643 8654])
+                    ("clipBounds" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkIRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [8692 8718]))                  
+                :type "void")
+                nil [8410 9149])
+            ("drawPosText" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [9191 9210])
+                    ("paint" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [9211 9232])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [9273 9300])
+                    ("text" variable
+                       (:dereference 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [9301 9319])
+                    ("byteLength" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9360 9378])
+                    ("pos" variable
+                       (:dereference 1
+                        :constant-flag t
+                        :type ("SkScalar" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [9379 9400])
+                    ("scalarsPerPosition" variable (:type "int") (reparse-symbol arg-sub-list) [9441 9464])
+                    ("offset" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkPoint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [9465 9487])
+                    ("clipBounds" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkIRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [9528 9554]))                  
+                :type "void")
+                nil [9151 10053])
+            ("drawTextBlob" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [10096 10115])
+                    ("paint" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [10116 10137])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [10179 10206])
+                    ("blob" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("SkTextBlob" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [10207 10230])
+                    ("x" variable (:type ("SkScalar" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10272 10283])
+                    ("y" variable (:type ("SkScalar" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10284 10295])
+                    ("filter" variable
+                       (:pointer 1
+                        :type ("SkDrawFilter" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [10296 10317])
+                    ("clipBounds" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkIRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [10359 10385]))                  
+                :type "void")
+                nil [10055 10822])
+            ("discard" function
+               (:parent "GrRenderTargetContext"
+                :type "void")
+                nil [10824 11116])
+            ("clear" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("rect" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("SkIRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [11152 11172])
+                    ("color" variable
+                       (:constant-flag t
+                        :type ("GrColor" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [11207 11227])
+                    ("canIgnoreRect" variable (:type "bool") (reparse-symbol arg-sub-list) [11262 11281]))                  
+                :type "void")
+                nil [11118 11597])
+            ("absClear" function
+               (:parent "GrRenderTargetContextPriv"
+                :arguments 
+                  ( ("clearRect" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("SkIRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [11640 11665])
+                    ("color" variable
+                       (:constant-flag t
+                        :type ("GrColor" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [11666 11686]))                  
+                :type "void")
+                nil [11599 13024])
+            ("clear" function
+               (:parent "GrRenderTargetContextPriv"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrFixedClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [13064 13088])
+                    ("color" variable
+                       (:constant-flag t
+                        :type ("GrColor" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [13127 13147])
+                    ("canIgnoreClip" variable (:type "bool") (reparse-symbol arg-sub-list) [13186 13205]))                  
+                :type "void")
+                nil [13026 13593])
+            ("internalClear" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrFixedClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [13637 13661])
+                    ("color" variable
+                       (:constant-flag t
+                        :type ("GrColor" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [13704 13724])
+                    ("canIgnoreClip" variable (:type "bool") (reparse-symbol arg-sub-list) [13767 13786]))                  
+                :type "void")
+                nil [13595 14375])
+            ("drawPaint" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [14415 14434])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [14473 14482])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [14483 14489])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [14528 14555]))                  
+                :type "void")
+                nil [14377 16561])
+            ("rect_contains_inclusive" function
+               (:typemodifiers ("static" "inline")
+                :arguments 
+                  ( ("rect" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [16606 16625])
+                    ("point" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkPoint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [16626 16647]))                  
+                :type "bool")
+                nil [16563 16777])
+            ("crop_filled_rect" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("width" variable (:type "int") (reparse-symbol arg-sub-list) [16937 16947])
+                    ("height" variable (:type "int") (reparse-symbol arg-sub-list) [16948 16959])
+                    ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [16960 16979])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [17009 17036])
+                    ("rect" variable
+                       (:pointer 1
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [17037 17050])
+                    ("localRect" variable
+                       (:pointer 1
+                        :default-value "nullptr"
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [17080 17107]))                  
+                :type "bool")
+                nil [16908 18415])
+            ("drawFilledRect" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [18460 18479])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [18523 18532])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [18533 18539])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [18583 18591])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [18635 18662])
+                    ("rect" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [18706 18725])
+                    ("ss" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrUserStencilSettings" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [18769 18801]))                  
+                :type "bool")
+                nil [18417 19914])
+            ("drawRect" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [19953 19972])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [20010 20019])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [20020 20026])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [20064 20072])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [20110 20137])
+                    ("rect" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [20175 20194])
+                    ("style" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrStyle" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [20232 20253]))                  
+                :type "void")
+                nil [19916 24652])
+            ("maxWindowRectangles" function
+               (:methodconst-flag t
+                :parent "GrRenderTargetContextPriv"
+                :type "int")
+                nil [24654 24884])
+            ("clearStencilClip" function
+               (:parent "GrRenderTargetContextPriv"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrFixedClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [24935 24959])
+                    ("insideStencilMask" variable (:type "bool") (reparse-symbol arg-sub-list) [24960 24983]))                  
+                :type "void")
+                nil [24886 25675])
+            ("stencilPath" function
+               (:parent "GrRenderTargetContextPriv"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrHardClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [25721 25744])
+                    ("aaType" variable (:type ("GrAAType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [25789 25805])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [25850 25877])
+                    ("path" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrPath" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [25922 25941]))                  
+                :type "void")
+                nil [25677 27545])
+            ("stencilRect" function
+               (:parent "GrRenderTargetContextPriv"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrHardClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [27591 27614])
+                    ("ss" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrUserStencilSettings" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [27659 27691])
+                    ("aaType" variable (:type ("GrAAType" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [27736 27752])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [27797 27824])
+                    ("rect" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [27869 27888]))                  
+                :type "void")
+                nil [27547 28519])
+            ("drawAndStencilRect" function
+               (:parent "GrRenderTargetContextPriv"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrHardClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [28572 28595])
+                    ("ss" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrUserStencilSettings" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [28647 28679])
+                    ("op" variable (:type ("SkRegion::Op" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [28731 28747])
+                    ("invert" variable (:type "bool") (reparse-symbol arg-sub-list) [28799 28811])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [28863 28871])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [28923 28950])
+                    ("rect" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [29002 29021]))                  
+                :type "bool")
+                nil [28521 29706])
+            ("fillRectToRect" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [29751 29770])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [29814 29823])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [29824 29830])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [29874 29882])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [29926 29953])
+                    ("rectToDraw" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [29997 30022])
+                    ("localRect" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [30066 30090]))                  
+                :type "void")
+                nil [29708 32064])
+            ("must_filter" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("src" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [32090 32108])
+                    ("dst" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [32109 32127])
+                    ("ctm" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [32128 32148]))                  
+                :type "bool")
+                nil [32066 32793])
+            ("drawTextureAffine" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [32841 32860])
+                    ("proxy" variable (:type ("sk_sp" type
+                         (:template-specifier 
+                            ( ("GrTextureProxy" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol arg-sub-list) [32861 32889])
+                    ("filter" variable (:type ("GrSamplerState::Filter" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [32936 32966])
+                    ("color" variable (:type ("GrColor" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [32967 32981])
+                    ("srcRect" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [33028 33050])
+                    ("dstRect" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [33051 33073])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [33120 33147])
+                    ("colorSpaceXform" variable (:type ("sk_sp" type
+                         (:template-specifier 
+                            ( ("GrColorSpaceXform" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol arg-sub-list) [33194 33235]))                  
+                :type "void")
+                nil [32795 34168])
+            ("fillRectWithLocalMatrix" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [34222 34241])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [34294 34303])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [34304 34310])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [34363 34371])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [34424 34451])
+                    ("rectToDraw" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [34504 34529])
+                    ("localMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [34582 34610]))                  
+                :type "void")
+                nil [34170 36492])
+            ("drawVertices" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [36535 36554])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [36596 36605])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [36606 36612])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [36654 36681])
+                    ("vertices" variable (:type ("sk_sp" type
+                         (:template-specifier 
+                            ( ("SkVertices" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol arg-sub-list) [36723 36750])
+                    ("overridePrimType" variable
+                       (:pointer 1
+                        :type ("GrPrimitiveType" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [36792 36826]))                  
+                :type "void")
+                nil [36494 37462])
+            ("drawAtlas" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [37583 37602])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [37641 37650])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [37651 37657])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [37696 37723])
+                    ("spriteCount" variable (:type "int") (reparse-symbol arg-sub-list) [37762 37778])
+                    ("xform" variable
+                       (:dereference 1
+                        :constant-flag t
+                        :type ("SkRSXform" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [37817 37841])
+                    ("texRect" variable
+                       (:dereference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [37880 37903])
+                    ("colors" variable
+                       (:dereference 1
+                        :constant-flag t
+                        :type ("SkColor" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [37942 37965]))                  
+                :type "void")
+                nil [37545 38493])
+            ("drawRRect" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("origClip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [38614 38637])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [38676 38685])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [38686 38692])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [38731 38739])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [38778 38805])
+                    ("rrect" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [38844 38865])
+                    ("style" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrStyle" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [38904 38925]))                  
+                :type "void")
+                nil [38576 41341])
+            ("map" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("m" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [41444 41462])
+                    ("pt" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkPoint3" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [41463 41482]))                  
+                :type ("SkPoint3" type (:type "class") nil nil))
+                nil [41424 41598])
+            ("drawFastShadow" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [41643 41662])
+                    ("color4ub" variable (:type ("GrColor" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [41706 41723])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [41767 41794])
+                    ("path" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkPath" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [41838 41857])
+                    ("rec" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkDrawShadowRec" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [41901 41928]))                  
+                :type "bool")
+                nil [41600 51938])
+            ("drawFilledDRRect" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [52066 52085])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [52131 52140])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [52141 52147])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [52193 52201])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [52247 52274])
+                    ("origOuter" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [52320 52345])
+                    ("origInner" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [52391 52416]))                  
+                :type "bool")
+                nil [52021 54559])
+            ("drawDRRect" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [54600 54619])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [54659 54668])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [54669 54675])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [54715 54723])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [54763 54790])
+                    ("outer" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [54830 54851])
+                    ("inner" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [54891 54912]))                  
+                :type "void")
+                nil [54561 55556])
+            ("drawRegion" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [55678 55697])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [55737 55746])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [55747 55753])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [55793 55801])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [55841 55868])
+                    ("region" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRegion" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [55908 55931])
+                    ("style" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrStyle" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [55971 55992])
+                    ("ss" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrUserStencilSettings" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [56032 56064]))                  
+                :type "void")
+                nil [55639 57163])
+            ("drawOval" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [57202 57221])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [57259 57268])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [57269 57275])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [57313 57321])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [57359 57386])
+                    ("oval" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [57424 57443])
+                    ("style" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrStyle" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [57481 57502]))                  
+                :type "void")
+                nil [57165 58939])
+            ("drawArc" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [58977 58996])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [59033 59042])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [59043 59049])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [59086 59094])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [59131 59158])
+                    ("oval" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [59195 59214])
+                    ("startAngle" variable (:type ("SkScalar" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [59251 59271])
+                    ("sweepAngle" variable (:type ("SkScalar" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [59308 59328])
+                    ("useCenter" variable (:type "bool") (reparse-symbol arg-sub-list) [59365 59380])
+                    ("style" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrStyle" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [59417 59438]))                  
+                :type "void")
+                nil [58941 60811])
+            ("drawImageLattice" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [60858 60877])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [60923 60932])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [60933 60939])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [60985 61012])
+                    ("imageWidth" variable (:type "int") (reparse-symbol arg-sub-list) [61058 61073])
+                    ("imageHeight" variable (:type "int") (reparse-symbol arg-sub-list) [61119 61135])
+                    ("iter" variable (:type ("std::unique_ptr" type
+                         (:template-specifier 
+                            ( ("SkLatticeIter" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol arg-sub-list) [61181 61217])
+                    ("dst" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [61263 61281]))                  
+                :type "void")
+                nil [60813 61745])
+            ("prepareForExternalIO" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("numSemaphores" variable (:type "int") (reparse-symbol arg-sub-list) [61822 61840])
+                    ("backendSemaphores" variable
+                       (:dereference 1
+                        :type ("GrBackendSemaphore" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [61841 61880]))                  
+                :type ("GrSemaphoresSubmitted" type (:type "class") nil nil))
+                nil [61747 62376])
+            ("waitOnSemaphores" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("numSemaphores" variable (:type "int") (reparse-symbol arg-sub-list) [62423 62441])
+                    ("waitSemaphores" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrBackendSemaphore" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [62487 62528]))                  
+                :type "bool")
+                nil [62378 63293])
+            ("insertEventMarker" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("str" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkString" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [63341 63361]))                  
+                :type "void")
+                nil [63295 63511])
+            ("fills_as_nested_rects" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [63610 63637])
+                    ("path" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkPath" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [63638 63657])
+                    ("rects" variable
+                       (:dereference 1
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [63658 63674]))                  
+                :type "bool")
+                nil [63576 64869])
+            ("drawPath" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [64908 64927])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [64965 64974])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [64975 64981])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [65019 65027])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [65065 65092])
+                    ("path" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkPath" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [65130 65149])
+                    ("style" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrStyle" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [65187 65208]))                  
+                :type "void")
+                nil [64871 67266])
+            ("drawAndStencilPath" function
+               (:parent "GrRenderTargetContextPriv"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrHardClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [67319 67342])
+                    ("ss" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrUserStencilSettings" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [67394 67426])
+                    ("op" variable (:type ("SkRegion::Op" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [67478 67494])
+                    ("invert" variable (:type "bool") (reparse-symbol arg-sub-list) [67546 67558])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [67610 67618])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [67670 67697])
+                    ("path" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkPath" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [67749 67768]))                  
+                :type "bool")
+                nil [67268 70452])
+            ("isBudgeted" function
+               (:methodconst-flag t
+                :parent "GrRenderTargetContextPriv"
+                :type ("SkBudgeted" type (:type "class") nil nil))
+                nil [70454 70750])
+            ("internalDrawPath" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [70797 70816])
+                    ("" variable
+                       (:reference 1
+                        :type ("GrPaint" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [70862 70871])
+                    ("" variable (:type ("paint" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [70872 70878])
+                    ("aa" variable (:type ("GrAA" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [70924 70932])
+                    ("viewMatrix" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkMatrix" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [70978 71005])
+                    ("path" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkPath" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [71051 71070])
+                    ("style" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrStyle" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [71116 71137]))                  
+                :type "void")
+                nil [70752 74606])
+            ("op_bounds" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("bounds" variable
+                       (:pointer 1
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [74630 74645])
+                    ("op" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("GrOp" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [74646 74661]))                  
+                :type "void")
+                nil [74608 75484])
+            ("addDrawOp" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [75528 75547])
+                    ("op" variable (:type ("std::unique_ptr" type
+                         (:template-specifier 
+                            ( ("GrDrawOp" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol arg-sub-list) [75548 75577]))                  
+                :type ("uint32_t" type (:type "class") nil nil))
+                nil [75486 77133])
+            ("setupDstProxy" function
+               (:parent "GrRenderTargetContext"
+                :arguments 
+                  ( ("rtProxy" variable
+                       (:pointer 1
+                        :type ("GrRenderTargetProxy" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [77177 77206])
+                    ("clip" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("GrClip" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [77207 77226])
+                    ("opBounds" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("SkRect" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [77269 77292])
+                    ("dstProxy" variable
+                       (:pointer 1
+                        :type ("GrXferProcessor::DstProxy" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [77335 77371]))                  
+                :type "bool")
+                nil [77135 80336]))          
+      :file "GrRenderTargetContext.cpp"
+      :pointmax 80337
+      :fsize 80336
+      :lastmodtime '(23060 12272 829732 634000)
+      :unmatched-syntax nil
+      :lexical-table 
+        '(("RETURN_IF_ABANDONED_PRIV" . 
+              ((IF "if" 3572 . 3574) (semantic-list "(fRenderTargetContext->drawingManager()->wasAbandoned())" 3575 . 3631) (semantic-list "{ return; }" 3632 . 3643)))
+          ("RETURN_FALSE_IF_ABANDONED_PRIV" . 
+              ((IF "if" 3781 . 3783) (semantic-list "(fRenderTargetContext->drawingManager()->wasAbandoned())" 3784 . 3840) (semantic-list "{ return false; }" 3841 . 3858)))
+          ("ASSERT_SINGLE_OWNER_PRIV" . ((symbol "SkDEBUGCODE" 3350 . 3361) (semantic-list "(GrSingleOwner::AutoEnforce debug_SingleOwner(fRenderTargetContext->singleOwner());)" 3361 . 3445)))
+          ("RETURN_IF_ABANDONED" . 
+              ((IF "if" 3481 . 3483) (semantic-list "(this->drawingManager()->wasAbandoned())" 3484 . 3524) (semantic-list "{ return; }" 3525 . 3536)))
+          ("ASSERT_OWNED_RESOURCE" (spp-arg-list ("R") 3117 . 3120) . ((symbol "SkASSERT" 3121 . 3129) (semantic-list "(!(R) || (R)->getContext() == this->drawingManager()->getContext())" 3129 . 3196)))
+          ("RETURN_NULL_IF_ABANDONED" . 
+              ((IF "if" 3894 . 3896) (semantic-list "(this->drawingManager()->wasAbandoned())" 3897 . 3937) (semantic-list "{ return nullptr; }" 3938 . 3957)))
+          ("RETURN_FALSE_IF_ABANDONED" . 
+              ((IF "if" 3679 . 3681) (semantic-list "(this->drawingManager()->wasAbandoned())" 3682 . 3722) (semantic-list "{ return false; }" 3723 . 3740)))
+          ("ASSERT_SINGLE_OWNER" . ((symbol "SkDEBUGCODE" 3231 . 3242) (semantic-list "(GrSingleOwner::AutoEnforce debug_SingleOwner(this->singleOwner());)" 3242 . 3310)))
+          )
+)
+    (semanticdb-table "semanticdb-table"
+      :file "GrAppliedClip.h"
+      :fsize 5125
+      :lastmodtime '(23060 12272 821732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrBlurUtils.h"
+      :fsize 1774
+      :lastmodtime '(23060 12272 821732 634000))
+    (semanticdb-table "semanticdb-table"
+      :major-mode c-mode
+      :tags 
+        '( ("GrContextPriv_DEFINED" variable (:constant-flag t) nil [184 205])
+            ("GrContext.h" include nil nil [207 229])
+            ("GrSurfaceContext.h" include nil nil [230 259])
+            ("GrBackendRenderTarget" type
+               (:prototype t
+                :type "class")
+                nil [261 289])
+            ("GrOnFlushCallbackObject" type
+               (:prototype t
+                :type "class")
+                nil [290 320])
+            ("GrSemaphore" type
+               (:prototype t
+                :type "class")
+                nil [321 339])
+            ("GrSurfaceProxy" type
+               (:prototype t
+                :type "class")
+                nil [340 361])
+            ("GrTextureContext" type
+               (:prototype t
+                :type "class")
+                nil [362 385])
+            ("GrContextPriv" type
+               (:members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [632 639])
+                    ("drawingManager" function
+                       (:pointer 1
+                        :type ("GrDrawingManager" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [644 722])
+                    ("makeWrappedSurfaceContext" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("" variable (:type ("sk_sp" type
+                                 (:template-specifier 
+                                    ( ("GrSurfaceProxy" type nil nil nil))                                    
+                                  :type "class")
+                                  nil nil)) (reparse-symbol arg-sub-list) [778 800])
+                            ("" variable (:type ("sk_sp" type
+                                 (:template-specifier 
+                                    ( ("SkColorSpace" type nil nil nil))                                    
+                                  :type "class")
+                                  nil nil)) (reparse-symbol arg-sub-list) [801 821]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("GrSurfaceContext" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [728 822])
+                    ("makeDeferredSurfaceContext" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrSurfaceDesc" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [879 900])
+                            ("" variable (:type ("GrMipMapped" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [956 968])
+                            ("" variable (:type ("SkBackingFit" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [1024 1037])
+                            ("" variable (:type ("SkBudgeted" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [1093 1104]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("GrSurfaceContext" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [828 1105])
+                    ("makeBackendTextureContext" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("tex" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrBackendTexture" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1161 1189])
+                            ("origin" variable (:type ("GrSurfaceOrigin" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [1244 1267])
+                            ("colorSpace" variable (:type ("sk_sp" type
+                                 (:template-specifier 
+                                    ( ("SkColorSpace" type nil nil nil))                                    
+                                  :type "class")
+                                  nil nil)) (reparse-symbol arg-sub-list) [1322 1353]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("GrTextureContext" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [1111 1354])
+                    ("makeBackendTextureRenderTargetContext" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("tex" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrBackendTexture" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1485 1513])
+                            ("origin" variable (:type ("GrSurfaceOrigin" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [1571 1594])
+                            ("sampleCnt" variable (:type "int") (reparse-symbol arg-sub-list) [1652 1666])
+                            ("colorSpace" variable (:type ("sk_sp" type
+                                 (:template-specifier 
+                                    ( ("SkColorSpace" type nil nil nil))                                    
+                                  :type "class")
+                                  nil nil)) (reparse-symbol arg-sub-list) [1724 1755])
+                            ("" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("SkSurfaceProps" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1813 1844]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("GrRenderTargetContext" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [1360 1846])
+                    ("makeBackendRenderTargetRenderTargetContext" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrBackendRenderTarget" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [1987 2016])
+                            ("origin" variable (:type ("GrSurfaceOrigin" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2079 2102])
+                            ("colorSpace" variable (:type ("sk_sp" type
+                                 (:template-specifier 
+                                    ( ("SkColorSpace" type nil nil nil))                                    
+                                  :type "class")
+                                  nil nil)) (reparse-symbol arg-sub-list) [2165 2196])
+                            ("" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("SkSurfaceProps" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2259 2290]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("GrRenderTargetContext" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [1852 2292])
+                    ("makeBackendTextureAsRenderTargetRenderTargetContext" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("tex" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrBackendTexture" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2445 2473])
+                            ("origin" variable (:type ("GrSurfaceOrigin" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2539 2562])
+                            ("sampleCnt" variable (:type "int") (reparse-symbol arg-sub-list) [2628 2642])
+                            ("colorSpace" variable (:type ("sk_sp" type
+                                 (:template-specifier 
+                                    ( ("SkColorSpace" type nil nil nil))                                    
+                                  :type "class")
+                                  nil nil)) (reparse-symbol arg-sub-list) [2708 2739])
+                            ("" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type ("SkSurfaceProps" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [2805 2836]))                          
+                        :type ("sk_sp" type
+                             (:template-specifier 
+                                ( ("GrRenderTargetContext" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [2298 2838])
+                    ("disableGpuYUVConversion" function
+                       (:methodconst-flag t
+                        :type "bool")
+                        (reparse-symbol classsubparts) [2844 2927])
+                    ("flush" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:pointer 1
+                                :type ("GrSurfaceProxy" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [3295 3311]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [3284 3312])
+                    ("addOnFlushCallbackObject" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:pointer 1
+                                :type ("GrOnFlushCallbackObject" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [3613 3638]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [3583 3639])
+                    ("testingOnly_flushAndRemoveOnFlushCallbackObject" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:pointer 1
+                                :type ("GrOnFlushCallbackObject" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [3698 3723]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [3645 3724])
+                    ("flushSurfaceWrites" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:pointer 1
+                                :type ("GrSurfaceProxy" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [3882 3898]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [3858 3899])
+                    ("flushSurfaceIO" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:pointer 1
+                                :type ("GrSurfaceProxy" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [4062 4078]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [4042 4079])
+                    ("prepareSurfaceForExternalIO" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:pointer 1
+                                :type ("GrSurfaceProxy" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [4487 4503]))                          
+                        :type "void")
+                        (reparse-symbol classsubparts) [4454 4504])
+                    ("PixelOpsFlags" type
+                       (:members 
+                          ( ("kDontFlush_PixelOpsFlag" variable
+                               (:constant-flag t
+                                :default-value (4829 4832)
+                                :type "int")
+                                (reparse-symbol enumsubparts) [4803 4832])
+                            ("kFlushWrites_PixelOp" variable
+                               (:constant-flag t
+                                :default-value (4991 4994)
+                                :type "int")
+                                (reparse-symbol enumsubparts) [4968 4994])
+                            ("kUnpremul_PixelOpsFlag" variable
+                               (:constant-flag t
+                                :default-value (5199 5202)
+                                :type "int")
+                                (reparse-symbol enumsubparts) [5173 5202]))                          
+                        :type "enum")
+                        (reparse-symbol classsubparts) [4598 5210])
+                    ("readSurfacePixels" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("src" variable
+                               (:pointer 1
+                                :type ("GrSurfaceContext" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6180 6202])
+                            ("left" variable (:type "int") (reparse-symbol arg-sub-list) [6230 6239])
+                            ("top" variable (:type "int") (reparse-symbol arg-sub-list) [6240 6248])
+                            ("width" variable (:type "int") (reparse-symbol arg-sub-list) [6249 6259])
+                            ("height" variable (:type "int") (reparse-symbol arg-sub-list) [6260 6271])
+                            ("dstConfig" variable (:type ("GrPixelConfig" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6299 6323])
+                            ("dstColorSpace" variable
+                               (:pointer 1
+                                :type ("SkColorSpace" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6324 6352])
+                            ("buffer" variable
+                               (:pointer 1
+                                :type "void")
+                                (reparse-symbol arg-sub-list) [6353 6366])
+                            ("rowBytes" variable
+                               (:default-value "0"
+                                :type ("size_t" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6394 6413])
+                            ("pixelOpsFlags" variable
+                               (:default-value "0"
+                                :type ("uint32_t" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [6442 6468]))                          
+                        :type "bool")
+                        (reparse-symbol classsubparts) [6157 6470])
+                    ("writeSurfacePixels" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("dst" variable
+                               (:pointer 1
+                                :type ("GrSurfaceContext" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [7445 7467])
+                            ("left" variable (:type "int") (reparse-symbol arg-sub-list) [7496 7505])
+                            ("top" variable (:type "int") (reparse-symbol arg-sub-list) [7506 7514])
+                            ("width" variable (:type "int") (reparse-symbol arg-sub-list) [7515 7525])
+                            ("height" variable (:type "int") (reparse-symbol arg-sub-list) [7526 7537])
+                            ("srcConfig" variable (:type ("GrPixelConfig" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7566 7590])
+                            ("srcColorSpace" variable
+                               (:pointer 1
+                                :type ("SkColorSpace" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [7591 7619])
+                            ("buffer" variable
+                               (:pointer 1
+                                :constant-flag t
+                                :type "void")
+                                (reparse-symbol arg-sub-list) [7620 7639])
+                            ("rowBytes" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7668 7684])
+                            ("pixelOpsFlags" variable
+                               (:default-value "0"
+                                :type ("uint32_t" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [7713 7739]))                          
+                        :type "bool")
+                        (reparse-symbol classsubparts) [7421 7741])
+                    ("getBackend" function
+                       (:methodconst-flag t
+                        :type ("GrBackend" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [7747 7806])
+                    ("getTaskGroup" function
+                       (:pointer 1
+                        :type ("SkTaskGroup" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [7812 7878])
+                    ("private" label nil (reparse-symbol classsubparts) [7880 7888])
+                    ("GrContextPriv" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("context" variable
+                               (:pointer 1
+                                :type ("GrContext" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [7916 7935]))                          
+                        :type ("GrContextPriv" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [7902 7958])
+                    ("GrContextPriv" function
+                       (:prototype-flag t
+                        :constructor-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrContextPriv" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [7977 7998]))                          
+                        :type ("GrContextPriv" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [7963 7999])
+                    ("=" function
+                       (:prototype-flag t
+                        :operator-flag t
+                        :arguments 
+                          ( ("" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("GrContextPriv" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [8039 8060]))                          
+                        :type ("GrContextPriv" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [8014 8061])
+                    ("&" function
+                       (:prototype-flag t
+                        :methodconst-flag t
+                        :operator-flag t
+                        :pointer 1
+                        :constant-flag t
+                        :type ("GrContextPriv" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [8118 8157])
+                    ("&" function
+                       (:prototype-flag t
+                        :operator-flag t
+                        :pointer 1
+                        :type ("GrContextPriv" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [8162 8189])
+                    ("fContext" variable
+                       (:pointer 1
+                        :type ("GrContext" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [8195 8215])
+                    ("GrContext" friend nil (reparse-symbol classsubparts) [8221 8243]))                  
+                :type "class")
+                nil [610 8279])
+            ("contextPriv" function
+               (:parent "GrContext"
+                :typemodifiers ("inline")
+                :type ("GrContextPriv" type (:type "class") nil nil))
+                nil [8281 8358])
+            ("contextPriv" function
+               (:methodconst-flag t
+                :parent "GrContext"
+                :typemodifiers ("inline")
+                :constant-flag t
+                :type ("GrContextPriv" type (:type "class") nil nil))
+                nil [8360 8478]))          
+      :file "GrContextPriv.h"
+      :pointmax 8487
+      :fsize 8486
+      :lastmodtime '(23060 12272 821732 634000)
+      :unmatched-syntax '((punctuation 8243 . 8244) (EXPLICIT 7893 . 7901))
+      :lexical-table 
+        '(("GrContextPriv_DEFINED")
+          )
+)
+    (semanticdb-table "semanticdb-table"
+      :file "GrDrawingManager.h"
+      :fsize 6119
+      :lastmodtime '(23060 12272 821732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrFixedClip.h"
+      :fsize 1871
+      :lastmodtime '(23060 12272 821732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrGpuResourcePriv.h"
+      :fsize 3331
+      :lastmodtime '(23060 12272 825732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrOpList.h"
+      :fsize 5997
+      :lastmodtime '(23060 12272 825732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrQuad.h"
+      :fsize 1529
+      :lastmodtime '(23060 12272 829732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrRenderTargetContextPriv.h"
+      :fsize 5462
+      :lastmodtime '(23060 12272 829732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrStencilAttachment.h"
+      :fsize 1496
+      :lastmodtime '(23060 12272 833732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrTracing.h"
+      :fsize 556
+      :lastmodtime '(23060 12272 833732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "SkGr.h"
+      :fsize 11811
+      :lastmodtime '(23060 12272 837732 634000))
+    (semanticdb-table "semanticdb-table"
+      :file "GrSurfaceContext.h"
+      :fsize 5171
+      :lastmodtime '(23060 12272 833732 634000)))
+  :file "!home!shaobo!work!skia!skia!src!gpu!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

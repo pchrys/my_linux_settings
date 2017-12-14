@@ -1,0 +1,45 @@
+;; Object semanticdb-project-database-file
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("cstdio" include (:system-flag t) nil [246 263])
+            ("memory" include (:system-flag t) nil [264 281])
+            ("ApplicationServices/ApplicationServices.h" include (:system-flag t) nil [283 335])
+            ("ASSERT" variable (:constant-flag t) nil [345 351])
+            ("PAGE" variable
+               (:constant-flag t
+                :default-value "1"
+                :type "int")
+                nil [746 765])
+            ("main" function
+               (:arguments 
+                  ( ("argc" variable (:type "int") (reparse-symbol arg-sub-list) [776 785])
+                    ("argv" variable
+                       (:pointer 2
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [786 798]))                  
+                :type "int")
+                nil [767 2778]))          
+      :file "coreGraphicsPdf2png.cpp"
+      :pointmax 2781
+      :fsize 2780
+      :lastmodtime '(23060 12272 577732 634000)
+      :unmatched-syntax nil
+      :lexical-table 
+        '(("ASSERT" (spp-arg-list ("x") 351 . 354) . 
+              ((DO "do" 392 . 394) (semantic-list "{                                         \\
+        if (!(x)) {                              \\
+            fprintf(stderr, \"ERROR: \" __FILE__   \\
+                    \":%d (%s)\\n\", __LINE__, #x); \\
+            return 1;                            \\
+        }                                        \\
+    }" 395 . 699) (WHILE "while" 700 . 705) (semantic-list "(false)" 706 . 713)))
+          )
+))
+  :file "!home!shaobo!work!skia!skia!experimental!tools!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")
