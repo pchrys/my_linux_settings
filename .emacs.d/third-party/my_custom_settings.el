@@ -273,8 +273,8 @@
 
 
 ;;;use C-b and C-f to scroll to next/previous screen
-(global-unset-key (kbd "C-v"))
-(global-unset-key (kbd "M-v"))
+;;(global-unset-key (kbd "C-v"))
+;;(global-unset-key (kbd "M-v"))
 
 ;;;originally binding on move back/forth over sexp
 (global-unset-key (kbd "C-M-b"))
@@ -305,9 +305,9 @@
   (move-to-window-line -1) 
 )
 
-(global-set-key (kbd "M-v s t") 'my-move-to-top)   ;;;top of the screen
-(global-set-key (kbd "M-v s m") 'my-move-to-middle)   ;;;top of the screen
-(global-set-key (kbd "M-v s b") 'my-move-to-bottom)   ;;;top of the screen
+(global-set-key (kbd "C-c w t") 'my-move-to-top)   ;;;top of the screen
+(global-set-key (kbd "C-c w m") 'my-move-to-middle)   ;;;middle of the screen
+(global-set-key (kbd "C-c w b") 'my-move-to-bottom)   ;;;bottom of the screen
 
 
 ;;; move to the current line to the top/middle/bottom of the screen 
@@ -327,9 +327,9 @@
   (recenter -1) 
 )
 
-(global-set-key (kbd "M-v l t") 'my-move-line-to-top)   ;;;top of the screen
-(global-set-key (kbd "M-v l m") 'recenter)   ;;;top of the screen
-(global-set-key (kbd "M-v l b") 'my-move-line-to-bottom)   ;;;top of the screen
+(global-set-key (kbd "C-c l t") 'my-move-line-to-top)   ;;;move the line to the top of the screen
+(global-set-key (kbd "C-c l m") 'recenter)              ;;;move the line to the middle of the screen
+(global-set-key (kbd "C-c l b") 'my-move-line-to-bottom) ;;;move the line to the bottom of the screen
 
 
 
