@@ -1,13 +1,98 @@
 #!/bin/bash
 
-rsync -arvpP ~/.emacs.d  ~/work/my_linux_settings
-rsync -arvpP ~/.emacs  ~/work/my_linux_settings
-rsync -arvpP ~/.vimrc  ~/work/my_linux_settings
-rsync -arvpP --exclude="YouCompleteMe" ~/.vim  ~/work/my_linux_settings
+if [ $# -lt 1 ]; then
+  echo "usage : $0 <backup/update>"
+  echo "<backup> to backup settings"
+  echo "<update> to update settings"
+  exit 1
+fi
 
-rsync -arvpP ~/.bashrc ~/work/my_linux_settings
-rsync -arvpP ~/.tmux.conf ~/work/my_linux_settings
-rsync -arvpP ~/.gitconfig ~/work/my_linux_settings
+if [ "$1" == "backup" ]; then
+
+src="$HOME"
+dst="$HOME/work/my_linux_settings"
+
+echo "backup settings ... "
+
+cmd="rsync -arvpP ${src}/.bashrc ${dst}"
+echo "run cmd: $cmd"
+eval $cmd
+
+cmd="rsync -arvpP ${src}/.tmux.conf ${dst}"
+echo "run cmd: $cmd"
+eval $cmd
+
+
+cmd="rsync -arvpP ${src}/.gitconfig ${dst}"
+echo "run cmd: $cmd"
+eval $cmd
+
+cmd="rsync -arvpP ${src}/.emacs.d  ${dst}"
+echo "run cmd: $cmd"
+eval $cmd
+
+
+cmd="rsync -arvpP ${src}/.emacs  ${dst}"
+echo "run cmd: $cmd"
+eval $cmd
+
+cmd="rsync -arvpP ${src}/.vimrc  ${dst}"
+echo "run cmd: $cmd"
+eval $cmd
+
+cmd="rsync -arvpP --exclude="YouCompleteMe" ${src}/.vim  ${dst}"
+echo "run cmd: $cmd"
+eval $cmd
+
+elif [ "$1" == "update" ]; then 
+
+  src="$HOME/work/my_linux_settings"
+  dst="$HOME/tmp"
+
+  echo "src: $src"
+  echo "dst: $dst"
+
+  echo "update settings ... "
+
+  cmd="rsync -arvpP ${src}/.bashrc ${dst}"
+  echo "run cmd: $cmd"
+  eval $cmd
+
+  cmd="rsync -arvpP ${src}/.tmux.conf ${dst}"
+  echo "run cmd: $cmd"
+  eval $cmd
+
+
+  cmd="rsync -arvpP ${src}/.gitconfig ${dst}"
+  echo "run cmd: $cmd"
+  eval $cmd
+
+  cmd="rsync -arvpP ${src}/.emacs.d  ${dst}"
+  echo "run cmd: $cmd"
+  eval $cmd
+
+
+  cmd="rsync -arvpP ${src}/.emacs  ${dst}"
+  echo "run cmd: $cmd"
+  eval $cmd
+
+  cmd="rsync -arvpP ${src}/.vimrc  ${dst}"
+  echo "run cmd: $cmd"
+  eval $cmd
+
+  cmd="rsync -arvpP ${src}/.vim  ${dst}"
+  echo "run cmd: $cmd"
+  eval $cmd
+ 
+else
+  echo "wrong input argument. Exiting ..."
+  exit 1
+fi
+
+
+
+
+
 
 ### 
 
