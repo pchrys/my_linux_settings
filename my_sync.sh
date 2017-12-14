@@ -1,16 +1,23 @@
 #!/bin/bash
 
 if [ $# -lt 1 ]; then
-  echo "usage : $0 <backup/update>"
-  echo "<backup> to backup settings"
-  echo "<update> to update settings"
+  echo ""
+  echo " ========================ATTENTION ==========================="
+  echo " Please run this script at the location wherer it is located;"
+  echo " otherwise it will not work properly. "
+  echo " ============================================================="
+  echo ""
+
+  echo " Usage : $0 <backup/update>"
+  echo " <backup> to backup settings"
+  echo " <update> to update settings"
   exit 1
 fi
 
 if [ "$1" == "backup" ]; then
 
 src="$HOME"
-dst="$HOME/work/my_linux_settings"
+dst="$PWD"
 
 echo "backup settings ... "
 
@@ -46,8 +53,10 @@ eval $cmd
 
 elif [ "$1" == "update" ]; then 
 
-  src="$HOME/work/my_linux_settings"
-  dst="$HOME/tmp"
+  #src="$HOME/work/my_linux_settings"
+  #dst="$HOME/tmp"
+  src="$PWD"
+  dst="$HOME"
 
   echo "src: $src"
   echo "dst: $dst"
