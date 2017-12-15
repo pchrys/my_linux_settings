@@ -385,6 +385,12 @@
       bmkp-jump-map-prefix-keys (list (kbd "C-c b j"))
       bmkp-jump-other-window-map-prefix-keys (list (kbd "C-c b 4 j"))
 )
+(define-key bookmark-map (kbd "a b")    'bmkp-annotate-bookmark)         ; C-c b a b
+(define-key bookmark-map (kbd "a s")    'bookmark-show-annotation)       ; C-c b a s
+(define-key bookmark-map (kbd "a S")    'bookmark-show-all-annotations)  ; C-c b a S
+(define-key bookmark-map (kbd "a e")    'bookmark-edit-annotation)       ; C-c b a e
+
+(require 'bookmark+)
 #+END_SRC
 
 
@@ -400,14 +406,6 @@
 ;;;save bookmark list
 ;; (define-key bookmark-map (kbd "s")    'bookmark-save)                  ; C-c b s 
 
-(define-key bookmark-map (kbd "a b")    'bmkp-annotate-bookmark)         ; C-c b a b
-(define-key bookmark-map (kbd "a s")    'bookmark-show-annotation)       ; C-c b a s
-(define-key bookmark-map (kbd "a S")    'bookmark-show-all-annotations)  ; C-c b a S
-(define-key bookmark-map (kbd "a e")    'bookmark-edit-annotation)       ; C-c b a e
-
-
-
-(require 'bookmark+)
 
 
 *** More key bindings for bookmark+
@@ -756,9 +754,6 @@
 ;; (define-key bmkp-jump-map              "y"    'bmkp-bookmark-file-jump)                     ; `C-x j y'
 ;; (define-key bmkp-jump-map              ":"    'bmkp-jump-to-type)                           ; `C-x j :'
 ;; (define-key bmkp-jump-other-window-map ":"    'bmkp-jump-to-type-other-window)            ; `C-x 4 j :'
-
-
-
 
 
 * define some custom functions and key bindings
