@@ -50,8 +50,10 @@
 ;;;  (setq max-mini-window-height 0.5)
   
 ;;(add-to-list 'load-path "~/.emacs.d/third-party")
-(load-file "~/.emacs.d/third-party/my_helm_config.el")
-(load-file "~/.emacs.d/third-party/my_custom_settings.el")
+;;(load-file "~/.emacs.d/third-party/my_helm_config.el")
+;;(load-file "~/.emacs.d/third-party/my_custom_settings.el")
+
+(org-babel-load-file  (expand-file-name "~/.emacs.d/third-party/my_settings.org"))
 
 ;;;==========================================================
 ;;;; settings for org mode
