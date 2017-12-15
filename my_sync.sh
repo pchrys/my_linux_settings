@@ -67,16 +67,16 @@ elif [ "$1" == "update" ]; then
 
   cmd="rsync -arvpP ${src}/.bashrc ${dst}"
   echo "run cmd: $cmd"
-  eval $cmd
+  #eval $cmd
 
   cmd="rsync -arvpP ${src}/.tmux.conf ${dst}"
   echo "run cmd: $cmd"
-  eval $cmd
+  #eval $cmd
 
 
   cmd="rsync -arvpP ${src}/.gitconfig ${dst}"
   echo "run cmd: $cmd"
-  eval $cmd
+  #eval $cmd
 
   ##cmd="rsync -arvpP ${src}/.emacs.d  ${dst}"
   ### only update packages and setting files
