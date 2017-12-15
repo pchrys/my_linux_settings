@@ -1016,6 +1016,7 @@ Behave like vi's O command
 (global-set-key (kbd "C-c y P") 'copy-current-parenthesis-p)
 (global-set-key (kbd "C-c d P") 'kill-current-parenthesis-p)
 
+(global-set-key (kbd "C-M-^") 'scroll-other-window-down)
 #+END_SRC
 
 ;;;==========================================================
@@ -1073,9 +1074,6 @@ Behave like vi's O command
 
 ;; (global-set-key (kbd "C-M-f") 'scroll-other-window)
 ;; (global-set-key (kbd "C-M-b") 'scroll-other-window-down)
-
-(global-set-key (kbd "C-M-^") 'scroll-other-window-down)
-
 
 ;;;;=======================================================
 ;;; move to the top/middle/bottom of the screen 

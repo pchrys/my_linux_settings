@@ -1,27 +1,4 @@
 
-(projectile-global-mode)
-
-(setq projectile-completion-system 'helm)
-
-(setq projectile-switch-project-action 'helm-projectile)
-(setq projectile-enable-caching t)
-
-;;;for windoes
-(if (eq window-system 'w32)
-        (setq projectile-indexing-method 'alien)
-)
-
-(add-to-list 'projectile-globally-ignored-directories ".git")
-(add-to-list 'projectile-globally-ignored-directories "3rdparty")
-(add-to-list 'projectile-globally-ignored-directories "build")
-(add-to-list 'projectile-globally-ignored-directories "lib")
-
-;;; TAB/C-i  will run helm-execute-persistent-action
-;(define-key helm-projectile-projects-map (kbd "TAB") 'nil) ;  release tab
-;(define-key helm-projectile-projects-map (kbd "C-i") 'helm-execute-persistent-action);
-
-(helm-projectile-on)
-
 (require 'helm)
 (require 'helm-config)
 
@@ -133,6 +110,29 @@
 
 (helm-mode 1)
 
+(projectile-global-mode)
+
+(setq projectile-completion-system 'helm)
+
+(setq projectile-switch-project-action 'helm-projectile)
+(setq projectile-enable-caching t)
+
+;;;for windoes
+(if (eq window-system 'w32)
+        (setq projectile-indexing-method 'alien)
+)
+
+(add-to-list 'projectile-globally-ignored-directories ".git")
+(add-to-list 'projectile-globally-ignored-directories "3rdparty")
+(add-to-list 'projectile-globally-ignored-directories "build")
+(add-to-list 'projectile-globally-ignored-directories "lib")
+
+;;; TAB/C-i  will run helm-execute-persistent-action
+;(define-key helm-projectile-projects-map (kbd "TAB") 'nil) ;  release tab
+;(define-key helm-projectile-projects-map (kbd "C-i") 'helm-execute-persistent-action);
+
+(helm-projectile-on)
+
 (setq
  ;;helm-gtags-path-style 'relative
  helm-gtags-ignore-case t
@@ -194,6 +194,12 @@
       bmkp-jump-map-prefix-keys (list (kbd "C-c b j"))
       bmkp-jump-other-window-map-prefix-keys (list (kbd "C-c b 4 j"))
 )
+(define-key bookmark-map (kbd "a b")    'bmkp-annotate-bookmark)         ; C-c b a b
+(define-key bookmark-map (kbd "a s")    'bookmark-show-annotation)       ; C-c b a s
+(define-key bookmark-map (kbd "a S")    'bookmark-show-all-annotations)  ; C-c b a S
+(define-key bookmark-map (kbd "a e")    'bookmark-edit-annotation)       ; C-c b a e
+
+(require 'bookmark+)
 
 (defun open-next-line (arg)
   "Move to the next line and then opens a line.
