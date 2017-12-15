@@ -34,7 +34,9 @@ cmd="rsync -arvpP ${src}/.gitconfig ${dst}"
 echo "run cmd: $cmd"
 eval $cmd
 
-cmd="rsync -arvpP ${src}/.emacs.d  ${dst}"
+#cmd="rsync -arvpP ${src}/.emacs.d  ${dst}"
+## only back up packages and setting files
+cmd="rsync -arvpP --include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
 echo "run cmd: $cmd"
 eval $cmd
 
@@ -76,7 +78,9 @@ elif [ "$1" == "update" ]; then
   echo "run cmd: $cmd"
   eval $cmd
 
-  cmd="rsync -arvpP ${src}/.emacs.d  ${dst}"
+  ##cmd="rsync -arvpP ${src}/.emacs.d  ${dst}"
+  ### only update packages and setting files
+  cmd="rsync -arvpP --include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
   echo "run cmd: $cmd"
   eval $cmd
 
