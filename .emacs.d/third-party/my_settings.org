@@ -51,6 +51,39 @@
 #+END_SRC
 
 
+** settings for ACUteX
+
+*** preview-latex
+     preview-latex (also known as PreviewLaTeX) is an integrated part of AUCTeX as of 
+     version 11.80, which allows you to see previews of math, figures, tables, 
+     graphics and other things directly in an Emacs 21 buffer. It was released 
+     separately in the past, but always required AUCTeX to run.
+
+*** CDLaTeX
+
+     CDLaTeX is a minor mode, supporting fast insertion of environment templates and
+     math stuff in LaTeX, written by CarstenDominik. CDLaTeX tries to be quick, with
+     very few and easy to remember keys, and intelligent on-the-fly help. As a minor
+     mode, you can use it in AUCTeX.
+
+#+BEGIN_SRC emacs-lisp
+ (load "auctex.el" nil t t)
+    (require 'tex-mik)
+
+    (setq TeX-auto-save t)
+    (setq TeX-parse-self t)
+    (setq-default TeX-master nil)
+
+    (add-hook 'LaTeX-mode-hook 'visual-line-mode)
+    (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+    (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+
+    (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+    (setq reftex-plug-into-AUCTeX t)
+
+#+END_SRC
+
+
 ** settings for bookmarks
 
 #+BEGIN_SRC emacs-lisp
@@ -1215,7 +1248,7 @@ press C-c Z to repeat the prevous command
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c z")  'repeat)
 #+END_SRC
-   
+
    
 * define some custom functions and key bindings
 
