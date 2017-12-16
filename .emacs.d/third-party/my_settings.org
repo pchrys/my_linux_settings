@@ -1,728 +1,54 @@
 * basic settings
-** cscope, clang format, and YCM
-*** key bindings for cscope
-   C-c s s Find symbol.
-   C-c s = Find assignments to this symbol
-   C-c s d Find global definition.
-   C-c s g Find global definition (alternate binding).
-   C-c s G Find global definition without prompting.
-   C-c s c Find functions calling a function.
-   C-c s C Find called functions (list functions called from a function).
-   C-c s t Find text string.
-   C-c s e Find egrep pattern.
-   C-c s f Find a file.
-   C-c s i Find files #including a file.
 
-   C-c s a Set initial directory.
-   C-c s A Unset initial directory.
-
-   C-c s b Display cscope buffer.
-   C-c s B Auto display cscope buffer toggle.
-   C-c s n Next symbol.
-   C-c s N Next file.
-   C-c s p Previous symbol.
-   C-c s P Previous file.
-   C-c s u Pop mark.
-   
-   C-c s L Create list of files to index.
-   C-c s I Create list and index.
-   C-c s E Edit list of files to index.
-   C-c s W Locate this buffer’s cscope directory (“W” –> “where”).
-   C-c s S Locate this buffer’s cscope directory. (alternate binding: “S” –> “show”).
-   C-c s T Locate this buffer’s cscope directory. (alternate binding: “T” –> “tell”).
-   C-c s D Dired this buffer’s directory.
-
-  on windows, using command in windows command prompt 
-  dir /S /B *.h *.cpp *.hpp *.c  > cscope.files
-  to list files,  
-  then use the following command to build cscope database
-  cscope.exe -b -i cscope.files -f cscope.out
-
-
-*** settings for clang format
+** settings for org-mode
 
 #+BEGIN_SRC emacs-lisp
-  (require 'clang-format)
-  ;;; (global-set-key (kbd "C-c i") 'clang-format-region)
-  ;;; (global-set-key (kbd "C-c u") 'clang-format-buffer)
-  (global-set-key (kbd "C-c c r") 'clang-format-region)
-  (global-set-key (kbd "C-c c b") 'clang-format-buffer)
+  (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
+  ;;(setq org-ellipsis "⤵")
+  (require 'org)
 
-  ;;(setq clang-format-style-option "llvm")
-  (setq clang-format-style-option "file")
-#+END_SRC
-    
+  ;;;;The following lines are always needed. Choose your own keys.
+  (global-set-key (kbd "C-c o s ") 'org-store-link)
+  (global-set-key (kbd "C-c o a") 'org-agenda)
+  (global-set-key (kbd "C-c o c") 'org-capture)
+  (global-set-key (kbd "C-c o b") 'org-iswitchb)
+  (setq org-log-done 'time)
 
-*** settings for ycmd
-#+BEGIN_SRC emacs-lisp
-  (require 'ycmd)
-  (add-hook 'after-init-hook #'global-ycmd-mode)
-  ;(add-hook 'c++-mode-hook 'ycmd-mode)
+  (defun  my-org-mode-hook()
+        (local-set-key (kbd "C-c o i")        'org-insert-link)
+        (local-set-key (kbd "C-c o n t" )     'org-insert-todo-heading)
+        (local-set-key (kbd "C-c o n h" )     'org-insert-heading)
+        (local-set-key (kbd "C-c o o")        'org-open-at-point)
 
-  (set-variable 'ycmd-min-num-chars-for-completion 0)
-  (set-variable 'ycmd-max-num-identifier-candidates 20)
-  (set-variable 'ycmd-extra-conf-whitelist '("~/*"))
-#+END_SRC
+        (local-set-key (kbd "C-c o h")    'outline-promote)
+        (local-set-key (kbd "C-c o l")    'outline-demote)
+        (local-set-key (kbd "C-c o k")    'outline-move-subtree-up)
+        (local-set-key (kbd "C-c o j")    'outline-move-subtree-down)
 
-    In order to make ycm work properly, we need make an .ycm_extra_conf.py file in the root of the project, and 
-    the content of .ycm_extra_conf.py could be just like
-    ===================================
-    def FlagsForFile( filename, **kwargs ):
-    return {
-    'flags': [ '-x', 'c++' ]
-    }
-    ==================================
-
-    specify how to run ycmd server
-    while specifying ycm server command, we cannot use ~, and we have to use expand-file-name to expand it
-    ;;(set-variable 'ycmd-server-command '("python" "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd"))
-    
-    ;;;specify a global emacs configuration
-    ;; *cannot* use ~
-    ;; (set-variable 'ycmd-global-config '("/usr/bin/python" "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
-    ;; (set-variable 'ycmd-global-config `("/usr/bin/python" ,(concat (getenv "HOME") 
-    ;;                                                                "/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py")))
-
-#+BEGIN_SRC emacs-lisp
-  (set-variable 'ycmd-server-command `("python" 
-                                       ,(expand-file-name "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd")))
-
-  ;; (set-variable 'ycmd-global-config `("/usr/bin/python" 
-  ;;                                     ,(expand-file-name "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py")))
-
-#+END_SRC
-
-
-*** settings for company-mode
-;;; debug ycmd mode: M-x ycmd-show-debug-info
-;;;completion framework
-#+BEGIN_SRC emacs-lisp
-(require 'company-ycmd)
-(company-ycmd-setup)
-(add-hook 'after-init-hook #'global-company-mode)
-
-;;;; Set always complete immediately
-(setq company-idle-delay 0)
-
-#+END_SRC
-
-*** Enable flycheck
-    #+BEGIN_SRC emacs-lisp
-      (require 'flycheck-ycmd)
-      (flycheck-ycmd-setup)
-      (add-hook 'after-init-hook #'global-flycheck-mode)    
-    #+END_SRC
-    
-    
-** settings for backup
-
-;; make backup to a designated dir, mirroring the full path
-;; http://ergoemacs.org/emacs/emacs_set_backup_into_a_directory.html
-;; (defun my-backup-file-name (fpath)
-;;   "Return a new file path of a given file path.
-;;    If the new path's directories does not exist, create them."
-;;   (let* (
-;; 	 (backupRootDir "~/.emacs.d/emacs-backup/")
-;; 	 (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path, for example, “C:”
-;; 	 ;;(backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") ))
-;; 	 (backupFilePath (replace-regexp-in-string "\\\\" "/" (concat backupRootDir filePath "~") ))
-;; 	 )
-;;     (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
-;;     backupFilePath
-;;     )
-;;   )
- 
-;; (setq make-backup-file-name-function 'my-backup-file-name)
-
-#+BEGIN_SRC emacs-lisp
-  (setq debug-on-error t)
-  (setq backupDir "~/.emacs.backup")
-
-  (if (not (file-directory-p backupDir)) 
-      (make-directory backupDir))
-
-  (setq
-     backup-by-copying t      ; don't clobber symlinks
-     backup-directory-alist
-     `(("." . ,backupDir))    ; don't litter my fs tree
-     delete-old-versions t
-     kept-new-versions 6
-     kept-old-versions 2
-     version-control t)       ; use versioned backups
-#+END_SRC
-
-
-** settings for tab 
-#+BEGIN_SRC emacs-lisp
-  (defun my-tab-width()
-   (c-set-offset 'substatement-open 0)
-   (setq c-basic-offset 4)
-   (setq c-default-style "linux")
-   (setq c-indent-level 4)
-   (setq tab-width 4)
-   (setq indent-tabs-mode nil)
+        (local-set-key (kbd "C-S-<left>")       'outline-promote)
+        (local-set-key (kbd "C-S-<right>")      'outline-demote)
+        (local-set-key (kbd "C-M-<up>")         'outline-move-subtree-up)
+        (local-set-key (kbd "C-M-<down>")       'outline-move-subtree-down)
   )
 
-  ;;; use space for c/c++ instead of tab
-  (add-hook 'c++-mode-hook    'my-tab-width)
-  (add-hook 'c-mode-hook      'my-tab-width)
 
-  ;;enable cscope mode on C/C++ file
-  ;; using add-hook function
-  (add-hook 'c++-mode-hook    'cscope-minor-mode)
-  (add-hook 'c-mode-hook  'cscope-minor-mode)
+  (add-hook 'org-mode-hook   'my-org-mode-hook)
 #+END_SRC
 
-
-python mode indent a block
- C-c <       ;;shift the region 4 space to the left
- C-c >       ;;shift the region 4 space to the right 
-set tab to 2 for python code
+*** set up pretty bullets for org-mode
 
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'python-mode-hook '(lambda () 
-   (setq python-indent 4)))
+  (set-language-environment "UTF-8")
+  (set-default-coding-systems 'utf-8)
+
+  (add-to-list 'load-path (expand-file-name "~/.emacs.d/third-party/org-bullets"))
+
+  ;(setq org-bullets-bullet-list '( "◉" "○" "✸" "✿"))
+
+  (require 'org-bullets)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  (setq org-hide-leading-stars t)
 #+END_SRC
-
-
-** settings for speedbar 
-#+BEGIN_SRC emacs-lisp
-  (require 'sr-speedbar)
-
-  (setq speedbar-show-unknown-files t) ; show all files
-  (setq speedbar-use-images nil) ; use text for buttons
-  (setq sr-speedbar-right-side nil) ; put on left side
-  (setq speedbar-tag-hierarchy-method nil)    ;; expand all tags
-  (setq speedbar-sort-tags t)     ;;;sort tags
-
-#+END_SRC
-
-*** Enable case insensitive search in the speedbar window
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'speedbar-mode-hook
-            (lambda ()
-            (setq case-fold-search t)))
-#+END_SRC
-;;
- ;;expand current file
-;; (defun sb-expand-curren-file ()
-;;   "Expand current file in speedbar buffer"
-;;   (interactive)
-;;   (setq current-file (buffer-file-name))
-;;   (sr-speedbar-refresh)
-;;   (switch-to-buffer-other-frame "*SPEEDBAR*")
-;;   ;(switch-to-buffer "*SPEEDBAR*")
-;;   ;(set-buffer "*SPEEDBAR*")
-;;   ;(speedbar-find-selected-file current-file)
-;;   (speedbar-expand-line)
-;;   ;(find-file current-file) 
-;;   )
-
-some functions for expand tags in speedbar windows
-;;expand current file
-
-#+BEGIN_SRC emacs-lisp
-  (defun sb-expand-curren-file ()
-    "Expand current file in speedbar buffer"
-    ;; (interactive)
-    (setq current-file (buffer-file-name))
-    (sr-speedbar-refresh)
-    (select-window (get-buffer-window "*SPEEDBAR*"))
-    (speedbar-find-selected-file current-file)
-    (speedbar-expand-line)
-  )
-
-  ;;show tags for current file
-   (defun sb-show-tags-for-curren-file ()
-    "show tags for current file in speedbar buffer"
-    (interactive)
-
-    (setq current-file-buffer (buffer-name))
-    (if (not (sr-speedbar-exist-p))
-        (sr-speedbar-open))
-
-    ;; return to the window which displays the current file
-    (select-window (get-buffer-window current-file-buffer))
-    (sb-expand-curren-file)
-
-    (select-window (get-buffer-window current-file-buffer))
-   )
-
-  ;;show tags for current file
-   (defun sb-toggle-tags-for-curren-file ()
-    "toggle tags in speedbar buffer"
-    (interactive)
-
-    (if (sr-speedbar-exist-p)
-        (sr-speedbar-close)
-     (sb-show-tags-for-curren-file)    
-    ))
-
-  (global-set-key (kbd "<f3>")  'sb-toggle-tags-for-curren-file)
-  ;(global-set-key (kbd "<f3>")  'sr-speedbar-toggle)
-  (global-set-key (kbd "C-c t l") 'sb-show-tags-for-curren-file)
-
-#+END_SRC
-
-
-** settings for hide and show 
-
-#+BEGIN_SRC emacs-lisp
-  (defun  my-hs-folding-hook()
-        (local-set-key (kbd "C-c z o") 'hs-show-block)
-        (local-set-key (kbd "C-c z O") 'hs-show-all)
-        (local-set-key (kbd "C-c z c") 'hs-hide-block)
-        (local-set-key (kbd "C-c z C") 'hs-hide-all)
-        (local-set-key (kbd "C-c SPC") 'hs-toggle-hiding)
-        (hs-minor-mode t))
-
-  ;;;;outline minor  mode
-  (defun  my-outline-minor-mode-hook()
-        (local-set-key (kbd "C-c z r") 'outline-show-subtree)
-        (local-set-key (kbd "C-c z m") 'outline-hide-subtree)
-        (local-set-key (kbd "C-c z R") 'outline-show-all)
-        (local-set-key (kbd "C-c z M") 'outline-hide-other)
-        (local-set-key (kbd "C-c z SPC") 'outline-toggle-children)
-        (outline-minor-mode t))
-
-  (defun  my-folding-hook()
-      (my-hs-folding-hook)
-      (my-outline-minor-mode-hook)
-  )
-
-  (add-hook 'c-mode-common-hook   'my-folding-hook)
-  (add-hook 'emacs-lisp-mode-hook 'my-folding-hook)
-  (add-hook 'java-mode-hook       'my-folding-hook)
-  (add-hook 'lisp-mode-hook       'my-folding-hook)
-  (add-hook 'perl-mode-hook       'my-folding-hook)
-  (add-hook 'sh-mode-hook         'my-folding-hook)
-  (add-hook 'python-mode-hook     'my-folding-hook)
-#+END_SRC
-
-
-** repeat commands
-On the terminal C-x z will suspend emacs; so we remap keys , and bound C-c z to repeat.
-press C-c Z to repeat the prevous command
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c z")  'repeat)
-#+END_SRC
-
-
-
-** settings for tramp mode
-;;; You can refer to files on other machines using a special file name syntax: 
-;;;   /host:filename
-;;;   /user@host:filename
-;;;   /user@host#port:filename
-;;;   /method:user@host:filename
-;;;   /method:user@host#port:filename
-#+BEGIN_SRC emacs-lisp
-  (if (eq window-system 'w32)
-          (setq tramp-default-method "plink")
-    (setq tramp-default-method "ssh")
-  )
-#+END_SRC
-
-define function to shutdown emacs server instance
-#+BEGIN_SRC emacs-lisp
-  (defun server-shutdown ()
-    "Save buffers, Quit, and Shutdown (kill) server"
-    (interactive)
-    (save-some-buffers)
-    (kill-emacs)
-  )
-#+END_SRC
-
-
-** window management
-*** set up ace widow for switching between windows
-
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "M-o") 'ace-window)
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-
-#+END_SRC
-   
-*** setting for jump between windows
-
-;; move between different windows
-;; using windmove command
-;; move between windows using Shift + left/right/up/down arrorw key
-;(when (fboundp 'windmove-default-keybindings)
-;  (windmove-default-keybindings))
-
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c <left>")  'windmove-left)
-  (global-set-key (kbd "C-c <right>") 'windmove-right)
-  (global-set-key (kbd "C-c <up>")    'windmove-up)
-  (global-set-key (kbd "C-c <down>")  'windmove-down)
-
-  (global-set-key (kbd "C-c w h") 'windmove-left)
-  (global-set-key (kbd "C-c w l") 'windmove-right)
-  (global-set-key (kbd "C-c w k") 'windmove-up)
-  (global-set-key (kbd "C-c w j") 'windmove-down)
-
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-  ;;(global-set-key (kbd "<f10>") 'other-frame)
-  ;;(global-set-key (kbd "<f2>")  'other-window)
-  (global-set-key (kbd "<f2>")  'other-frame)
-#+END_SRC
-
-
-** configuration for helm
-   #+BEGIN_SRC emacs-lisp
-     (require 'helm)
-     (require 'helm-config)
-
-     ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-     ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-     ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-     (global-set-key (kbd "C-c h") 'helm-command-prefix)
-     (global-unset-key (kbd "C-x c"))
-
-     (global-unset-key (kbd "C-j"))
-     (define-key helm-map (kbd "C-j") nil) ;
-
-     ;;(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-     (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
-     (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-
-     (when (executable-find "curl")
-       (setq helm-google-suggest-use-curl-p t))
-
-     (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-           helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-           helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-           helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-           helm-ff-file-name-history-use-recentf t
-           helm-echo-input-in-header-line t)
-
-     (defun spacemacs//helm-hide-minibuffer-maybe ()
-       "Hide minibuffer in Helm session if we use the header line as input field."
-       (when (with-helm-buffer helm-echo-input-in-header-line)
-         (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
-           (overlay-put ov 'window (selected-window))
-           (overlay-put ov 'face
-                        (let ((bg-color (face-background 'default nil)))
-                          `(:background ,bg-color :foreground ,bg-color)))
-           (setq-local cursor-type nil))))
-
-
-     (add-hook 'helm-minibuffer-set-up-hook
-               'spacemacs//helm-hide-minibuffer-maybe)
-
-     (setq helm-autoresize-max-height 60)
-     (setq helm-autoresize-min-height 20)
-     (helm-autoresize-mode 1)
-
-
-     (global-set-key (kbd "M-x") 'helm-M-x)
-     (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
-     ;;; you may need <right> or C-o to select a command
-
-
-     (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-
-     (global-set-key (kbd "C-x b") 'helm-mini)
-     (setq helm-buffers-fuzzy-matching t
-           helm-recentf-fuzzy-match    t)
-
-     (global-set-key (kbd "C-x C-f") 'helm-find-files)
-
-
-
-     ;;;enable semantic mode to support helm helm semantic-or-imenu
-     ;; (semantic-mode t)
-
-     ;;; enable fuzzy matching for both semantics and Imenu list
-     (setq helm-semantic-fuzzy-match t
-           helm-imenu-fuzzy-match    t)
-
-
-     ;;enable man page at points
-     (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
-
-     ;;helm-occur
-     (global-set-key (kbd "C-c h o") 'helm-occur)
-
-     ;;helm-apropos
-     (setq helm-apropos-fuzzy-match t)
-
-     ;;helm-mark-ring
-     (global-set-key (kbd "C-c h SPC") 'helm-all-mark-rings)
-
-     ;;helm register
-     (global-set-key (kbd "C-c h x") 'helm-register)
-
-     ;;helm-surfraw
-
-     ;;helm-google-suggested
-     (global-set-key (kbd "C-c h g") 'helm-google-suggest)
-
-     ;; C-c h B      helm-resume     Resumes a previous helm session
-     (global-set-key (kbd "C-c h B") 'helm-resume)
-
-     ;; helm-filtered-bookmarks
-     (global-set-key (kbd "C-c h b") 'helm-filtered-bookmarks)
-
-
-     ;;;helm-eshell-history
-     (require 'helm-eshell)
-
-     (add-hook 'eshell-mode-hook
-               #'(lambda ()
-                   (define-key eshell-mode-map (kbd "C-c C-l")  'helm-eshell-history)))
-
-     ;;;helm-comint-input-ring
-     ;; Similar to helm-eshell-history, but used for M-x shell.
-     ;; (define-key shell-mode-map (kbd "C-c C-l") 'helm-comint-input-ring)
-
-     ;;;helm-mini-buffer-history
-     (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
-
-     (helm-mode 1)
-        
-   #+END_SRC
-
-
-*** Key bindings for helm
-;; Key Binding  Command         Description
-;; M-x  helm-M-x        List commands
-;; M-y  helm-show-kill-ring     Shows the content of the kill ring
-;; C-x b        helm-mini       Shows open buffers, recently opened files
-;; C-x C-f      helm-find-files         The helm version of find-file
-;; C-s  helm-ff-run-grep        Run grep from within helm-find-files
-;; C-c h i      helm-semantic-or-imenu  Helm interface to semantic/imenu
-;; C-c h m      helm-man-woman  Jump to any man entry
-;; C-c h /      helm-find       Helm interface to find
-;; C-c h l      helm-locate     Helm interface to locate
-;; C-c h o      helm-occur      Helm interface for occur
-;; C-c h a      helm-apropos    Describes commands, functions, variables, …
-;; C-c h h g    helm-info-gnus
-;; C-c h h i    helm-info-at-point
-;; C-c h h r    helm-info-emacs
-;; C-c h <tab>  helm-lisp-completion-at-point   Provides a list of available functions
-;; C-c h b      helm-resume     Resumes a previous helm session
-;; C-h SPC      helm-all-mark-rings     Views contents of local and global mark rings
-;; C-c h r      helm-regex      Visualizes regex matches
-;; C-c h x      helm-register   Shows content of registers
-;; C-c h t      helm-top        Helm interface to top
-;; C-c h s      helm-surfraw    Command line interface to many web search engines
-;; C-c h g      helm-google-suggest     Interactively enter search terms and get results from Google in helm buffer
-;; C-c h c      helm-color      Lists all available faces
-;; C-c h M-:    helm-eval-expression-with-eldoc         Get instant results for Emacs lisp expressions in the helm buffer
-;; C-c h C-,    helm-calcul-expression  Helm interface to calc
-;; C-c C-l      helm-eshell-history     Interface to eshell history
-;; C-c C-l      helm-comint-input-ring  Interface to shell history
-;; C-c C-l      helm-mini-buffer-history        Interface to mini-buffer history
-
-
-
-
-** settings for projectile
-   #+BEGIN_SRC emacs-lisp
-     (projectile-global-mode)
-
-     (setq projectile-completion-system 'helm)
-
-     (setq projectile-switch-project-action 'helm-projectile)
-     (setq projectile-enable-caching t)
-
-     ;;;for windoes
-     (if (eq window-system 'w32)
-             (setq projectile-indexing-method 'alien)
-     )
-
-     (add-to-list 'projectile-globally-ignored-directories ".git")
-     (add-to-list 'projectile-globally-ignored-directories "3rdparty")
-     (add-to-list 'projectile-globally-ignored-directories "build")
-     (add-to-list 'projectile-globally-ignored-directories "lib")
-
-     ;;; TAB/C-i  will run helm-execute-persistent-action
-     ;(define-key helm-projectile-projects-map (kbd "TAB") 'nil) ;  release tab
-     ;(define-key helm-projectile-projects-map (kbd "C-i") 'helm-execute-persistent-action);
-
-     (helm-projectile-on)
-        
-   #+END_SRC
-
-*** key binings
-**** a few commands  for projectile
-;;; more can be found at https://projectile.readthedocs.io/en/latest/usage/
-;;; and https://tuhdo.github.io/helm-projectile.html
-;;; C-c p h     helm-projectile     Helm interface to projectile
-;;; C-c p p     helm-projectile-switch-project  Switches to another projectile project
-;;; C-c p f     helm-projectile-find-file   Lists all files in a project
-;;; C-c p F     helm-projectile-find-file-in-known-projects     Find file in all known projects
-;;; C-c p g     helm-projectile-find-file-dwim  Find file based on context at point
-;;; C-c p d     helm-projectile-find-dir    Lists available directories in current project
-;;; C-c p e     helm-projectile-recentf     Lists recently opened files in current project
-;;; C-c p a     helm-projectile-find-other-file     Switch between files with same name but different extensions
-;;; C-c p i     projectile-invalidate-cache     Invalidate cache
-;;; C-c p z     projectile-cache-current-file   Add the file of current selected buffer to cache
-;;; C-c p b     helm-projectile-switch-to-buffer    List all open buffers in current project
-
-;;; C-c p !     Runs shell-command in the root directory of the project.
-;;; C-c p &     Runs async-shell-command in the root directory of the project.
-;;; C-c p C     Runs a standard configure command for your type of project.
-;;; C-c p c     Runs a standard compilation command for your type of project.
-;;; C-c p s g   helm-projectile-grep    Searches for symbol starting from project root
-;;; C-c p s a   helm-projectile-ack     Same as above but using ack
-;;; C-c p s s   helm-projectile-ag  Same as above but using ag
-
-
-;;;   C-c p o     Runs multi-occur on all project buffers currently open.
-;;;   C-c p b     Display a list of all project buffers currently open.
-;;;   C-c p r     Runs interactive query-replace on all files in the projects.
-;;;   C-c p R     Regenerates the projects TAGS file.
-;;;   C-c p j     Find tag in project's TAGS file.
-;;;   C-c p k     Kills all project buffers.
-;;;   C-c p D     Opens the root of the project in dired.
-
-
-**** Here's a list of the interactive Emacs Lisp functions, provided by Projectile:
-;;;Keybinding  Description
-;;;   C-c p f     Display a list of all files in the project. With a prefix argument it will clear the cache first.
-;;;   C-c p F     Display a list of all files in all known projects.
-;;;   C-c p g     Display a list of all files at point in the project. With a prefix argument it will clear the cache first.
-;;;   C-c p 4 f   Jump to a project's file using completion and show it in another window.
-;;;   C-c p 4 g   Jump to a project's file based on context at point and show it in another window.
-;;;   C-c p 5 f   Jump to a project's file using completion and show it in another frame.
-;;;   C-c p 5 g   Jump to a project's file based on context at point and show it in another frame.
-;;;   C-c p d     Display a list of all directories in the project. With a prefix argument it will clear the cache first.
-;;;   C-c p 4 d   Switch to a project directory and show it in another window.
-;;;   C-c p 5 d   Switch to a project directory and show it in another frame.
-;;;   C-c p T     Display a list of all test files(specs, features, etc) in the project.
-;;;   C-c p l     Display a list of all files in a directory (that's not necessarily a project)
-;;;   C-c p s g   Run grep on the files in the project.
-;;;   M-- C-c p s g   Run grep on projectile-grep-default-files in the project.
-;;;   C-c p v     Run vc-dir on the root directory of the project.
-;;;   C-c p V     Browse dirty version controlled projects.
-;;;   C-c p b     Display a list of all project buffers currently open.
-;;;   C-c p 4 b   Switch to a project buffer and show it in another window.
-;;;   C-c p 5 b   Switch to a project buffer and show it in another frame.
-;;;   C-c p 4 C-o     Display a project buffer in another window without selecting it.
-;;;   C-c p a     Switch between files with the same name but different extensions.
-;;;   C-c p 4 a   Switch between files with the same name but different extensions in other window.
-;;;   C-c p 5 a   Switch between files with the same name but different extensions in other frame.
-;;;   C-c p o     Runs multi-occur on all project buffers currently open.
-;;;   C-c p r     Runs interactive query-replace on all files in the projects.
-;;;   C-c p i     Invalidates the project cache (if existing).
-;;;   C-c p R     Regenerates the projects TAGS file.
-;;;   C-c p j     Find tag in project's TAGS file.
-;;;   C-c p k     Kills all project buffers.
-;;;   C-c p D     Opens the root of the project in dired.
-;;;   C-c p 4 D   Opens the root of the project in dired in another window.
-;;;   C-c p 5 D   Opens the root of the project in dired in another frame.
-;;;   C-c p e     Shows a list of recently visited project files.
-;;;   C-c p E     Opens the root dir-locals-file of the project.
-;;;   C-c p s s   Runs ag on the project. Requires the presence of ag.el.
-;;;   C-c p !     Runs shell-command in the root directory of the project.
-;;;   C-c p &     Runs async-shell-command in the root directory of the project.
-;;;   C-c p C     Runs a standard configure command for your type of project.
-;;;   C-c p c     Runs a standard compilation command for your type of project.
-;;;   C-c p P     Runs a standard test command for your type of project.
-;;;   C-c p t     Toggle between an implementation file and its test file.
-;;;   C-c p 4 t   Jump to implementation or test file in other window.
-;;;   C-c p 5 t   Jump to implementation or test file in other frame.
-;;;   C-c p z     Adds the currently visited file to the cache.
-;;;   C-c p p     Display a list of known projects you can switch to.
-;;;   C-c p S     Save all project buffers.
-;;;   C-c p m     Run the commander (an interface to run commands with a single key).
-;;;   C-c p ESC   Switch to the most recently selected Projectile buffer.
-
-
-
-** settings for helm-gtags
-
-#+BEGIN_SRC emacs-lisp
-  (setq
-   ;;helm-gtags-path-style 'relative
-   helm-gtags-ignore-case t
-   helm-gtags-auto-update t
-   helm-gtags-use-input-at-cursor t
-   helm-gtags-pulse-at-cursor t
-   helm-gtags-prefix-key (kbd "C-c t") 
-   helm-gtags-suggested-key-mapping t
-   )
-
-  (with-eval-after-load 'helm-gtags
-     (define-key helm-gtags-mode-map (kbd "C-c t g")   nil)
-     (define-key helm-gtags-mode-map (kbd "C-c t p")   nil)
-     (define-key helm-gtags-mode-map (kbd "C-c t t")   nil)
-     (define-key helm-gtags-mode-map (kbd "C-t")   nil)
-
-     (define-key helm-gtags-mode-map (kbd "C-c t i") 'helm-gtags-find-files)
-     (define-key helm-gtags-mode-map (kbd "C-c t t")   'helm-gtags-find-pattern)
-
-          ;;;  helm-gtags-dwim ()
-          ;;;     "Find by context. Here is
-          ;;;   - on include statement then jump to included file
-          ;;;   - on symbol definition then jump to its references
-          ;;;   - on reference point then jump to its definition."
-
-     (define-key helm-gtags-mode-map (kbd "C-c t g")   'helm-gtags-dwim)
-     (define-key helm-gtags-mode-map (kbd "C-c t P")   'helm-gtags-parse-file)
-     ;;; other mappings are f, s, r, d
-     
-     (define-key helm-gtags-mode-map (kbd "C-c t k")   'helm-tags-show-stack)
-     (define-key helm-gtags-mode-map (kbd "C-c t K")   'helm-gtags-pop-stack)
-
-     (define-key helm-gtags-mode-map (kbd "C-c t n")   'helm-gtags-next-history)
-     (define-key helm-gtags-mode-map (kbd "C-c t p")   'helm-gtags-previous-history)
-  )
-
-  ;;; Before using the ggtags or helm-gtags, remember to create 
-  ;;; a GTAGS database by running gtags at your project root in terminal: 
-
-  (require 'helm-gtags)
-
-  (defun  my-helm-gtags-hook()
-        (helm-gtags-mode t))
-
-  (add-hook 'c-mode-common-hook   'my-helm-gtags-hook)
-  (add-hook 'emacs-lisp-mode-hook 'my-helm-gtags-hook)
-  (add-hook 'java-mode-hook       'my-helm-gtags-hook)
-  (add-hook 'lisp-mode-hook       'my-helm-gtags-hook)
-  (add-hook 'perl-mode-hook       'my-helm-gtags-hook)
-  (add-hook 'sh-mode-hook         'my-helm-gtags-hook)
-  (add-hook 'python-mode-hook     'my-helm-gtags-hook)
-
-#+END_SRC
-
-*** Default Key Mapping
-;;;    Key     Command
-;;;    Prefix h    helm-gtags-display-browser
-;;;    Prefix C-]  helm-gtags-find-tag-from-here
-;;;    Prefix C-t  helm-gtags-pop-stack
-;;;    Prefix i    helm-gtags-find-files
-;;;    Prefix f    helm-gtags-parse-file
-;;;    Prefix g    helm-gtags-find-pattern
-;;;    Prefix s    helm-gtags-find-symbol
-;;;    Prefix r    helm-gtags-find-rtag
-;;;    Prefix t    helm-gtags-find-tag
-;;;    Prefix d    helm-gtags-find-tag
-;;;    M-*     helm-gtags-pop-stack
-;;;    M-.     helm-gtags-find-tag
-;;;    C-x 4 .     helm-gtags-find-tag-other-window
-
-  ;;;   (let ((command-table '(("h" . helm-gtags-display-browser)
-  ;;;                          ("P" . helm-gtags-find-files)
-  ;;;                          ("f" . helm-gtags-parse-file)
-  ;;;                          ("g" . helm-gtags-find-pattern)
-  ;;;                          ("s" . helm-gtags-find-symbol)
-  ;;;                          ("r" . helm-gtags-find-rtag)
-  ;;;                          ("t" . helm-gtags-find-tag)
-  ;;;                                             ("d" . helm-gtags-find-tag)))
-  ;;;     (define-key helm-gtags-mode-map "\C-]" 'helm-gtags-find-tag-from-here)
-  ;;;     (define-key helm-gtags-mode-map "\C-t" 'helm-gtags-pop-stack)
-  ;;;     (define-key helm-gtags-mode-map "\e*" 'helm-gtags-pop-stack)
-  ;;;     (define-key helm-gtags-mode-map "\e." 'helm-gtags-find-tag)
-  ;;;     (define-key helm-gtags-mode-map "\C-x4." 'helm-gtags-find-tag-other-window)))
-
-
 
 
 ** settings for bookmarks
@@ -751,6 +77,8 @@ define function to shutdown emacs server instance
 
 
 ;;;================================================
+
+
 ** settings for bookmark+ 
 #+BEGIN_SRC emacs-lisp
 (setq bmkp-bookmark-map-prefix-keys (list (kbd "C-c b"))
@@ -1128,54 +456,719 @@ define function to shutdown emacs server instance
 ;; (define-key bmkp-jump-other-window-map ":"    'bmkp-jump-to-type-other-window)            ; `C-x 4 j :'
 
 
-** settings for org-mode
-
+** settings for tab 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
-  ;;(setq org-ellipsis "⤵")
-  (require 'org)
-
-  ;;;;The following lines are always needed. Choose your own keys.
-  (global-set-key (kbd "C-c o s ") 'org-store-link)
-  (global-set-key (kbd "C-c o a") 'org-agenda)
-  (global-set-key (kbd "C-c o c") 'org-capture)
-  (global-set-key (kbd "C-c o b") 'org-iswitchb)
-  (setq org-log-done 'time)
-
-  (defun  my-org-mode-hook()
-        (local-set-key (kbd "C-c o i")        'org-insert-link)
-        (local-set-key (kbd "C-c o n t" )     'org-insert-todo-heading)
-        (local-set-key (kbd "C-c o n h" )     'org-insert-heading)
-        (local-set-key (kbd "C-c o o")        'org-open-at-point)
-
-        (local-set-key (kbd "C-c o h")    'outline-promote)
-        (local-set-key (kbd "C-c o l")    'outline-demote)
-        (local-set-key (kbd "C-c o k")    'outline-move-subtree-up)
-        (local-set-key (kbd "C-c o j")    'outline-move-subtree-down)
-
-        (local-set-key (kbd "C-S-<left>")       'outline-promote)
-        (local-set-key (kbd "C-S-<right>")      'outline-demote)
-        (local-set-key (kbd "C-M-<up>")         'outline-move-subtree-up)
-        (local-set-key (kbd "C-M-<down>")       'outline-move-subtree-down)
+  (defun my-tab-width()
+   (c-set-offset 'substatement-open 0)
+   (setq c-basic-offset 4)
+   (setq c-default-style "linux")
+   (setq c-indent-level 4)
+   (setq tab-width 4)
+   (setq indent-tabs-mode nil)
   )
 
+  ;;; use space for c/c++ instead of tab
+  (add-hook 'c++-mode-hook    'my-tab-width)
+  (add-hook 'c-mode-hook      'my-tab-width)
 
-  (add-hook 'org-mode-hook   'my-org-mode-hook)
+  ;;enable cscope mode on C/C++ file
+  ;; using add-hook function
+  (add-hook 'c++-mode-hook    'cscope-minor-mode)
+  (add-hook 'c-mode-hook  'cscope-minor-mode)
 #+END_SRC
 
-*** set up pretty bullets for org-mode
+
+python mode indent a block
+ C-c <       ;;shift the region 4 space to the left
+ C-c >       ;;shift the region 4 space to the right 
+set tab to 2 for python code
 
 #+BEGIN_SRC emacs-lisp
-  (set-language-environment "UTF-8")
-  (set-default-coding-systems 'utf-8)
+  (add-hook 'python-mode-hook '(lambda () 
+   (setq python-indent 4)))
+#+END_SRC
 
-  (add-to-list 'load-path (expand-file-name "~/.emacs.d/third-party/org-bullets"))
 
-  ;(setq org-bullets-bullet-list '( "◉" "○" "✸" "✿"))
+** settings for speedbar 
+#+BEGIN_SRC emacs-lisp
+  (require 'sr-speedbar)
 
-  (require 'org-bullets)
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-  (setq org-hide-leading-stars t)
+  (setq speedbar-show-unknown-files t) ; show all files
+  (setq speedbar-use-images nil) ; use text for buttons
+  (setq sr-speedbar-right-side nil) ; put on left side
+  (setq speedbar-tag-hierarchy-method nil)    ;; expand all tags
+  (setq speedbar-sort-tags t)     ;;;sort tags
+
+#+END_SRC
+
+*** Enable case insensitive search in the speedbar window
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'speedbar-mode-hook
+            (lambda ()
+            (setq case-fold-search t)))
+#+END_SRC
+;;
+ ;;expand current file
+;; (defun sb-expand-curren-file ()
+;;   "Expand current file in speedbar buffer"
+;;   (interactive)
+;;   (setq current-file (buffer-file-name))
+;;   (sr-speedbar-refresh)
+;;   (switch-to-buffer-other-frame "*SPEEDBAR*")
+;;   ;(switch-to-buffer "*SPEEDBAR*")
+;;   ;(set-buffer "*SPEEDBAR*")
+;;   ;(speedbar-find-selected-file current-file)
+;;   (speedbar-expand-line)
+;;   ;(find-file current-file) 
+;;   )
+
+some functions for expand tags in speedbar windows
+;;expand current file
+
+#+BEGIN_SRC emacs-lisp
+  (defun sb-expand-curren-file ()
+    "Expand current file in speedbar buffer"
+    ;; (interactive)
+    (setq current-file (buffer-file-name))
+    (sr-speedbar-refresh)
+    (select-window (get-buffer-window "*SPEEDBAR*"))
+    (speedbar-find-selected-file current-file)
+    (speedbar-expand-line)
+  )
+
+  ;;show tags for current file
+   (defun sb-show-tags-for-curren-file ()
+    "show tags for current file in speedbar buffer"
+    (interactive)
+
+    (setq current-file-buffer (buffer-name))
+    (if (not (sr-speedbar-exist-p))
+        (sr-speedbar-open))
+
+    ;; return to the window which displays the current file
+    (select-window (get-buffer-window current-file-buffer))
+    (sb-expand-curren-file)
+
+    (select-window (get-buffer-window current-file-buffer))
+   )
+
+  ;;show tags for current file
+   (defun sb-toggle-tags-for-curren-file ()
+    "toggle tags in speedbar buffer"
+    (interactive)
+
+    (if (sr-speedbar-exist-p)
+        (sr-speedbar-close)
+     (sb-show-tags-for-curren-file)    
+    ))
+
+  (global-set-key (kbd "<f3>")  'sb-toggle-tags-for-curren-file)
+  ;(global-set-key (kbd "<f3>")  'sr-speedbar-toggle)
+  (global-set-key (kbd "C-c t l") 'sb-show-tags-for-curren-file)
+
+#+END_SRC
+
+
+** settings for foldings
+
+#+BEGIN_SRC emacs-lisp
+  (defun  my-hs-folding-hook()
+        (local-set-key (kbd "C-c z o") 'hs-show-block)
+        (local-set-key (kbd "C-c z O") 'hs-show-all)
+        (local-set-key (kbd "C-c z c") 'hs-hide-block)
+        (local-set-key (kbd "C-c z C") 'hs-hide-all)
+        (local-set-key (kbd "C-c SPC") 'hs-toggle-hiding)
+        (hs-minor-mode t))
+
+  ;;;;outline minor  mode
+  (defun  my-outline-minor-mode-hook()
+        (local-set-key (kbd "C-c z r") 'outline-show-subtree)
+        (local-set-key (kbd "C-c z m") 'outline-hide-subtree)
+        (local-set-key (kbd "C-c z R") 'outline-show-all)
+        (local-set-key (kbd "C-c z M") 'outline-hide-other)
+        (local-set-key (kbd "C-c z SPC") 'outline-toggle-children)
+        (outline-minor-mode t))
+
+  (defun  my-folding-hook()
+      (my-hs-folding-hook)
+      (my-outline-minor-mode-hook)
+  )
+
+  (add-hook 'c-mode-common-hook   'my-folding-hook)
+  (add-hook 'emacs-lisp-mode-hook 'my-folding-hook)
+  (add-hook 'java-mode-hook       'my-folding-hook)
+  (add-hook 'lisp-mode-hook       'my-folding-hook)
+  (add-hook 'perl-mode-hook       'my-folding-hook)
+  (add-hook 'sh-mode-hook         'my-folding-hook)
+  (add-hook 'python-mode-hook     'my-folding-hook)
+#+END_SRC
+
+
+
+** settings for tramp mode
+;;; You can refer to files on other machines using a special file name syntax: 
+;;;   /host:filename
+;;;   /user@host:filename
+;;;   /user@host#port:filename
+;;;   /method:user@host:filename
+;;;   /method:user@host#port:filename
+#+BEGIN_SRC emacs-lisp
+  (if (eq window-system 'w32)
+          (setq tramp-default-method "plink")
+    (setq tramp-default-method "ssh")
+  )
+#+END_SRC
+
+define function to shutdown emacs server instance
+#+BEGIN_SRC emacs-lisp
+  (defun server-shutdown ()
+    "Save buffers, Quit, and Shutdown (kill) server"
+    (interactive)
+    (save-some-buffers)
+    (kill-emacs)
+  )
+#+END_SRC
+
+
+** window management
+*** set up ace widow for switching between windows
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-o") 'ace-window)
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+
+#+END_SRC
+   
+*** setting for jump between windows
+
+;; move between different windows
+;; using windmove command
+;; move between windows using Shift + left/right/up/down arrorw key
+;(when (fboundp 'windmove-default-keybindings)
+;  (windmove-default-keybindings))
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c <left>")  'windmove-left)
+  (global-set-key (kbd "C-c <right>") 'windmove-right)
+  (global-set-key (kbd "C-c <up>")    'windmove-up)
+  (global-set-key (kbd "C-c <down>")  'windmove-down)
+
+  (global-set-key (kbd "C-c w h") 'windmove-left)
+  (global-set-key (kbd "C-c w l") 'windmove-right)
+  (global-set-key (kbd "C-c w k") 'windmove-up)
+  (global-set-key (kbd "C-c w j") 'windmove-down)
+
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  ;;(global-set-key (kbd "<f10>") 'other-frame)
+  ;;(global-set-key (kbd "<f2>")  'other-window)
+  (global-set-key (kbd "<f2>")  'other-frame)
+#+END_SRC
+
+
+** cscope, clang format, and YCM
+*** key bindings for cscope
+   C-c s s Find symbol.
+   C-c s = Find assignments to this symbol
+   C-c s d Find global definition.
+   C-c s g Find global definition (alternate binding).
+   C-c s G Find global definition without prompting.
+   C-c s c Find functions calling a function.
+   C-c s C Find called functions (list functions called from a function).
+   C-c s t Find text string.
+   C-c s e Find egrep pattern.
+   C-c s f Find a file.
+   C-c s i Find files #including a file.
+
+   C-c s a Set initial directory.
+   C-c s A Unset initial directory.
+
+   C-c s b Display cscope buffer.
+   C-c s B Auto display cscope buffer toggle.
+   C-c s n Next symbol.
+   C-c s N Next file.
+   C-c s p Previous symbol.
+   C-c s P Previous file.
+   C-c s u Pop mark.
+   
+   C-c s L Create list of files to index.
+   C-c s I Create list and index.
+   C-c s E Edit list of files to index.
+   C-c s W Locate this buffer’s cscope directory (“W” –> “where”).
+   C-c s S Locate this buffer’s cscope directory. (alternate binding: “S” –> “show”).
+   C-c s T Locate this buffer’s cscope directory. (alternate binding: “T” –> “tell”).
+   C-c s D Dired this buffer’s directory.
+
+  on windows, using command in windows command prompt 
+  dir /S /B *.h *.cpp *.hpp *.c  > cscope.files
+  to list files,  
+  then use the following command to build cscope database
+  cscope.exe -b -i cscope.files -f cscope.out
+
+
+*** settings for clang format
+
+#+BEGIN_SRC emacs-lisp
+  (require 'clang-format)
+  ;;; (global-set-key (kbd "C-c i") 'clang-format-region)
+  ;;; (global-set-key (kbd "C-c u") 'clang-format-buffer)
+  (global-set-key (kbd "C-c c r") 'clang-format-region)
+  (global-set-key (kbd "C-c c b") 'clang-format-buffer)
+
+  ;;(setq clang-format-style-option "llvm")
+  (setq clang-format-style-option "file")
+#+END_SRC
+    
+
+*** settings for ycmd
+#+BEGIN_SRC emacs-lisp
+  (require 'ycmd)
+  (add-hook 'after-init-hook #'global-ycmd-mode)
+  ;(add-hook 'c++-mode-hook 'ycmd-mode)
+
+  (set-variable 'ycmd-min-num-chars-for-completion 0)
+  (set-variable 'ycmd-max-num-identifier-candidates 20)
+  (set-variable 'ycmd-extra-conf-whitelist '("~/*"))
+#+END_SRC
+
+    In order to make ycm work properly, we need make an .ycm_extra_conf.py file in the root of the project, and 
+    the content of .ycm_extra_conf.py could be just like
+    ===================================
+    def FlagsForFile( filename, **kwargs ):
+    return {
+    'flags': [ '-x', 'c++' ]
+    }
+    ==================================
+
+    specify how to run ycmd server
+    while specifying ycm server command, we cannot use ~, and we have to use expand-file-name to expand it
+    ;;(set-variable 'ycmd-server-command '("python" "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd"))
+    
+    ;;;specify a global emacs configuration
+    ;; *cannot* use ~
+    ;; (set-variable 'ycmd-global-config '("/usr/bin/python" "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
+    ;; (set-variable 'ycmd-global-config `("/usr/bin/python" ,(concat (getenv "HOME") 
+    ;;                                                                "/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py")))
+
+#+BEGIN_SRC emacs-lisp
+  (set-variable 'ycmd-server-command `("python" 
+                                       ,(expand-file-name "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd")))
+
+  ;; (set-variable 'ycmd-global-config `("/usr/bin/python" 
+  ;;                                     ,(expand-file-name "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py")))
+
+#+END_SRC
+
+
+*** settings for company-mode
+;;; debug ycmd mode: M-x ycmd-show-debug-info
+;;;completion framework
+#+BEGIN_SRC emacs-lisp
+(require 'company-ycmd)
+(company-ycmd-setup)
+(add-hook 'after-init-hook #'global-company-mode)
+
+;;;; Set always complete immediately
+(setq company-idle-delay 0)
+
+#+END_SRC
+
+*** Enable flycheck
+    #+BEGIN_SRC emacs-lisp
+      (require 'flycheck-ycmd)
+      (flycheck-ycmd-setup)
+      (add-hook 'after-init-hook #'global-flycheck-mode)    
+    #+END_SRC
+
+
+** configuration for helm
+   #+BEGIN_SRC emacs-lisp
+     (require 'helm)
+     (require 'helm-config)
+
+     ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+     ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+     ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+     (global-set-key (kbd "C-c h") 'helm-command-prefix)
+     (global-unset-key (kbd "C-x c"))
+
+     (global-unset-key (kbd "C-j"))
+     (define-key helm-map (kbd "C-j") nil) ;
+
+     ;;(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+     (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+     (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+     (when (executable-find "curl")
+       (setq helm-google-suggest-use-curl-p t))
+
+     (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+           helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+           helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+           helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+           helm-ff-file-name-history-use-recentf t
+           helm-echo-input-in-header-line t)
+
+     (defun spacemacs//helm-hide-minibuffer-maybe ()
+       "Hide minibuffer in Helm session if we use the header line as input field."
+       (when (with-helm-buffer helm-echo-input-in-header-line)
+         (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
+           (overlay-put ov 'window (selected-window))
+           (overlay-put ov 'face
+                        (let ((bg-color (face-background 'default nil)))
+                          `(:background ,bg-color :foreground ,bg-color)))
+           (setq-local cursor-type nil))))
+
+
+     (add-hook 'helm-minibuffer-set-up-hook
+               'spacemacs//helm-hide-minibuffer-maybe)
+
+     (setq helm-autoresize-max-height 60)
+     (setq helm-autoresize-min-height 20)
+     (helm-autoresize-mode 1)
+
+
+     (global-set-key (kbd "M-x") 'helm-M-x)
+     (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
+     ;;; you may need <right> or C-o to select a command
+
+
+     (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+
+     (global-set-key (kbd "C-x b") 'helm-mini)
+     (setq helm-buffers-fuzzy-matching t
+           helm-recentf-fuzzy-match    t)
+
+     (global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+
+
+     ;;;enable semantic mode to support helm helm semantic-or-imenu
+     ;; (semantic-mode t)
+
+     ;;; enable fuzzy matching for both semantics and Imenu list
+     (setq helm-semantic-fuzzy-match t
+           helm-imenu-fuzzy-match    t)
+
+
+     ;;enable man page at points
+     (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
+
+     ;;helm-occur
+     (global-set-key (kbd "C-c h o") 'helm-occur)
+
+     ;;helm-apropos
+     (setq helm-apropos-fuzzy-match t)
+
+     ;;helm-mark-ring
+     (global-set-key (kbd "C-c h SPC") 'helm-all-mark-rings)
+
+     ;;helm register
+     (global-set-key (kbd "C-c h x") 'helm-register)
+
+     ;;helm-surfraw
+
+     ;;helm-google-suggested
+     (global-set-key (kbd "C-c h g") 'helm-google-suggest)
+
+     ;; C-c h B      helm-resume     Resumes a previous helm session
+     (global-set-key (kbd "C-c h B") 'helm-resume)
+
+     ;; helm-filtered-bookmarks
+     (global-set-key (kbd "C-c h b") 'helm-filtered-bookmarks)
+
+
+     ;;;helm-eshell-history
+     (require 'helm-eshell)
+
+     (add-hook 'eshell-mode-hook
+               #'(lambda ()
+                   (define-key eshell-mode-map (kbd "C-c C-l")  'helm-eshell-history)))
+
+     ;;;helm-comint-input-ring
+     ;; Similar to helm-eshell-history, but used for M-x shell.
+     ;; (define-key shell-mode-map (kbd "C-c C-l") 'helm-comint-input-ring)
+
+     ;;;helm-mini-buffer-history
+     (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
+
+     (helm-mode 1)
+        
+   #+END_SRC
+
+
+*** Key bindings for helm
+;; Key Binding  Command         Description
+;; M-x  helm-M-x        List commands
+;; M-y  helm-show-kill-ring     Shows the content of the kill ring
+;; C-x b        helm-mini       Shows open buffers, recently opened files
+;; C-x C-f      helm-find-files         The helm version of find-file
+;; C-s  helm-ff-run-grep        Run grep from within helm-find-files
+;; C-c h i      helm-semantic-or-imenu  Helm interface to semantic/imenu
+;; C-c h m      helm-man-woman  Jump to any man entry
+;; C-c h /      helm-find       Helm interface to find
+;; C-c h l      helm-locate     Helm interface to locate
+;; C-c h o      helm-occur      Helm interface for occur
+;; C-c h a      helm-apropos    Describes commands, functions, variables, …
+;; C-c h h g    helm-info-gnus
+;; C-c h h i    helm-info-at-point
+;; C-c h h r    helm-info-emacs
+;; C-c h <tab>  helm-lisp-completion-at-point   Provides a list of available functions
+;; C-c h b      helm-resume     Resumes a previous helm session
+;; C-h SPC      helm-all-mark-rings     Views contents of local and global mark rings
+;; C-c h r      helm-regex      Visualizes regex matches
+;; C-c h x      helm-register   Shows content of registers
+;; C-c h t      helm-top        Helm interface to top
+;; C-c h s      helm-surfraw    Command line interface to many web search engines
+;; C-c h g      helm-google-suggest     Interactively enter search terms and get results from Google in helm buffer
+;; C-c h c      helm-color      Lists all available faces
+;; C-c h M-:    helm-eval-expression-with-eldoc         Get instant results for Emacs lisp expressions in the helm buffer
+;; C-c h C-,    helm-calcul-expression  Helm interface to calc
+;; C-c C-l      helm-eshell-history     Interface to eshell history
+;; C-c C-l      helm-comint-input-ring  Interface to shell history
+;; C-c C-l      helm-mini-buffer-history        Interface to mini-buffer history
+
+
+
+
+** settings for projectile
+   #+BEGIN_SRC emacs-lisp
+     (projectile-global-mode)
+
+     (setq projectile-completion-system 'helm)
+
+     (setq projectile-switch-project-action 'helm-projectile)
+     (setq projectile-enable-caching t)
+
+     ;;;for windoes
+     (if (eq window-system 'w32)
+             (setq projectile-indexing-method 'alien)
+     )
+
+     (add-to-list 'projectile-globally-ignored-directories ".git")
+     (add-to-list 'projectile-globally-ignored-directories "3rdparty")
+     (add-to-list 'projectile-globally-ignored-directories "build")
+     (add-to-list 'projectile-globally-ignored-directories "lib")
+
+     ;;; TAB/C-i  will run helm-execute-persistent-action
+     ;(define-key helm-projectile-projects-map (kbd "TAB") 'nil) ;  release tab
+     ;(define-key helm-projectile-projects-map (kbd "C-i") 'helm-execute-persistent-action);
+
+     (helm-projectile-on)
+        
+   #+END_SRC
+
+*** key binings
+**** a few commands  for projectile
+;;; more can be found at https://projectile.readthedocs.io/en/latest/usage/
+;;; and https://tuhdo.github.io/helm-projectile.html
+;;; C-c p h     helm-projectile     Helm interface to projectile
+;;; C-c p p     helm-projectile-switch-project  Switches to another projectile project
+;;; C-c p f     helm-projectile-find-file   Lists all files in a project
+;;; C-c p F     helm-projectile-find-file-in-known-projects     Find file in all known projects
+;;; C-c p g     helm-projectile-find-file-dwim  Find file based on context at point
+;;; C-c p d     helm-projectile-find-dir    Lists available directories in current project
+;;; C-c p e     helm-projectile-recentf     Lists recently opened files in current project
+;;; C-c p a     helm-projectile-find-other-file     Switch between files with same name but different extensions
+;;; C-c p i     projectile-invalidate-cache     Invalidate cache
+;;; C-c p z     projectile-cache-current-file   Add the file of current selected buffer to cache
+;;; C-c p b     helm-projectile-switch-to-buffer    List all open buffers in current project
+
+;;; C-c p !     Runs shell-command in the root directory of the project.
+;;; C-c p &     Runs async-shell-command in the root directory of the project.
+;;; C-c p C     Runs a standard configure command for your type of project.
+;;; C-c p c     Runs a standard compilation command for your type of project.
+;;; C-c p s g   helm-projectile-grep    Searches for symbol starting from project root
+;;; C-c p s a   helm-projectile-ack     Same as above but using ack
+;;; C-c p s s   helm-projectile-ag  Same as above but using ag
+
+
+;;;   C-c p o     Runs multi-occur on all project buffers currently open.
+;;;   C-c p b     Display a list of all project buffers currently open.
+;;;   C-c p r     Runs interactive query-replace on all files in the projects.
+;;;   C-c p R     Regenerates the projects TAGS file.
+;;;   C-c p j     Find tag in project's TAGS file.
+;;;   C-c p k     Kills all project buffers.
+;;;   C-c p D     Opens the root of the project in dired.
+
+
+**** Here's a list of the interactive Emacs Lisp functions, provided by Projectile:
+;;;Keybinding  Description
+;;;   C-c p f     Display a list of all files in the project. With a prefix argument it will clear the cache first.
+;;;   C-c p F     Display a list of all files in all known projects.
+;;;   C-c p g     Display a list of all files at point in the project. With a prefix argument it will clear the cache first.
+;;;   C-c p 4 f   Jump to a project's file using completion and show it in another window.
+;;;   C-c p 4 g   Jump to a project's file based on context at point and show it in another window.
+;;;   C-c p 5 f   Jump to a project's file using completion and show it in another frame.
+;;;   C-c p 5 g   Jump to a project's file based on context at point and show it in another frame.
+;;;   C-c p d     Display a list of all directories in the project. With a prefix argument it will clear the cache first.
+;;;   C-c p 4 d   Switch to a project directory and show it in another window.
+;;;   C-c p 5 d   Switch to a project directory and show it in another frame.
+;;;   C-c p T     Display a list of all test files(specs, features, etc) in the project.
+;;;   C-c p l     Display a list of all files in a directory (that's not necessarily a project)
+;;;   C-c p s g   Run grep on the files in the project.
+;;;   M-- C-c p s g   Run grep on projectile-grep-default-files in the project.
+;;;   C-c p v     Run vc-dir on the root directory of the project.
+;;;   C-c p V     Browse dirty version controlled projects.
+;;;   C-c p b     Display a list of all project buffers currently open.
+;;;   C-c p 4 b   Switch to a project buffer and show it in another window.
+;;;   C-c p 5 b   Switch to a project buffer and show it in another frame.
+;;;   C-c p 4 C-o     Display a project buffer in another window without selecting it.
+;;;   C-c p a     Switch between files with the same name but different extensions.
+;;;   C-c p 4 a   Switch between files with the same name but different extensions in other window.
+;;;   C-c p 5 a   Switch between files with the same name but different extensions in other frame.
+;;;   C-c p o     Runs multi-occur on all project buffers currently open.
+;;;   C-c p r     Runs interactive query-replace on all files in the projects.
+;;;   C-c p i     Invalidates the project cache (if existing).
+;;;   C-c p R     Regenerates the projects TAGS file.
+;;;   C-c p j     Find tag in project's TAGS file.
+;;;   C-c p k     Kills all project buffers.
+;;;   C-c p D     Opens the root of the project in dired.
+;;;   C-c p 4 D   Opens the root of the project in dired in another window.
+;;;   C-c p 5 D   Opens the root of the project in dired in another frame.
+;;;   C-c p e     Shows a list of recently visited project files.
+;;;   C-c p E     Opens the root dir-locals-file of the project.
+;;;   C-c p s s   Runs ag on the project. Requires the presence of ag.el.
+;;;   C-c p !     Runs shell-command in the root directory of the project.
+;;;   C-c p &     Runs async-shell-command in the root directory of the project.
+;;;   C-c p C     Runs a standard configure command for your type of project.
+;;;   C-c p c     Runs a standard compilation command for your type of project.
+;;;   C-c p P     Runs a standard test command for your type of project.
+;;;   C-c p t     Toggle between an implementation file and its test file.
+;;;   C-c p 4 t   Jump to implementation or test file in other window.
+;;;   C-c p 5 t   Jump to implementation or test file in other frame.
+;;;   C-c p z     Adds the currently visited file to the cache.
+;;;   C-c p p     Display a list of known projects you can switch to.
+;;;   C-c p S     Save all project buffers.
+;;;   C-c p m     Run the commander (an interface to run commands with a single key).
+;;;   C-c p ESC   Switch to the most recently selected Projectile buffer.
+
+
+
+** settings for helm-gtags
+
+#+BEGIN_SRC emacs-lisp
+  (setq
+   ;;helm-gtags-path-style 'relative
+   helm-gtags-ignore-case t
+   helm-gtags-auto-update t
+   helm-gtags-use-input-at-cursor t
+   helm-gtags-pulse-at-cursor t
+   helm-gtags-prefix-key (kbd "C-c t") 
+   helm-gtags-suggested-key-mapping t
+   )
+
+  (with-eval-after-load 'helm-gtags
+     (define-key helm-gtags-mode-map (kbd "C-c t g")   nil)
+     (define-key helm-gtags-mode-map (kbd "C-c t p")   nil)
+     (define-key helm-gtags-mode-map (kbd "C-c t t")   nil)
+     (define-key helm-gtags-mode-map (kbd "C-t")   nil)
+
+     (define-key helm-gtags-mode-map (kbd "C-c t i") 'helm-gtags-find-files)
+     (define-key helm-gtags-mode-map (kbd "C-c t t")   'helm-gtags-find-pattern)
+
+          ;;;  helm-gtags-dwim ()
+          ;;;     "Find by context. Here is
+          ;;;   - on include statement then jump to included file
+          ;;;   - on symbol definition then jump to its references
+          ;;;   - on reference point then jump to its definition."
+
+     (define-key helm-gtags-mode-map (kbd "C-c t g")   'helm-gtags-dwim)
+     (define-key helm-gtags-mode-map (kbd "C-c t P")   'helm-gtags-parse-file)
+     ;;; other mappings are f, s, r, d
+     
+     (define-key helm-gtags-mode-map (kbd "C-c t k")   'helm-tags-show-stack)
+     (define-key helm-gtags-mode-map (kbd "C-c t K")   'helm-gtags-pop-stack)
+
+     (define-key helm-gtags-mode-map (kbd "C-c t n")   'helm-gtags-next-history)
+     (define-key helm-gtags-mode-map (kbd "C-c t p")   'helm-gtags-previous-history)
+  )
+
+  ;;; Before using the ggtags or helm-gtags, remember to create 
+  ;;; a GTAGS database by running gtags at your project root in terminal: 
+
+  (require 'helm-gtags)
+
+  (defun  my-helm-gtags-hook()
+        (helm-gtags-mode t))
+
+  (add-hook 'c-mode-common-hook   'my-helm-gtags-hook)
+  (add-hook 'emacs-lisp-mode-hook 'my-helm-gtags-hook)
+  (add-hook 'java-mode-hook       'my-helm-gtags-hook)
+  (add-hook 'lisp-mode-hook       'my-helm-gtags-hook)
+  (add-hook 'perl-mode-hook       'my-helm-gtags-hook)
+  (add-hook 'sh-mode-hook         'my-helm-gtags-hook)
+  (add-hook 'python-mode-hook     'my-helm-gtags-hook)
+
+#+END_SRC
+
+*** Default Key Mapping
+;;;    Key     Command
+;;;    Prefix h    helm-gtags-display-browser
+;;;    Prefix C-]  helm-gtags-find-tag-from-here
+;;;    Prefix C-t  helm-gtags-pop-stack
+;;;    Prefix i    helm-gtags-find-files
+;;;    Prefix f    helm-gtags-parse-file
+;;;    Prefix g    helm-gtags-find-pattern
+;;;    Prefix s    helm-gtags-find-symbol
+;;;    Prefix r    helm-gtags-find-rtag
+;;;    Prefix t    helm-gtags-find-tag
+;;;    Prefix d    helm-gtags-find-tag
+;;;    M-*     helm-gtags-pop-stack
+;;;    M-.     helm-gtags-find-tag
+;;;    C-x 4 .     helm-gtags-find-tag-other-window
+
+  ;;;   (let ((command-table '(("h" . helm-gtags-display-browser)
+  ;;;                          ("P" . helm-gtags-find-files)
+  ;;;                          ("f" . helm-gtags-parse-file)
+  ;;;                          ("g" . helm-gtags-find-pattern)
+  ;;;                          ("s" . helm-gtags-find-symbol)
+  ;;;                          ("r" . helm-gtags-find-rtag)
+  ;;;                          ("t" . helm-gtags-find-tag)
+  ;;;                                             ("d" . helm-gtags-find-tag)))
+  ;;;     (define-key helm-gtags-mode-map "\C-]" 'helm-gtags-find-tag-from-here)
+  ;;;     (define-key helm-gtags-mode-map "\C-t" 'helm-gtags-pop-stack)
+  ;;;     (define-key helm-gtags-mode-map "\e*" 'helm-gtags-pop-stack)
+  ;;;     (define-key helm-gtags-mode-map "\e." 'helm-gtags-find-tag)
+  ;;;     (define-key helm-gtags-mode-map "\C-x4." 'helm-gtags-find-tag-other-window)))
+    
+    
+** settings for backup
+
+;; make backup to a designated dir, mirroring the full path
+;; http://ergoemacs.org/emacs/emacs_set_backup_into_a_directory.html
+;; (defun my-backup-file-name (fpath)
+;;   "Return a new file path of a given file path.
+;;    If the new path's directories does not exist, create them."
+;;   (let* (
+;; 	 (backupRootDir "~/.emacs.d/emacs-backup/")
+;; 	 (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path, for example, “C:”
+;; 	 ;;(backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") ))
+;; 	 (backupFilePath (replace-regexp-in-string "\\\\" "/" (concat backupRootDir filePath "~") ))
+;; 	 )
+;;     (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
+;;     backupFilePath
+;;     )
+;;   )
+ 
+;; (setq make-backup-file-name-function 'my-backup-file-name)
+
+#+BEGIN_SRC emacs-lisp
+  (setq debug-on-error t)
+  (setq backupDir "~/.emacs.backup")
+
+  (if (not (file-directory-p backupDir)) 
+      (make-directory backupDir))
+
+  (setq
+     backup-by-copying t      ; don't clobber symlinks
+     backup-directory-alist
+     `(("." . ,backupDir))    ; don't litter my fs tree
+     delete-old-versions t
+     kept-new-versions 6
+     kept-old-versions 2
+     version-control t)       ; use versioned backups
 #+END_SRC
 
 
@@ -1214,6 +1207,14 @@ define function to shutdown emacs server instance
         (list (format "%s %%S: %%j " (system-name))
               '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 #+END_SRC
+
+
+*** repeat commands
+On the terminal C-x z will suspend emacs; so we remap keys , and bound C-c z to repeat.
+press C-c Z to repeat the prevous command
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c z")  'repeat)
+#+END_SRC
    
    
 * define some custom functions and key bindings
@@ -1249,7 +1250,7 @@ Behave like vi's O command
 
 
 
-**  copy/kill lines
+** copy/kill lines and related
 
 #+BEGIN_SRC emacs-lisp
 (defun copy-current-line (arg)
