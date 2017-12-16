@@ -1,11 +1,376 @@
-** set up ace widow for window switch
+* basic settings
+** cscope, clang format, and YCM
+*** key bindings for cscope
+   C-c s s Find symbol.
+   C-c s = Find assignments to this symbol
+   C-c s d Find global definition.
+   C-c s g Find global definition (alternate binding).
+   C-c s G Find global definition without prompting.
+   C-c s c Find functions calling a function.
+   C-c s C Find called functions (list functions called from a function).
+   C-c s t Find text string.
+   C-c s e Find egrep pattern.
+   C-c s f Find a file.
+   C-c s i Find files #including a file.
+
+   C-c s a Set initial directory.
+   C-c s A Unset initial directory.
+
+   C-c s b Display cscope buffer.
+   C-c s B Auto display cscope buffer toggle.
+   C-c s n Next symbol.
+   C-c s N Next file.
+   C-c s p Previous symbol.
+   C-c s P Previous file.
+   C-c s u Pop mark.
+   
+   C-c s L Create list of files to index.
+   C-c s I Create list and index.
+   C-c s E Edit list of files to index.
+   C-c s W Locate this buffer’s cscope directory (“W” –> “where”).
+   C-c s S Locate this buffer’s cscope directory. (alternate binding: “S” –> “show”).
+   C-c s T Locate this buffer’s cscope directory. (alternate binding: “T” –> “tell”).
+   C-c s D Dired this buffer’s directory.
+
+  on windows, using command in windows command prompt 
+  dir /S /B *.h *.cpp *.hpp *.c  > cscope.files
+  to list files,  
+  then use the following command to build cscope database
+  cscope.exe -b -i cscope.files -f cscope.out
+
+
+*** settings for clang format
+
+#+BEGIN_SRC emacs-lisp
+  (require 'clang-format)
+  ;;; (global-set-key (kbd "C-c i") 'clang-format-region)
+  ;;; (global-set-key (kbd "C-c u") 'clang-format-buffer)
+  (global-set-key (kbd "C-c c r") 'clang-format-region)
+  (global-set-key (kbd "C-c c b") 'clang-format-buffer)
+
+  ;;(setq clang-format-style-option "llvm")
+  (setq clang-format-style-option "file")
+#+END_SRC
+    
+
+*** settings for ycmd
+#+BEGIN_SRC emacs-lisp
+  (require 'ycmd)
+  (add-hook 'after-init-hook #'global-ycmd-mode)
+  ;(add-hook 'c++-mode-hook 'ycmd-mode)
+
+  (set-variable 'ycmd-min-num-chars-for-completion 0)
+  (set-variable 'ycmd-max-num-identifier-candidates 20)
+  (set-variable 'ycmd-extra-conf-whitelist '("~/*"))
+#+END_SRC
+
+    In order to make ycm work properly, we need make an .ycm_extra_conf.py file in the root of the project, and 
+    the content of .ycm_extra_conf.py could be just like
+    ===================================
+    def FlagsForFile( filename, **kwargs ):
+    return {
+    'flags': [ '-x', 'c++' ]
+    }
+    ==================================
+
+    specify how to run ycmd server
+    while specifying ycm server command, we cannot use ~, and we have to use expand-file-name to expand it
+    ;;(set-variable 'ycmd-server-command '("python" "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd"))
+    
+    ;;;specify a global emacs configuration
+    ;; *cannot* use ~
+    ;; (set-variable 'ycmd-global-config '("/usr/bin/python" "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
+    ;; (set-variable 'ycmd-global-config `("/usr/bin/python" ,(concat (getenv "HOME") 
+    ;;                                                                "/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py")))
+
+#+BEGIN_SRC emacs-lisp
+  (set-variable 'ycmd-server-command `("python" 
+                                       ,(expand-file-name "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd")))
+
+  ;; (set-variable 'ycmd-global-config `("/usr/bin/python" 
+  ;;                                     ,(expand-file-name "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py")))
+
+#+END_SRC
+
+
+*** settings for company-mode
+;;; debug ycmd mode: M-x ycmd-show-debug-info
+;;;completion framework
+#+BEGIN_SRC emacs-lisp
+(require 'company-ycmd)
+(company-ycmd-setup)
+(add-hook 'after-init-hook #'global-company-mode)
+
+;;;; Set always complete immediately
+(setq company-idle-delay 0)
+
+#+END_SRC
+
+*** Enable flycheck
+    #+BEGIN_SRC emacs-lisp
+      (require 'flycheck-ycmd)
+      (flycheck-ycmd-setup)
+      (add-hook 'after-init-hook #'global-flycheck-mode)    
+    #+END_SRC
+    
+    
+** settings for backup
+
+;; make backup to a designated dir, mirroring the full path
+;; http://ergoemacs.org/emacs/emacs_set_backup_into_a_directory.html
+;; (defun my-backup-file-name (fpath)
+;;   "Return a new file path of a given file path.
+;;    If the new path's directories does not exist, create them."
+;;   (let* (
+;; 	 (backupRootDir "~/.emacs.d/emacs-backup/")
+;; 	 (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path, for example, “C:”
+;; 	 ;;(backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") ))
+;; 	 (backupFilePath (replace-regexp-in-string "\\\\" "/" (concat backupRootDir filePath "~") ))
+;; 	 )
+;;     (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
+;;     backupFilePath
+;;     )
+;;   )
+ 
+;; (setq make-backup-file-name-function 'my-backup-file-name)
+
+#+BEGIN_SRC emacs-lisp
+  (setq debug-on-error t)
+  (setq backupDir "~/.emacs.backup")
+
+  (if (not (file-directory-p backupDir)) 
+      (make-directory backupDir))
+
+  (setq
+     backup-by-copying t      ; don't clobber symlinks
+     backup-directory-alist
+     `(("." . ,backupDir))    ; don't litter my fs tree
+     delete-old-versions t
+     kept-new-versions 6
+     kept-old-versions 2
+     version-control t)       ; use versioned backups
+#+END_SRC
+
+
+** settings for tab 
+#+BEGIN_SRC emacs-lisp
+  (defun my-tab-width()
+   (c-set-offset 'substatement-open 0)
+   (setq c-basic-offset 4)
+   (setq c-default-style "linux")
+   (setq c-indent-level 4)
+   (setq tab-width 4)
+   (setq indent-tabs-mode nil)
+  )
+
+  ;;; use space for c/c++ instead of tab
+  (add-hook 'c++-mode-hook    'my-tab-width)
+  (add-hook 'c-mode-hook      'my-tab-width)
+
+  ;;enable cscope mode on C/C++ file
+  ;; using add-hook function
+  (add-hook 'c++-mode-hook    'cscope-minor-mode)
+  (add-hook 'c-mode-hook  'cscope-minor-mode)
+#+END_SRC
+
+
+python mode indent a block
+ C-c <       ;;shift the region 4 space to the left
+ C-c >       ;;shift the region 4 space to the right 
+set tab to 2 for python code
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'python-mode-hook '(lambda () 
+   (setq python-indent 4)))
+#+END_SRC
+
+
+** settings for speedbar 
+#+BEGIN_SRC emacs-lisp
+  (require 'sr-speedbar)
+
+  (setq speedbar-show-unknown-files t) ; show all files
+  (setq speedbar-use-images nil) ; use text for buttons
+  (setq sr-speedbar-right-side nil) ; put on left side
+  (setq speedbar-tag-hierarchy-method nil)    ;; expand all tags
+  (setq speedbar-sort-tags t)     ;;;sort tags
+
+#+END_SRC
+
+*** Enable case insensitive search in the speedbar window
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'speedbar-mode-hook
+            (lambda ()
+            (setq case-fold-search t)))
+#+END_SRC
+;;
+ ;;expand current file
+;; (defun sb-expand-curren-file ()
+;;   "Expand current file in speedbar buffer"
+;;   (interactive)
+;;   (setq current-file (buffer-file-name))
+;;   (sr-speedbar-refresh)
+;;   (switch-to-buffer-other-frame "*SPEEDBAR*")
+;;   ;(switch-to-buffer "*SPEEDBAR*")
+;;   ;(set-buffer "*SPEEDBAR*")
+;;   ;(speedbar-find-selected-file current-file)
+;;   (speedbar-expand-line)
+;;   ;(find-file current-file) 
+;;   )
+
+some functions for expand tags in speedbar windows
+;;expand current file
+
+#+BEGIN_SRC emacs-lisp
+  (defun sb-expand-curren-file ()
+    "Expand current file in speedbar buffer"
+    ;; (interactive)
+    (setq current-file (buffer-file-name))
+    (sr-speedbar-refresh)
+    (select-window (get-buffer-window "*SPEEDBAR*"))
+    (speedbar-find-selected-file current-file)
+    (speedbar-expand-line)
+  )
+
+  ;;show tags for current file
+   (defun sb-show-tags-for-curren-file ()
+    "show tags for current file in speedbar buffer"
+    (interactive)
+
+    (setq current-file-buffer (buffer-name))
+    (if (not (sr-speedbar-exist-p))
+        (sr-speedbar-open))
+
+    ;; return to the window which displays the current file
+    (select-window (get-buffer-window current-file-buffer))
+    (sb-expand-curren-file)
+
+    (select-window (get-buffer-window current-file-buffer))
+   )
+
+  ;;show tags for current file
+   (defun sb-toggle-tags-for-curren-file ()
+    "toggle tags in speedbar buffer"
+    (interactive)
+
+    (if (sr-speedbar-exist-p)
+        (sr-speedbar-close)
+     (sb-show-tags-for-curren-file)    
+    ))
+
+  (global-set-key (kbd "<f3>")  'sb-toggle-tags-for-curren-file)
+  ;(global-set-key (kbd "<f3>")  'sr-speedbar-toggle)
+  (global-set-key (kbd "C-c t l") 'sb-show-tags-for-curren-file)
+
+#+END_SRC
+
+
+** settings for hide and show 
+
+#+BEGIN_SRC emacs-lisp
+  (defun  my-hs-folding-hook()
+        (local-set-key (kbd "C-c z o") 'hs-show-block)
+        (local-set-key (kbd "C-c z O") 'hs-show-all)
+        (local-set-key (kbd "C-c z c") 'hs-hide-block)
+        (local-set-key (kbd "C-c z C") 'hs-hide-all)
+        (local-set-key (kbd "C-c SPC") 'hs-toggle-hiding)
+        (hs-minor-mode t))
+
+  ;;;;outline minor  mode
+  (defun  my-outline-minor-mode-hook()
+        (local-set-key (kbd "C-c z r") 'outline-show-subtree)
+        (local-set-key (kbd "C-c z m") 'outline-hide-subtree)
+        (local-set-key (kbd "C-c z R") 'outline-show-all)
+        (local-set-key (kbd "C-c z M") 'outline-hide-other)
+        (local-set-key (kbd "C-c z SPC") 'outline-toggle-children)
+        (outline-minor-mode t))
+
+  (defun  my-folding-hook()
+      (my-hs-folding-hook)
+      (my-outline-minor-mode-hook)
+  )
+
+  (add-hook 'c-mode-common-hook   'my-folding-hook)
+  (add-hook 'emacs-lisp-mode-hook 'my-folding-hook)
+  (add-hook 'java-mode-hook       'my-folding-hook)
+  (add-hook 'lisp-mode-hook       'my-folding-hook)
+  (add-hook 'perl-mode-hook       'my-folding-hook)
+  (add-hook 'sh-mode-hook         'my-folding-hook)
+  (add-hook 'python-mode-hook     'my-folding-hook)
+#+END_SRC
+
+
+** repeat commands
+On the terminal C-x z will suspend emacs; so we remap keys , and bound C-c z to repeat.
+press C-c Z to repeat the prevous command
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c z")  'repeat)
+#+END_SRC
+
+
+
+** settings for tramp mode
+;;; You can refer to files on other machines using a special file name syntax: 
+;;;   /host:filename
+;;;   /user@host:filename
+;;;   /user@host#port:filename
+;;;   /method:user@host:filename
+;;;   /method:user@host#port:filename
+#+BEGIN_SRC emacs-lisp
+  (if (eq window-system 'w32)
+          (setq tramp-default-method "plink")
+    (setq tramp-default-method "ssh")
+  )
+#+END_SRC
+
+define function to shutdown emacs server instance
+#+BEGIN_SRC emacs-lisp
+  (defun server-shutdown ()
+    "Save buffers, Quit, and Shutdown (kill) server"
+    (interactive)
+    (save-some-buffers)
+    (kill-emacs)
+  )
+#+END_SRC
+
+
+** window management
+*** set up ace widow for switching between windows
+
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "M-o") 'ace-window)
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 
-  ;;(global-set-key (kbd "<f9>") 'other-frame)
-  (global-set-key (kbd "<f10>") 'other-frame)
-  #+END_SRC
+#+END_SRC
+   
+*** setting for jump between windows
+
+;; move between different windows
+;; using windmove command
+;; move between windows using Shift + left/right/up/down arrorw key
+;(when (fboundp 'windmove-default-keybindings)
+;  (windmove-default-keybindings))
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c <left>")  'windmove-left)
+  (global-set-key (kbd "C-c <right>") 'windmove-right)
+  (global-set-key (kbd "C-c <up>")    'windmove-up)
+  (global-set-key (kbd "C-c <down>")  'windmove-down)
+
+  (global-set-key (kbd "C-c w h") 'windmove-left)
+  (global-set-key (kbd "C-c w l") 'windmove-right)
+  (global-set-key (kbd "C-c w k") 'windmove-up)
+  (global-set-key (kbd "C-c w j") 'windmove-down)
+
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  ;;(global-set-key (kbd "<f10>") 'other-frame)
+  ;;(global-set-key (kbd "<f2>")  'other-window)
+  (global-set-key (kbd "<f2>")  'other-frame)
+#+END_SRC
+
+
 ** configuration for helm
    #+BEGIN_SRC emacs-lisp
      (require 'helm)
@@ -156,7 +521,7 @@
 
 
 
-** setting for projectile
+** settings for projectile
    #+BEGIN_SRC emacs-lisp
      (projectile-global-mode)
 
@@ -270,7 +635,7 @@
 
 
 
-** set up for helm-gtags
+** settings for helm-gtags
 
 #+BEGIN_SRC emacs-lisp
   (setq
@@ -763,6 +1128,98 @@
 ;; (define-key bmkp-jump-other-window-map ":"    'bmkp-jump-to-type-other-window)            ; `C-x 4 j :'
 
 
+** settings for org-mode
+;;;; settings for org mode
+;;;  (add-to-list 'load-path "~/.emacs.d/third-party/org-bullets")
+;;;  (require 'org-bullets)
+;;;  (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
+;;;  (setq org-hide-leading-stars t)
+;;;  (setq org-ellipsis "\ldots")
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
+  (setq org-ellipsis "⤵")
+  (require 'org)
+
+  ;;;;The following lines are always needed. Choose your own keys.
+  (global-set-key (kbd "C-c o s ") 'org-store-link)
+  (global-set-key (kbd "C-c o a") 'org-agenda)
+  (global-set-key (kbd "C-c o c") 'org-capture)
+  (global-set-key (kbd "C-c o b") 'org-iswitchb)
+  (setq org-log-done 'time)
+
+  (defun  my-org-mode-hook()
+        (local-set-key (kbd "C-c o i")        'org-insert-link)
+        (local-set-key (kbd "C-c o n t" )     'org-insert-todo-heading)
+        (local-set-key (kbd "C-c o n h" )     'org-insert-heading)
+        (local-set-key (kbd "C-c o o")        'org-open-at-point)
+
+        (local-set-key (kbd "C-c o h")    'outline-promote)
+        (local-set-key (kbd "C-c o l")    'outline-demote)
+        (local-set-key (kbd "C-c o k")    'outline-move-subtree-up)
+        (local-set-key (kbd "C-c o j")    'outline-move-subtree-down)
+
+        (local-set-key (kbd "C-S-<left>")       'outline-promote)
+        (local-set-key (kbd "C-S-<right>")      'outline-demote)
+        (local-set-key (kbd "C-M-<up>")         'outline-move-subtree-up)
+        (local-set-key (kbd "C-M-<down>")       'outline-move-subtree-down)
+  )
+
+
+  (add-hook 'org-mode-hook   'my-org-mode-hook)
+#+END_SRC
+
+*** set up pretty bullets for org-mode
+#+BEGIN_SRC emacs-lisp
+  (set-language-environment "UTF-8")
+  (set-default-coding-systems 'utf-8)
+
+  (add-to-list 'load-path (expand-file-name "~/.emacs.d/third-party/org-bullets"))
+
+  ;(setq org-bullets-bullet-list '( "◉" "○" "✸" "✿"))
+
+  (require 'org-bullets)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+END_SRC
+
+
+** miscellaneous
+   
+;;;  (require 'ido)
+;;;  
+;;;  (setq ido-enable-flex-matching t)
+;;;  (setq ido-everywhere t)
+;;;  (ido-mode t)
+;;;  (setq max-mini-window-height 0.5)
+
+#+BEGIN_SRC emacs-lisp
+  (global-linum-mode t)
+  (setq linum-format "%d ")
+  (global-set-key (kbd "C-c l n") 'linum-mode)
+
+  ;;; load built-in library dired-x
+  (require 'dired-x)
+
+  ;;show row/column in the mode line
+  (setq column-number-mode t)
+
+  ;;; remove trailling whitespace
+  ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+  (setq case-fold-search t)   ; make searches case insensitive
+
+
+  ;;force horizontally splitting windows
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 0)
+
+  ;;;show fullpath
+  (setq frame-title-format
+        (list (format "%s %%S: %%j " (system-name))
+              '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+#+END_SRC
+   
+   
 * define some custom functions and key bindings
 
 ** open new line like in vi

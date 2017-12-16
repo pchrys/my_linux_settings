@@ -25,7 +25,7 @@
     ("67e998c3c23fe24ed0fb92b9de75011b92f35d3e89344157ae0d544d50a63a72" default)))
  '(package-selected-packages
    (quote
-    (bookmark+ helm helm-projectile company-ycmd flycheck-ycmd ycmd zenburn-theme xcscope sr-speedbar evil clang-format))))
+    (ace-window bookmark+ helm helm-projectile company-ycmd flycheck-ycmd ycmd zenburn-theme xcscope sr-speedbar evil clang-format))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
