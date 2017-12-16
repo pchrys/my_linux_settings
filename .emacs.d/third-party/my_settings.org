@@ -1129,16 +1129,10 @@ define function to shutdown emacs server instance
 
 
 ** settings for org-mode
-;;;; settings for org mode
-;;;  (add-to-list 'load-path "~/.emacs.d/third-party/org-bullets")
-;;;  (require 'org-bullets)
-;;;  (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
-;;;  (setq org-hide-leading-stars t)
-;;;  (setq org-ellipsis "\ldots")
 
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
-  (setq org-ellipsis "⤵")
+  ;;(setq org-ellipsis "⤵")
   (require 'org)
 
   ;;;;The following lines are always needed. Choose your own keys.
@@ -1170,6 +1164,7 @@ define function to shutdown emacs server instance
 #+END_SRC
 
 *** set up pretty bullets for org-mode
+
 #+BEGIN_SRC emacs-lisp
   (set-language-environment "UTF-8")
   (set-default-coding-systems 'utf-8)
@@ -1180,6 +1175,7 @@ define function to shutdown emacs server instance
 
   (require 'org-bullets)
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  (setq org-hide-leading-stars t)
 #+END_SRC
 
 
