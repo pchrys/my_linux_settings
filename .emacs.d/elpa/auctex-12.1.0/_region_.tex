@@ -1,0 +1,47 @@
+\message{ !name(circ.tex)}\documentclass[a4paper,twocolumn]{article}
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[showlabels,sections,floats,textmath,displaymath]{preview}
+\newbox\chaos
+\newdimen\tdim
+\def\fframe{%
+\tdim=\columnwidth
+\advance\tdim by -2\fboxsep
+\advance\tdim by -2\fboxrule
+\setbox\chaos=\hbox\bgroup\begin{minipage}{\tdim}}
+\def\endfframe{\end{minipage}\egroup\fbox{\box\chaos}}
+\unitlength 1mm
+\newcount\fives
+\fives 14
+\newcount\ones
+\ones\fives
+\multiply \ones by 5
+\newsavebox{\raster}
+\savebox{\raster}(\ones,\ones)
+{\thicklines
+  \put(0,0){\line(0,1){\ones}}
+  \put(0,0){\line(1,0){\ones}}
+  \multiput(0,0)(5,0){\fives}
+  {\begin{picture}(0,0)
+      \put(5,0){\line(0,1){\ones}}
+      \thinlines\multiput(1,0)(1,0){4}{\line(0,1){\ones}}
+    \end{picture}}
+  \multiput(0,0)(0,5){\fives}
+  {\begin{picture}(0,0)
+      \put(0,5){\line(1,0){\ones}}
+      \thinlines\multiput(0,1)(0,1){4}{\line(1,0){\ones}}
+    \end{picture}}
+}
+\begin{document}
+
+\message{ !name(circ.tex) !offset(39) }
+\begin{eqnarray}
+e + f &=& x \frac{\Delta y}{\Delta x}\nonumber\\
+e \Delta x + f \Delta x &=& x \Delta y\nonumber\\
+f \Delta x - \left\lceil\frac{\Delta x}2\right\rceil &=& 
+x \Delta y - e \Delta x - \left\lceil\frac{\Delta x}2\right\rceil \label{lgii}
+\end{eqnarray}
+\message{ !name(circ.tex) !offset(432) }
+
+\end{document}
