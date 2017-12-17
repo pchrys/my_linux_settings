@@ -67,7 +67,8 @@
      mode, you can use it in AUCTeX.
 
 #+BEGIN_SRC emacs-lisp
- (load "auctex.el" nil t t)
+    (load "auctex.el" nil t t)
+
     (require 'tex-mik)
 
     (setq TeX-auto-save t)
@@ -77,12 +78,26 @@
     (add-hook 'LaTeX-mode-hook 'visual-line-mode)
     (add-hook 'LaTeX-mode-hook 'flyspell-mode)
     (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+    (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)   ; with AUCTeX LaTeX mode
+    (add-hook 'latex-mode-hook 'turn-on-cdlatex)   ; with Emacs latex mode
 
     (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
     (setq reftex-plug-into-AUCTeX t)
 
+    ;;;don't generate pdf by default
+    (setq TeX-PDF-mode nil)
+    
+    (when (eq window-system 'w32)
+        (setq preview-image-type 'pnm)
+        (setq preview-gs-command (executable-find "gswin64c.exe"))
+    )
 #+END_SRC
 
+*** document for CDLaTex minor mode
+    CDLaTeX has an abbrev-like mechanism to insert full LaTeX environments and other 
+    templates into the buffer. Abbreviation expansion is triggered with the TAB key only, 
+    not with SPC or RET. For example, typing "ite" inserts an itemize environment. A full 
+    list of defined abbreviations is available with the command C-c ? (cdlatex-command-help).
 
 ** settings for bookmarks
 
