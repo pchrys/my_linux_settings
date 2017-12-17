@@ -84,14 +84,26 @@
     (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
     (setq reftex-plug-into-AUCTeX t)
 
-    ;;;don't generate pdf by default
-    (setq TeX-PDF-mode nil)
-    
     (when (eq window-system 'w32)
         (setq preview-image-type 'pnm)
         (setq preview-gs-command (executable-find "gswin64c.exe"))
     )
 #+END_SRC
+
+    don't generate pdf by default, use the following setting
+    (setq TeX-PDF-mode nil)
+
+    If it doesn’t work, try this
+    (require 'tex)
+    (TeX-global-PDF-mode nil)
+
+    or (C-c C-t C-p). This command toggles the PDF mode of AUCTeX,
+    a buffer-local minor mode which is enabled by default.
+
+    You can customize TeX-PDF-mode to give it a different default or set it
+    as a file local variable on a per-document basis. This option usually
+    results in calling either PDFTeX or ordinary TeX.
+
 
 *** document for CDLaTex minor mode
     CDLaTeX has an abbrev-like mechanism to insert full LaTeX environments and other 
