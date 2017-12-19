@@ -76,35 +76,41 @@
      mode, you can use it in AUCTeX.
 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/auctex-12.1.0"))
-  (load "auctex.el" nil t t)
+    (add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/auctex-12.1.0"))
+    (load "auctex.el" nil t t)
 
-  (require 'tex-mik)
+    (require 'tex-mik)
 
-  (setq TeX-auto-save t)
-  (setq TeX-parse-self t)
-  (setq-default TeX-master nil)
+    (setq TeX-auto-save t)
+    (setq TeX-parse-self t)
+    (setq-default TeX-master nil)
 
-  (add-hook 'latex-mode-hook 'turn-on-cdlatex)   ; with Emacs latex mode
-  
-  (defun  my-LaTex-mode-hook()
-      (setq TeX-PDF-mode nil)
-      (setq reftex-plug-into-AUCTeX t)
+    (add-hook 'latex-mode-hook 'turn-on-cdlatex)   ; with Emacs latex mode
+    
+    (defun  my-LaTex-mode-hook()
+        (setq TeX-PDF-mode nil)
+        (setq reftex-plug-into-AUCTeX t)
 
-      (visual-line-mode)
-      (flyspell-mode)
-      (LaTeX-math-mode)
-      (turn-on-cdlatex)
-      (turn-on-reftex)
+        (visual-line-mode)
+        (flyspell-mode)
+        (LaTeX-math-mode)
+        (turn-on-cdlatex)
+        (turn-on-reftex)
 
-      (when (eq window-system 'w32)
-          ;(setq preview-image-type 'png)
-          (setq preview-gs-command (executable-find "gswin64c.exe"))
-      )
-  )
+        (when (eq window-system 'w32)
+            ;(setq preview-image-type 'png)
+            (setq preview-gs-command (executable-find "gswin64c.exe"))
+        )
+    )
 
-  (add-hook 'LaTeX-mode-hook 'my-LaTex-mode-hook)
+    (add-hook 'LaTeX-mode-hook 'my-LaTex-mode-hook)
 
+    (defun update-org-latex-fragment-scale ()
+        (let ((text-scale-factor (expt text-scale-mode-step text-scale-mode-amount)))
+         (plist-put org-format-latex-options :scale (* 2.0 text-scale-factor)))
+    )
+
+    (add-hook 'text-scale-mode-hook 'update-org-latex-fragment-scale)
 
 #+END_SRC
 
