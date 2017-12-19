@@ -3,36 +3,45 @@
 ** settings for org-mode
 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
-  ;;(setq org-ellipsis "⤵")
-  (require 'org)
+    (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
+    ;;(setq org-ellipsis "⤵")
+    (require 'org)
 
-  ;;;;The following lines are always needed. Choose your own keys.
-  (global-set-key (kbd "C-c o s ") 'org-store-link)
-  (global-set-key (kbd "C-c o a") 'org-agenda)
-  (global-set-key (kbd "C-c o c") 'org-capture)
-  (global-set-key (kbd "C-c o b") 'org-iswitchb)
-  (setq org-log-done 'time)
+    ;;;;The following lines are always needed. Choose your own keys.
+    (global-set-key (kbd "C-c o s ") 'org-store-link)
+    (global-set-key (kbd "C-c o a") 'org-agenda)
+    (global-set-key (kbd "C-c o c") 'org-capture)
+    (global-set-key (kbd "C-c o b") 'org-iswitchb)
+    (setq org-log-done 'time)
 
-  (defun  my-org-mode-hook()
-        (local-set-key (kbd "C-c o i")        'org-insert-link)
-        (local-set-key (kbd "C-c o n t" )     'org-insert-todo-heading)
-        (local-set-key (kbd "C-c o n h" )     'org-insert-heading)
-        (local-set-key (kbd "C-c o o")        'org-open-at-point)
+    (defun  my-org-mode-hook()
+          (local-set-key (kbd "C-c o i")        'org-insert-link)
+          (local-set-key (kbd "C-c o n t" )     'org-insert-todo-heading)
+          (local-set-key (kbd "C-c o n h" )     'org-insert-heading)
+          (local-set-key (kbd "C-c o o")        'org-open-at-point)
 
-        (local-set-key (kbd "C-c o h")    'outline-promote)
-        (local-set-key (kbd "C-c o l")    'outline-demote)
-        (local-set-key (kbd "C-c o k")    'outline-move-subtree-up)
-        (local-set-key (kbd "C-c o j")    'outline-move-subtree-down)
+          (local-set-key (kbd "C-c o h")    'outline-promote)
+          (local-set-key (kbd "C-c o l")    'outline-demote)
+          (local-set-key (kbd "C-c o k")    'outline-move-subtree-up)
+          (local-set-key (kbd "C-c o j")    'outline-move-subtree-down)
 
-        (local-set-key (kbd "C-S-<left>")       'outline-promote)
-        (local-set-key (kbd "C-S-<right>")      'outline-demote)
-        (local-set-key (kbd "C-M-<up>")         'outline-move-subtree-up)
-        (local-set-key (kbd "C-M-<down>")       'outline-move-subtree-down)
-  )
+          (local-set-key (kbd "C-S-<left>")       'outline-promote)
+          (local-set-key (kbd "C-S-<right>")      'outline-demote)
+          (local-set-key (kbd "C-M-<up>")         'outline-move-subtree-up)
+          (local-set-key (kbd "C-M-<down>")       'outline-move-subtree-down)
+    
+          ;;; use C-c C-x C-l to preview math equations
+          (if (string-lessp org-version "9.0")
+              (setq org-latex-create-formula-image-program 'dvipng)  ;; for org-version before 9.0
+              (setq org-preview-latex-default-process 'dvipng)   ;; for org-version >=9.0
+          )
+    )
 
 
-  (add-hook 'org-mode-hook   'my-org-mode-hook)
+    (add-hook 'org-mode-hook   'my-org-mode-hook)
+    (add-hook 'org-mode-hook   'turn-on-org-cdlatex)
+    
+
 #+END_SRC
 
 *** set up pretty bullets for org-mode
@@ -79,7 +88,15 @@
     (add-hook 'LaTeX-mode-hook 'flyspell-mode)
     (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
     (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)   ; with AUCTeX LaTeX mode
-    (add-hook 'latex-mode-hook 'turn-on-cdlatex)   ; with Emacs latex mode
+    ;(add-hook 'latex-mode-hook 'turn-on-cdlatex)   ; with Emacs latex mode
+
+    ;;don't use lambda function in add-hook
+    ;;(add-hook 'LaTeX-mode-hook '(lambda() (setq TeX-PDF-mode nil)))
+    (defun  my-LaTex-mode-hook()
+        (setq TeX-PDF-mode nil)
+    )
+    (add-hook 'LaTeX-mode-hook 'my-LaTex-mode-hook)
+
 
     (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
     (setq reftex-plug-into-AUCTeX t)
@@ -110,7 +127,8 @@
     templates into the buffer. Abbreviation expansion is triggered with the TAB key only, 
     not with SPC or RET. For example, typing "ite" inserts an itemize environment. A full 
     list of defined abbreviations is available with the command C-c ? (cdlatex-command-help).
-
+    
+    
 ** settings for bookmarks
 
 #+BEGIN_SRC emacs-lisp
