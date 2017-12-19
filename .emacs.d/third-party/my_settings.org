@@ -76,6 +76,7 @@
      mode, you can use it in AUCTeX.
 
 #+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/auctex-12.1.0"))
   (load "auctex.el" nil t t)
 
   (require 'tex-mik)
@@ -97,7 +98,7 @@
       (turn-on-reftex)
 
       (when (eq window-system 'w32)
-          (setq preview-image-type 'pnm)
+          ;(setq preview-image-type 'png)
           (setq preview-gs-command (executable-find "gswin64c.exe"))
       )
   )
