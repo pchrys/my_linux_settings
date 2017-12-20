@@ -29,20 +29,70 @@
           (local-set-key (kbd "C-S-<right>")      'outline-demote)
           (local-set-key (kbd "C-M-<up>")         'outline-move-subtree-up)
           (local-set-key (kbd "C-M-<down>")       'outline-move-subtree-down)
-    
-          ;;; use C-c C-x C-l to preview math equations
+
           (if (string-lessp org-version "9.0")
               (setq org-latex-create-formula-image-program 'dvipng)  ;; for org-version before 9.0
               (setq org-preview-latex-default-process 'dvipng)   ;; for org-version >=9.0
           )
     )
 
-
     (add-hook 'org-mode-hook   'my-org-mode-hook)
     (add-hook 'org-mode-hook   'turn-on-org-cdlatex)
     
+    (defun update-org-latex-fragment-scale ()
+        (let ((text-scale-factor (expt text-scale-mode-step text-scale-mode-amount)))
+         (plist-put org-format-latex-options :scale (* 2.0 text-scale-factor)))
+    )
 
+    (add-hook 'text-scale-mode-hook 'update-org-latex-fragment-scale)
+
+    ;;; by default use C-c C-x C-l to preview math equations
+    (define-key org-mode-map (kbd "C-c o p p") 'org-preview-latex-fragment)
+
+
+;;;   (defun  org-preview-latex-subtree ()
+;;;        (interactive)
+;;;        (setq current-prefix-arg 4)
+;;;        (call-interactively 'org-preview-latex-fragment)
+;;;   )
+;;;
+;;;   (define-key org-mode-map (kbd "C-c o p s") 'org-preview-latex-subtree)
+;;;
+;;;   (defun  org-preview-latex-buffer()
+;;;        (interactive)
+;;;        (setq current-prefix-arg 16)
+;;;        (call-interactively 'org-preview-latex-fragment)
+;;;   )
+;;;
+;;;  (define-key org-mode-map (kbd "C-c o p b") 'org-preview-latex-buffer)
+
+    ;;;call functions with prefix arguments
+;;;   (define-key org-mode-map (kbd "C-c o p s") '(lambda ()
+;;;        (interactive)
+;;;        (setq current-prefix-arg 4)     ;;;C-u
+;;;        (call-interactively 'org-preview-latex-fragment))
+;;;   )
+
+;;;   (define-key org-mode-map (kbd "C-c o p b") '(lambda ()
+;;;        (interactive)
+;;;        (setq current-prefix-arg 16) ;;C-u C-u
+;;;        (call-interactively 'org-preview-latex-fragment))
+;;;   )
+
+   (define-key org-mode-map (kbd "C-c o p s") '(lambda ()
+        (interactive)
+        (let ((current-prefix-arg 4)) ;;C-u
+        (call-interactively 'org-preview-latex-fragment)))
+   )
+
+   (define-key org-mode-map (kbd "C-c o p b") '(lambda ()
+        (interactive)
+        (let ((current-prefix-arg 16)) ;;C-u C-u
+        (call-interactively 'org-preview-latex-fragment)))
+   )
 #+END_SRC
+
+
 
 *** set up pretty bullets for org-mode
 
@@ -97,6 +147,21 @@
         (turn-on-cdlatex)
         (turn-on-reftex)
 
+        ;;key mappings for latex preview command
+        (define-key LaTeX-mode-map (kbd "C-c l p p")    #'preview-at-point)                ; C-c l p p
+        (define-key LaTeX-mode-map (kbd "C-c l p r")    #'preview-region)                  ; C-c l p r
+        (define-key LaTeX-mode-map (kbd "C-c l p b")    #'preview-buffer)                  ; C-c l p b
+        (define-key LaTeX-mode-map (kbd "C-c l p d")    #'preview-document)                ; C-c l p d
+        (define-key LaTeX-mode-map (kbd "C-c l p e")    #'preview-environment)             ; C-c l p e
+        (define-key LaTeX-mode-map (kbd "C-c l p s")    #'preview-section)                 ; C-c l p s
+        (define-key LaTeX-mode-map (kbd "C-c l p w")    #'preview-copy-region-as-mml)      ; C-c l p w
+
+        (define-key LaTeX-mode-map (kbd "C-c l p c p")    #'preview-clearout-at-point)     ; C-c l p c p
+        (define-key LaTeX-mode-map (kbd "C-c l p c r")    #'preview-clearout)              ; C-c l p c r
+        (define-key LaTeX-mode-map (kbd "C-c l p c d")    #'preview-clearout-document)     ; C-c l p c d
+        (define-key LaTeX-mode-map (kbd "C-c l p c s")    #'preview-clearout-section)      ; C-c l p c s
+        (define-key LaTeX-mode-map (kbd "C-c l p c b")    #'preview-clearout-buffer)       ; C-c l p c w
+
         (when (eq window-system 'w32)
             ;(setq preview-image-type 'png)
             (setq preview-gs-command (executable-find "gswin64c.exe"))
@@ -104,14 +169,6 @@
     )
 
     (add-hook 'LaTeX-mode-hook 'my-LaTex-mode-hook)
-
-    (defun update-org-latex-fragment-scale ()
-        (let ((text-scale-factor (expt text-scale-mode-step text-scale-mode-amount)))
-         (plist-put org-format-latex-options :scale (* 2.0 text-scale-factor)))
-    )
-
-    (add-hook 'text-scale-mode-hook 'update-org-latex-fragment-scale)
-
 #+END_SRC
 
     don't generate pdf by default, use the following setting
@@ -127,7 +184,7 @@
     You can customize TeX-PDF-mode to give it a different default or set it
     as a file local variable on a per-document basis. This option usually
     results in calling either PDFTeX or ordinary TeX.
-
+    
 
 *** document for CDLaTex minor mode
     CDLaTeX has an abbrev-like mechanism to insert full LaTeX environments and other 
