@@ -81,7 +81,8 @@ elif [ "$1" == "update" ]; then
 
   ##cmd="rsync -arvpP ${src}/.emacs.d  ${dst}"
   ### only update packages and setting files
-  cmd="rsync -arvpP --include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
+  #cmd="rsync -arvpP --include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
+  cmd="rsync -arvpP ---exclude='.emacs.d/elpa/auctex-12.1.0/' -include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
   echo "run cmd: $cmd"
   eval $cmd
 
@@ -102,7 +103,6 @@ else
   echo "wrong input argument. Exiting ..."
   exit 1
 fi
-
 
 
 
