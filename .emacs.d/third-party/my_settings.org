@@ -812,8 +812,8 @@ define function to shutdown emacs server instance
 
 #+BEGIN_SRC emacs-lisp
   ;;(global-set-key (kbd "<f10>") 'other-frame)
-  ;;(global-set-key (kbd "<f2>")  'other-window)
-  (global-set-key (kbd "<f2>")  'other-frame)
+  (global-set-key (kbd "<f2>")  'other-window)
+  (global-set-key (kbd "<f9>")  'other-frame)
 #+END_SRC
 
 
