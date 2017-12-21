@@ -661,6 +661,7 @@ define function to shutdown emacs server instance
    #+BEGIN_SRC emacs-lisp
      (require 'helm)
      (require 'helm-config)
+     (setq helm-buffer-max-length 50)
 
      ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
      ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
