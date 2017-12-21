@@ -252,7 +252,7 @@
 (define-key bookmark-map (kbd "/ i")    'bmkp-insert-bookmark-link)     ; C-c b / i
 (define-key bookmark-map (kbd "/ s")    'bmkp-store-org-link)           ; C-c b / s
 
-(setq bookmark-bmenu-file-column 50)
+(setq bookmark-bmenu-file-column 65)
 
 (defun my-auto-line-column-name (position)
 "Return a name for POSITION that uses line & column numbers."
@@ -263,7 +263,7 @@
 			   (end-of-buffer) 
 			   (line-number-at-pos (point-max))))
 		 )
-  		 (format "line: %d of %d, col %d %s" line total-line col (buffer-name)))
+  		 (format "line: %d of %d, col: %d, %s" line total-line col (buffer-name)))
 )
 
 (setq bmkp-autoname-bookmark-function #'my-auto-line-column-name)
