@@ -3,6 +3,8 @@
 ** settings for org-mode
 
 #+BEGIN_SRC emacs-lisp
+    ;;use ibuffer
+    (global-set-key (kbd "C-x C-b") 'ibuffer)
     (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
     ;;(setq org-ellipsis "⤵")
     (require 'org)
@@ -108,8 +110,16 @@
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   (setq org-hide-leading-stars t)
 #+END_SRC
+    
 
+** settings for gnus
+   
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/third-party")
+  (load "my_gnus.el")
+#+END_SRC
 
+   
 ** settings for ACUteX
 
 *** preview-latex
@@ -207,6 +217,16 @@
     list of defined abbreviations is available with the command C-c ? (cdlatex-command-help).
     
     
+** setting for Macro
+   #+BEGIN_SRC emacs-lisp
+     ;(global-set-key (kbd "<f5>")  #'kmacro-start-macro)
+     ;(global-set-key (kbd "<f6>")  #'kmacro-end-macro)
+     (global-set-key (kbd "<f4>")  #'kmacro-start-macro-or-insert-counter)
+     (global-set-key (kbd "<f5>")  #'kmacro-end-and-call-macro)
+
+   #+END_SRC
+
+
 ** settings for bookmarks
 
 #+BEGIN_SRC emacs-lisp
@@ -289,6 +309,21 @@
 
 ;; C-c b RET       'bmkp-toggle-autonamed-bookmark-set/delete
 ;; C-c b ?         'bmkp-describe-bookmark 
+
+;;;show bookmark tags in a file
+;; C-c b t e   'bmkp-edit-tags
+
+T c     - Copy tags from this bookmark (for subsequent pasting)
+T +     - Add some tags to a bookmark
+T -     - Remove some tags from a bookmark (‘C-u’: from all bookmarks)
+T 0     - Remove all tags from a bookmark
+T d     - Remove some tags from all bookmarks
+T r     - Rename a tag in all bookmarks
+T l     - List all tags used in any bookmarks (‘C-u’: show tag values)
+T > l   - List tags used in marked bookmarks  (‘C-u’: show tag values)  ;;bmkp-bmenu-list-tags-of-marked
+T e     - Edit bookmark’s tags
+T v     - Set the value of a tag (as attribute)
+inside Bookmark list buffer, press C-h m to get more information
 
 
 *** More key bindings for bookmark+
@@ -489,6 +524,40 @@ some functions for expand tags in speedbar windows
   )
 #+END_SRC
 
+set up remote server
+#+BEGIN_SRC emacs-lisp
+   (require 'ido)
+   (require 'subr-x)
+   (defvar my-remote-hosts (make-hash-table :test 'equal)
+     "Table of host aliases for IPs or other actual references.")
+
+   ;; value is a list, which contains ipaddress, username, etc
+   (puthash "ubuntu17" '("192.168.3.100" "shaobo")
+            my-remote-hosts)
+   (puthash "debian" '("192.168.3.117" "shaobo")
+            my-remote-hosts)
+   ;(puthash "debian" "192.168.3.117" my-remote-hosts)
+
+   
+   (defun my-connect-remote-server()
+     (interactive)
+     (let* ((remote-host-names  (hash-table-keys my-remote-hosts))
+            (my-remote-host (format "%s"
+                                    (if (and (fboundp #'ido-completing-read) 
+                                             (not (fboundp #'helm-M-x)))
+                                      (ido-completing-read "remote host:" remote-host-names)
+                                    (completing-read "remote host:" remote-host-names))))
+            (my-host-info (gethash my-remote-host my-remote-hosts))
+            (my-tramp-connection (format "/%s@%s:~"
+                                         (nth 1 my-host-info)
+                                         (car my-host-info))))
+           
+          (message "%s" my-tramp-connection)
+          (find-file my-tramp-connection)
+      )
+   )
+#+END_SRC
+
 define function to shutdown emacs server instance
 #+BEGIN_SRC emacs-lisp
   (defun server-shutdown ()
@@ -538,6 +607,7 @@ define function to shutdown emacs server instance
 
 
 ** cscope, clang format, and YCM
+
 *** key bindings for cscope
    C-c s s Find symbol.
    C-c s = Find assignments to this symbol
@@ -590,6 +660,11 @@ define function to shutdown emacs server instance
   (setq clang-format-style-option "file")
 #+END_SRC
     
+
+*** settings for idutils
+#+BEGIN_SRC emacs-lisp
+    (autoload 'gid "idutils" nil t)
+#+END_SRC
 
 *** settings for ycmd
 #+BEGIN_SRC emacs-lisp
@@ -718,15 +793,12 @@ define function to shutdown emacs server instance
 
      (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
-
-
      ;;;enable semantic mode to support helm helm semantic-or-imenu
      ;; (semantic-mode t)
 
      ;;; enable fuzzy matching for both semantics and Imenu list
      (setq helm-semantic-fuzzy-match t
            helm-imenu-fuzzy-match    t)
-
 
      ;;enable man page at points
      (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
@@ -749,11 +821,11 @@ define function to shutdown emacs server instance
      ;;helm-google-suggested
      (global-set-key (kbd "C-c h g") 'helm-google-suggest)
 
-     ;; C-c h B      helm-resume     Resumes a previous helm session
-     (global-set-key (kbd "C-c h B") 'helm-resume)
+     ;; C-c h b    'helm-resume     Resumes a previous helm session
+     ;;(global-set-key (kbd "C-c h b") 'helm-resume)
 
      ;; helm-filtered-bookmarks
-     (global-set-key (kbd "C-c h b") 'helm-filtered-bookmarks)
+     ;;(global-set-key (kbd "C-c h B") 'helm-filtered-bookmarks)
 
 
      ;;;helm-eshell-history
@@ -767,13 +839,15 @@ define function to shutdown emacs server instance
      ;; Similar to helm-eshell-history, but used for M-x shell.
      ;; (define-key shell-mode-map (kbd "C-c C-l") 'helm-comint-input-ring)
 
+     ;; search ring in helm
+     ;; In the search mode, move to the minibuffer, press C-r or C-c C-l to run 
+     ;; helm-minibuffer-history, and this will display helm search-ring for completion
      ;;;helm-mini-buffer-history
      (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 
      (helm-mode 1)
         
    #+END_SRC
-
 
 *** Key bindings for helm
 ;; Key Binding  Command         Description
@@ -792,7 +866,7 @@ define function to shutdown emacs server instance
 ;; C-c h h i    helm-info-at-point
 ;; C-c h h r    helm-info-emacs
 ;; C-c h <tab>  helm-lisp-completion-at-point   Provides a list of available functions
-;; C-c h b      helm-resume     Resumes a previous helm session
+;; C-c h B      helm-resume     Resumes a previous helm session
 ;; C-h SPC      helm-all-mark-rings     Views contents of local and global mark rings
 ;; C-c h r      helm-regex      Visualizes regex matches
 ;; C-c h x      helm-register   Shows content of registers
@@ -806,6 +880,8 @@ define function to shutdown emacs server instance
 ;; C-c C-l      helm-comint-input-ring  Interface to shell history
 ;; C-c C-l      helm-mini-buffer-history        Interface to mini-buffer history
 
+;;; C-u helm-find-files ;;; display a list of visited directories
+;;; during a helm-find-files session, C-c h , get a list of visited files
 
 
 
@@ -835,6 +911,10 @@ define function to shutdown emacs server instance
      (helm-projectile-on)
         
    #+END_SRC
+
+*** virtual directory manager
+    when in helm-projectile-find-file/dir session, we can use C-c f, C-c a  or C-c d
+    to create/add/remove files for a virtual directory manager
 
 *** key binings
 ;;; more bindings are available by running C-c p C-h
@@ -883,6 +963,7 @@ define function to shutdown emacs server instance
    helm-gtags-pulse-at-cursor t
    helm-gtags-prefix-key (kbd "C-c t") 
    helm-gtags-suggested-key-mapping t
+   helm-gtags-cache-max-result-size (* 300 1024 1024)
    )
 
   (with-eval-after-load 'helm-gtags
@@ -901,7 +982,13 @@ define function to shutdown emacs server instance
           ;;;   - on reference point then jump to its definition."
 
      (define-key helm-gtags-mode-map (kbd "C-c t g")   'helm-gtags-dwim)
-     (define-key helm-gtags-mode-map (kbd "C-c t P")   'helm-gtags-parse-file)
+     ;;parse/analyze current file
+     (define-key helm-gtags-mode-map (kbd "C-c t a")   'helm-gtags-parse-file)
+     (define-key helm-gtags-mode-map (kbd "C-c t j")   'helm-gtags-find-tag-from-here)
+
+     ;;show all tags candidates and select one
+     (define-key helm-gtags-mode-map (kbd "C-c t c")   'helm-gtags-select)
+
      ;;; other mappings are f, s, r, d
      
      (define-key helm-gtags-mode-map (kbd "C-c t k")   'helm-tags-show-stack)
@@ -1306,6 +1393,10 @@ Behave like vi's O command
 (global-set-key (kbd "C-c d P") 'kill-current-parenthesis-p)
 
 (global-set-key (kbd "C-M-^") 'scroll-other-window-down)
+
+(global-set-key (kbd "C-c g t") #'beginning-of-buffer)
+(global-set-key (kbd "C-c g b") #'end-of-buffer)
+
 #+END_SRC
 
 ;;;==========================================================

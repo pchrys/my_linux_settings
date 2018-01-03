@@ -40,4 +40,3 @@
 ;;(load-file "~/.emacs.d/third-party/my_custom_settings.el")
 
 (org-babel-load-file  (expand-file-name "~/.emacs.d/third-party/my_settings.org"))
-
