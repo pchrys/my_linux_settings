@@ -32,7 +32,7 @@
 	       (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
 	       (nnimap-server-port "imaps")
 	       (nnimap-stream ssl)
-               (nnimap-authinfo-file (expand-file-name "~/.authinfo")))
+               (nnimap-authinfo-file (expand-file-name "~/.authinfo.gpg")))
 )
 
 ;;;set up multiple email accounts
@@ -41,25 +41,25 @@
        (nnimap-address "imap-mail.outlook.com")
        (nnimap-server-port 993)
        (nnimap-stream ssl)
-       (nnimap-authinfo-file (expand-file-name "~/.authinfo")))
+       (nnimap-authinfo-file (expand-file-name "~/.authinfo.gpg")))
     
        ;; (nnimap "gmail"
        ;; (nnimap-address "imap.gmail.com")
        ;; (nnimap-server-port 993)
        ;; (nnimap-stream ssl)
-       ;; (nnimap-authinfo-file "~/.authinfo"))
+       ;; (nnimap-authinfo-file "~/.authinfo.gpg"))
 
        (nnimap "gmail12"
        (nnimap-address "imap.gmail.com")
        (nnimap-server-port 993)
        (nnimap-stream ssl)
-       (nnimap-authinfo-file (expand-file-name "~/.authinfo")))
+       (nnimap-authinfo-file (expand-file-name "~/.authinfo.gpg")))
   
        (nnimap "yahoo6"
        (nnimap-address "imap.mail.yahoo.com")
        (nnimap-server-port 993)
        (nnimap-stream ssl)
-       (nnimap-authinfo-file (expand-file-name "~/.authinfo")))
+       (nnimap-authinfo-file (expand-file-name "~/.authinfo.gpg")))
        )
 )
 
@@ -111,7 +111,7 @@
 (setq user-mail-address "lewtiob@gmail.com"
       user-full-name "lewtiob"
       smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-auth-credentials (expand-file-name "~/.authinfo")
+      smtpmail-auth-credentials (expand-file-name "~/.authinfo.gpg")
 )
 
 ;; save sent copy on the server
