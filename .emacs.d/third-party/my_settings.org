@@ -518,10 +518,15 @@ some functions for expand tags in speedbar windows
 ;;;   /method:user@host:filename
 ;;;   /method:user@host#port:filename
 #+BEGIN_SRC emacs-lisp
+  (require 'tramp)
   (if (eq window-system 'w32)
           (setq tramp-default-method "plink")
     (setq tramp-default-method "ssh")
   )
+
+  ;; avoid tramp hang
+   ;;. Adding .* to tramp-shell-prompt-pattern is an easy fix 
+  (setq tramp-shell-prompt-pattern (concat tramp-shell-prompt-pattern ".*"))
 #+END_SRC
 
 set up remote server

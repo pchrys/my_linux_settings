@@ -25,7 +25,6 @@
 ;; read are removed from the cache. Possibly symbols in these two lists
 ;; are ticked, dormant, unread and read.
 
-
 ;(setq gnus-select-method '(nntp "news.gmane.org"))
 
 (setq gnus-select-method
@@ -33,7 +32,7 @@
 	       (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
 	       (nnimap-server-port "imaps")
 	       (nnimap-stream ssl)
-               (nnimap-authinfo-file "~/.authinfo"))
+               (nnimap-authinfo-file (expand-file-name "~/.authinfo")))
 )
 
 ;;;set up multiple email accounts
@@ -42,7 +41,7 @@
        (nnimap-address "imap-mail.outlook.com")
        (nnimap-server-port 993)
        (nnimap-stream ssl)
-       (nnimap-authinfo-file "~/.authinfo"))
+       (nnimap-authinfo-file (expand-file-name "~/.authinfo")))
     
        ;; (nnimap "gmail"
        ;; (nnimap-address "imap.gmail.com")
@@ -54,13 +53,13 @@
        (nnimap-address "imap.gmail.com")
        (nnimap-server-port 993)
        (nnimap-stream ssl)
-       (nnimap-authinfo-file "~/.authinfo"))
+       (nnimap-authinfo-file (expand-file-name "~/.authinfo")))
   
        (nnimap "yahoo6"
        (nnimap-address "imap.mail.yahoo.com")
        (nnimap-server-port 993)
        (nnimap-stream ssl)
-       (nnimap-authinfo-file "~/.authinfo"))
+       (nnimap-authinfo-file (expand-file-name "~/.authinfo")))
        )
 )
 
