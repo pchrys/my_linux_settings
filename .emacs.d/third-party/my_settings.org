@@ -518,15 +518,33 @@ some functions for expand tags in speedbar windows
 ;;;   /method:user@host:filename
 ;;;   /method:user@host#port:filename
 #+BEGIN_SRC emacs-lisp
-  (require 'tramp)
-  (if (eq window-system 'w32)
-          (setq tramp-default-method "plink")
-    (setq tramp-default-method "ssh")
-  )
+    (require 'tramp)
+    (if (eq window-system 'w32)
+            (setq tramp-default-method "plink")
+      ;;(setq tramp-default-method "ssh")
+      ;;use rsync for linux
+      (setq tramp-default-method "rsync")
+    )
 
-  ;; avoid tramp hang
-   ;;. Adding .* to tramp-shell-prompt-pattern is an easy fix 
-  (setq tramp-shell-prompt-pattern (concat tramp-shell-prompt-pattern ".*"))
+    ;; avoid tramp hang
+    ;;. Adding .* to tramp-shell-prompt-pattern is an easy fix 
+    (setq tramp-shell-prompt-pattern (concat tramp-shell-prompt-pattern ".*"))
+
+    ;;projectile slows down tramp mode, and set the following variable to fix the issue
+    ;; https://emacs.stackexchange.com/questions/17543/tramp-mode-is-much-slower-than-using-terminal-to-ssh
+
+    ;; (setq remote-file-name-inhibit-cache nil)
+    ;; (setq vc-ignore-dir-regexp
+    ;;    (format "%s\\|%s"
+    ;;            vc-ignore-dir-regexp
+    ;;            tramp-file-name-regexp))
+    ;; (setq tramp-verbose 1)
+
+    ;;;enable X11 window on local emacs
+    ;(add-to-list 'tramp-remote-process-environment
+    ;        (format "DISPLAY=%s" (getenv "DISPLAY")))
+    ;(add-to-list 'tramp-remote-process-environment "192.168.3.100:0")
+
 #+END_SRC
 
 set up remote server
@@ -913,6 +931,10 @@ define function to shutdown emacs server instance
      ;(define-key helm-projectile-projects-map (kbd "TAB") 'nil) ;  release tab
      ;(define-key helm-projectile-projects-map (kbd "C-i") 'helm-execute-persistent-action);
 
+     ;;projectile slows down tramp mode, and set the following variable to fix the issue
+     ;; https://emacs.stackexchange.com/questions/17543/tramp-mode-is-much-slower-than-using-terminal-to-ssh
+     (setq projectile-mode-line "Projectile")
+
      (helm-projectile-on)
         
    #+END_SRC
@@ -1126,6 +1148,58 @@ define function to shutdown emacs server instance
   (setq frame-title-format
         (list (format "%s %%S: %%j " (system-name))
               '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+
+  ;;show fullpath in the headline
+    (defmacro with-face (str &rest properties)
+      `(propertize ,str 'face (list ,@properties)))
+
+    (defun sl/make-header ()
+      ""
+      (let* ((sl/full-header (abbreviate-file-name buffer-file-name))
+             (sl/header (file-name-directory sl/full-header))
+             (sl/drop-str "[...]"))
+        (if (> (length sl/full-header)
+               (window-body-width))
+            (if (> (length sl/header)
+                   (window-body-width))
+                (progn
+                  (concat (with-face sl/drop-str
+                                     :background "blue"
+                                     :weight 'bold
+                                     )
+                          (with-face (substring sl/header
+                                                (+ (- (length sl/header)
+                                                      (window-body-width))
+                                                   (length sl/drop-str))
+                                                (length sl/header))
+                                     ;; :background "red"
+                                     :weight 'bold
+                                     )))
+              (concat (with-face sl/header
+                                 ;; :background "red"
+                                 :foreground "#8fb28f"
+                                 :weight 'bold
+                                 )))
+          (concat (with-face sl/header
+                             ;; :background "green"
+                             ;; :foreground "black"
+                             :weight 'bold
+                             :foreground "#8fb28f"
+                             )
+                  (with-face (file-name-nondirectory buffer-file-name)
+                             :weight 'bold
+                             ;; :background "red"
+                             )))))
+
+    (defun sl/display-header ()
+      (setq header-line-format
+            '("" ;; invocation-name
+              (:eval (if (buffer-file-name)
+                         (sl/make-header)
+                       "%b"))))) 
+
+    (add-hook 'buffer-list-update-hook
+              'sl/display-header)
 #+END_SRC
 
 
