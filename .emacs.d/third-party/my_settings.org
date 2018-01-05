@@ -689,16 +689,17 @@ define function to shutdown emacs server instance
     (autoload 'gid "idutils" nil t)
 #+END_SRC
 
+    
 *** settings for ycmd
 #+BEGIN_SRC emacs-lisp
-  ;;don't use ymcd for MS windows OS
+  ;; ;;don't use ymcd for MS windows OS
   (when (eq system-type 'gnu/linux)
       (require 'ycmd)
       (add-hook 'after-init-hook #'global-ycmd-mode)
       ;(add-hook 'c++-mode-hook 'ycmd-mode)
 
       (set-variable 'ycmd-min-num-chars-for-completion 0)
-      (set-variable 'ycmd-max-num-identifier-candidates 20)
+      (set-variable 'ycmd-max-num-identifier-candidates 200)
       (set-variable 'ycmd-extra-conf-whitelist '("~/*"))
   )
 #+END_SRC
@@ -713,24 +714,28 @@ define function to shutdown emacs server instance
     ==================================
 
     specify how to run ycmd server
-    while specifying ycm server command, we cannot use ~, and we have to use expand-file-name to expand it
-    ;;(set-variable 'ycmd-server-command '("python" "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd"))
-    
-    ;;;specify a global emacs configuration
-    ;; *cannot* use ~
-    ;; (set-variable 'ycmd-global-config '("/usr/bin/python" "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
-    ;; (set-variable 'ycmd-global-config `("/usr/bin/python" ,(concat (getenv "HOME") 
-    ;;                                                                "/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py")))
+
+    note that while setting ycm related variables, we cannot use ~, and we have to use 
+    expand-file-name/file-truename to expand it
 
 #+BEGIN_SRC emacs-lisp
   (when (eq system-type 'gnu/linux)
-      (set-variable 'ycmd-server-command `("python" 
-                                           ,(expand-file-name "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd")))
+      (set-variable 'ycmd-server-command `("/usr/bin/python" 
+                                           ,(file-truename "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd")))
   )
 
-  ;; (set-variable 'ycmd-global-config `("/usr/bin/python" 
-  ;;                                     ,(expand-file-name "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py")))
+  ;; loading ycmd global configuration from ~/.emacs.d/third-party/.ycm_extra_conf.py
+  (set-variable 'ycmd-global-config (file-truename "~/.emacs.d/third-party/.ycm_extra_conf.py"))
 
+  ;;load project related .ycm_extra_conf.py 
+  ;;(set-variable 'ycmd-extra-conf-whitelist `( ,(file-truename "/<path_to_your_project_root>/*")))
+
+(defun ycmd-setup-completion-at-point-function ()
+  "Setup `completion-at-point-functions' for `ycmd-mode'."
+  (add-hook 'completion-at-point-functions
+            #'ycmd-complete-at-point nil :local))
+
+(add-hook 'ycmd-mode-hook #'ycmd-setup-completion-at-point-function)
 #+END_SRC
 
 
@@ -747,6 +752,7 @@ define function to shutdown emacs server instance
 
 #+END_SRC
 
+
 *** Enable flycheck
     #+BEGIN_SRC emacs-lisp
       (require 'flycheck-ycmd)
@@ -755,6 +761,91 @@ define function to shutdown emacs server instance
     #+END_SRC
 
 
+*** auto-complete, yasnippet
+    #+BEGIN_SRC emacs-lisp
+      (require 'auto-complete)
+      (require 'auto-complete-config)
+      (ac-config-default)
+          
+      (require 'yasnippet)
+      (yas-global-mode t)
+
+       ;; Package: smartparens
+      (require 'smartparens-config)
+      (show-smartparens-global-mode +1)
+      (smartparens-global-mode 1)                                               
+
+      ;; when you press RET, the curly braces automatically
+      ;; add another newline
+      (sp-with-modes '(c-mode c++-mode)
+        (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
+        (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
+                                                  ("* ||\n[i]" "RET"))))
+      ;;indent and white space
+      ;; Package: clean-aindent-mode
+      (require 'clean-aindent-mode)
+      (add-hook 'prog-mode-hook 'clean-aindent-mode)
+
+      ;; Package: dtrt-indent
+      (require 'dtrt-indent)
+      (dtrt-indent-mode 1) 
+      (setq dtrt-indent-verbosity 0)
+
+       ;; Package: ws-butler
+      (require 'ws-butler)
+      (add-hook 'c-mode-common-hook 'ws-butler-mode)
+    #+END_SRC
+
+    
+*** set up semantic and ede for auto completion
+#+BEGIN_SRC emacs-lisp
+  ;;   (require 'cc-mode)
+  ;;   (require 'semantic)
+
+  ;;   (global-semanticdb-minor-mode 1)
+  ;;   (global-semantic-idle-scheduler-mode 1)
+
+  ;;   (semantic-mode 1)
+
+  ;;   ;(semantic-add-system-include "/usr/include/boost" 'c++-mode)
+
+  ;;   (require 'ede)
+  ;;   (global-ede-mode)
+
+  ;;    ;; get C/C++ headfile by runnning command
+  ;; ;; `gcc -print-prog-name=cc1` -v
+  ;; ;; `gcc -print-prog-name=cc1plus` -v
+
+  ;;   (ede-cpp-root-project "project_root"
+  ;;                         :file "~/work/skia/skia/project_root.ede"
+  ;;                         :include-path '("/include"
+  ;;                                         "/third_party/freetype/include") ;; add more include
+  ;;                         ;; paths here
+  ;;                         :system-include-path '("~/linux"))
+
+#+END_SRC
+
+    
+*** settings for irony mode
+    
+    ycmd is a better choice, compared to irony mode; 
+    in order to install irony-server, we also need to install a lot of dependencies. 
+#+BEGIN_SRC emacs-lisp
+
+  ;; ;;;irony mode for auto completion
+  ;; (add-hook 'c++-mode-hook 'irony-mode)
+  ;; (add-hook 'c-mode-hook 'irony-mode)
+  ;; (add-hook 'objc-mode-hook 'irony-mode)
+
+  ;; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+  ;; ;;;install clang depenency
+  ;; ;;   sudo apt-get install libclang-dev
+
+
+#+END_SRC
+
+    
 ** configuration for helm
    #+BEGIN_SRC emacs-lisp
      (require 'helm)
