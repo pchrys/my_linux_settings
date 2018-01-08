@@ -826,6 +826,13 @@ define function to shutdown emacs server instance
 
 #+BEGIN_SRC emacs-lisp
 (require 'company-ycmd)
+
+(with-eval-after-load 'company
+  ;(define-key company-active-map (kbd "M-n") nil)
+  ;(define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next) 		;;allow using C-n/p to select candidates
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
+
 (company-ycmd-setup)
 (add-hook 'after-init-hook #'global-company-mode)
 
@@ -866,12 +873,33 @@ define function to shutdown emacs server instance
     ;;; M-x describe-function RET company-mode
     ;;; M-x describe-function RET auto-complete 
 
-    
+   
+    M-x ac-complete
+    M-x ac-stop
+    M-x auto-complete-mode/global-auto-complete-mode
+ 
     #+BEGIN_SRC emacs-lisp
-      ;(require 'auto-complete)
-      ;(require 'auto-complete-config)
-      ;(ac-config-default)
+	;;========================= settings for auto-complete =====================
+      (require 'auto-complete)
+      (require 'auto-complete-config)
+
+      (define-key ac-completing-map "\M-/" 'ac-stop)
+      ;(define-key ac-completing-map "\t" 'ac-complete)
+      ;(define-key ac-completing-map "\r" nil)
+
+	  (setq ac-auto-start 1)	  
+	  (setq ac-auto-show-menu 0.5)
+
+
+      (setq ac-use-menu-map t)
+       ;; Default settings
+       (define-key ac-menu-map "\C-n" 'ac-next)
+       (define-key ac-menu-map "\C-p" 'ac-previous)
+
+      (ac-config-default)
           
+
+	;;========================= settings for yasnippet =====================
       (require 'yasnippet)
       (yas-global-mode t)
 
