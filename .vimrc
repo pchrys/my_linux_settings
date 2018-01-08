@@ -286,10 +286,12 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)|\build$'
 "" You complete me (YCM) , 
 "" let g:ycm_global_ycm_extra_conf = ''
 " let g:ycm_global_ycm_extra_conf = '/home/shaobo/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf = 1
+" let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py" 
+let g:ycm_confirm_extra_conf = 0    "" disable confirmation
+"
 "" let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
-let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 
 " }}}
 

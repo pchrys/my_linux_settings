@@ -740,17 +740,69 @@ define function to shutdown emacs server instance
   we use global .ycm_extra_conf.py, rather than project related .ycm_extra_conf.py,
   to simplify the settings. 
 
-  The important settings are project-related include-directory settings.
-  This is a list of directory we may need while searching for head files by the compiler.
-  we put them inside .clang_complete; this file is located inside the root directory 
-  of the project. We use absolute path inside .clang_complete 
+  Now a ycmd server will be automatically launched whenever it's needed. Generally, this 
+  means whenever you visit a file with a supported major mode. You should not normally 
+  need to manually start or stop a ycmd server.
+
+  With a server running, you can now get completions for a point in a file using 
+  ycmd-get-completions. This doesn't actually insert the completions; it just fetches 
+  them from the server. It's not even an interactive function, so you can't really call 
+  it while editing. If you just want to see the possible completions at a point, you 
+  can try ycmd-display-completions which will dump a raw completion struct into a 
+  buffer. This is more of a debugging tool than anything.
+
+
+  The important settings are search-paths for head files for a given project. When compling code, 
+  the compiler searchs for head files from a given set of path. In order to make ycmd work 
+  properly, we have to pass this set of path to FlagsForFile, which is defined at 
+  .ycm_extra_conf. 
+  
+  We put search paths inside .clang_complete; this file is located inside the root directory 
+  of the project. .ycm_extra_conf will automatically pick it up.  
+  
+  We use absolute path inside .clang_complete 
   =========================================
 -I/${HOME}/work/skia/skia/include
 -I/${HOME}/work/skia/skia/include
 -I/${HOME}/work/skia/skia/include/utils
   =========================================
   replace ${HOME} with your home directory; otherwise, python script .ycm_extra_conf.py may have
-  difficulty to parse .clang_complete file
+  difficulty to correctly parse .clang_complete file.
+
+
+  If we make some changes in the headfile, such as adding new members to some class, it seems
+  ycmd-based auto-completion does not automatically pick up newly added members. We have to 
+  reload head file we modified by running command M-x revert-buffer in order to make 
+  auto-completion work. 
+
+  for example, we have test1.cpp, and head1.h
+  head1.h
+  =========================================
+  A
+  {
+  public:
+    void foo();
+  private:
+    int m_b;
+  };
+  ========================================
+
+  test1.cpp
+  =======================================
+  #include <head1.h>
+  int main()
+  {
+    A objA; 
+    objA.           
+    ### while we tried to auto complete, objA cannot recognized newly added members in class A, unless
+    # we restart emacs or revert file head1.h by M-x revert-buffer
+
+    return 0;
+  }
+
+  =======================================
+
+  
 
 *** settings for company-mode
 ;;; debug ycmd mode: M-x ycmd-show-debug-info
@@ -797,7 +849,6 @@ define function to shutdown emacs server instance
 
       (when (not (display-graphic-p))
         (setq flycheck-indication-mode nil))
-
 
       (require 'ycmd-eldoc)
       (add-hook 'ycmd-mode-hook 'ycmd-eldoc-setup)    
