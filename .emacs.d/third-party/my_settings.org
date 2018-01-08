@@ -735,6 +735,9 @@ define function to shutdown emacs server instance
 (add-hook 'ycmd-mode-hook #'ycmd-setup-completion-at-point-function)
 #+END_SRC
 
+  M-x ycmd-display-completions  ;; debug
+  M-x company-complete  ;; mnaually run auto complete 
+
   ;;load project related .ycm_extra_conf.py 
   ;;(set-variable 'ycmd-extra-conf-whitelist `( ,(file-truename "<project-root>/*")))
   we use global .ycm_extra_conf.py, rather than project related .ycm_extra_conf.py,
