@@ -704,8 +704,6 @@ define function to shutdown emacs server instance
 
   (set-variable 'ycmd-min-num-chars-for-completion 0)
   (set-variable 'ycmd-max-num-identifier-candidates 200)
-  (set-variable 'ycmd-extra-conf-whitelist '("~/*"))
-
 #+END_SRC
 
     In order to make ycm work properly, we need make an .ycm_extra_conf.py file in the root of the project, and 
@@ -729,9 +727,6 @@ define function to shutdown emacs server instance
   ;; loading ycmd global configuration from ~/.emacs.d/third-party/.ycm_extra_conf.py
   (set-variable 'ycmd-global-config (file-truename "~/.emacs.d/third-party/.ycm_extra_conf.py"))
 
-  ;;load project related .ycm_extra_conf.py 
-  ;;(set-variable 'ycmd-extra-conf-whitelist `( ,(file-truename "/<path_to_your_project_root>/*")))
-
 (defun ycmd-setup-completion-at-point-function ()
   "Setup `completion-at-point-functions' for `ycmd-mode'."
   (add-hook 'completion-at-point-functions
@@ -740,17 +735,53 @@ define function to shutdown emacs server instance
 (add-hook 'ycmd-mode-hook #'ycmd-setup-completion-at-point-function)
 #+END_SRC
 
+  ;;load project related .ycm_extra_conf.py 
+  ;;(set-variable 'ycmd-extra-conf-whitelist `( ,(file-truename "<project-root>/*")))
+  we use global .ycm_extra_conf.py, rather than project related .ycm_extra_conf.py,
+  to simplify the settings. 
+
+  The important settings are project-related include-directory settings.
+  This is a list of directory we may need while searching for head files by the compiler.
+  we put them inside .clang_complete; this file is located inside the root directory 
+  of the project. We use absolute path inside .clang_complete 
+  =========================================
+-I/${HOME}/work/skia/skia/include
+-I/${HOME}/work/skia/skia/include
+-I/${HOME}/work/skia/skia/include/utils
+  =========================================
+  replace ${HOME} with your home directory; otherwise, python script .ycm_extra_conf.py may have
+  difficulty to parse .clang_complete file
 
 *** settings for company-mode
 ;;; debug ycmd mode: M-x ycmd-show-debug-info
-;;;completion framework
+
+ completion framework
+ https://tuhdo.github.io/c-ide.html
+
+ General Usage: Completion will start automatically after you type a few letters. 
+ Use M-n and M-p to select, <return> to complete or <tab> to complete the common part. 
+ Search through the completions with C-s, C-r and C-o. Press M-(digit) to quickly 
+ complete with one of the first 10 candidates. When the completion candidates are shown, 
+ press <f1> to display the documentation for the selected candidate, or C-w to 
+ see its source. Not all back-ends support this.
+
+ The variable company-backends specifies a list of backends that company-mode 
+ uses to retrieves completion candidates for you. 
+
+
 #+BEGIN_SRC emacs-lisp
 (require 'company-ycmd)
 (company-ycmd-setup)
 (add-hook 'after-init-hook #'global-company-mode)
 
+(add-to-list 'company-backends 'company-c-headers)
+
 ;;;; Set always complete immediately
 (setq company-idle-delay 0)
+
+;;
+;;;invoke company-complete comand
+;;; M-x company-complete
 
 #+END_SRC
 
@@ -760,14 +791,32 @@ define function to shutdown emacs server instance
       (require 'flycheck-ycmd)
       (flycheck-ycmd-setup)
       (add-hook 'after-init-hook #'global-flycheck-mode)    
+
+      ;; Make sure the flycheck cache sees the parse results
+      (add-hook 'ycmd-file-parse-result-hook 'flycheck-ycmd--cache-parse-results)
+
+      (when (not (display-graphic-p))
+        (setq flycheck-indication-mode nil))
+
+
+      (require 'ycmd-eldoc)
+      (add-hook 'ycmd-mode-hook 'ycmd-eldoc-setup)    
     #+END_SRC
 
 
 *** auto-complete, yasnippet
+
+    company-mode and auto-complete mode provide the similar feature; 
+    we just need to enable one o the other; from emacs24 or later, 
+    company-mode is the way to go
+    ;;; M-x describe-function RET company-mode
+    ;;; M-x describe-function RET auto-complete 
+
+    
     #+BEGIN_SRC emacs-lisp
-      (require 'auto-complete)
-      (require 'auto-complete-config)
-      (ac-config-default)
+      ;(require 'auto-complete)
+      ;(require 'auto-complete-config)
+      ;(ac-config-default)
           
       (require 'yasnippet)
       (yas-global-mode t)
