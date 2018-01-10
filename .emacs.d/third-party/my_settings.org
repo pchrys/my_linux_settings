@@ -720,7 +720,23 @@ define function to shutdown emacs server instance
     note that while setting ycm related variables, we cannot use ~, and we have to use 
     expand-file-name/file-truename to expand it
 
+     * Completion doesn't work with the C++ standard library headers
+
+      This is caused by an issue with libclang that only affects some operating systems.
+      Compiling with clang the binary will use the correct default header search paths
+      but compiling with libclang.so (which YCM uses) does not.
+
+      Mac OS X is normally affected, but there's a workaround in YCM for that specific OS.
+      If you're not running that OS but still have the same problem, continue reading.
+
+      The workaround is to call echo | clang -v -E -x c++ - and look at the paths under
+      the #include <...> search starts here: heading. You should take those paths,
+      prepend -isystem to each individual path and append them all to the list of
+      flags you return from your FlagsForFile function in your .ycm_extra_conf.py file.
+
 #+BEGIN_SRC emacs-lisp
+  ;; on windows OS, we need set up path for python so that corect version of python
+  ;; is picked up
   (if (eq window-system 'w32)
     (set-variable 'ycmd-server-command `("python"  "-u"
 				       ,(file-truename "~/.emacs.d/third-party/ycmd/ycmd")))
