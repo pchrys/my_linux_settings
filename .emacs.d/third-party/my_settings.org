@@ -899,7 +899,7 @@ define function to shutdown emacs server instance
     M-x auto-complete-mode/global-auto-complete-mode
  
     #+BEGIN_SRC emacs-lisp
-	;;========================= settings for auto-complete =====================
+      ;;========================= settings for auto-complete =====================
       (require 'auto-complete)
       (require 'auto-complete-config)
 
@@ -907,19 +907,18 @@ define function to shutdown emacs server instance
       ;(define-key ac-completing-map "\t" 'ac-complete)
       ;(define-key ac-completing-map "\r" nil)
 
-	  (setq ac-auto-start 1)	  
-	  (setq ac-auto-show-menu 0.5)
-
+      (setq ac-auto-start 1)      
+      (setq ac-auto-show-menu 0.5) 
 
       (setq ac-use-menu-map t)
        ;; Default settings
-       (define-key ac-menu-map "\C-n" 'ac-next)
-       (define-key ac-menu-map "\C-p" 'ac-previous)
+      (define-key ac-menu-map "\C-n" 'ac-next)
+      (define-key ac-menu-map "\C-p" 'ac-previous)
 
-      (ac-config-default)
-          
+       ;;don't enable global-auto-complete-mode by default
+       ;(ac-config-default)
 
-	;;========================= settings for yasnippet =====================
+      ;;========================= settings for yasnippet =====================
       (require 'yasnippet)
       (yas-global-mode t)
 
