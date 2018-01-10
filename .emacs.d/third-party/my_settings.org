@@ -721,8 +721,12 @@ define function to shutdown emacs server instance
     expand-file-name/file-truename to expand it
 
 #+BEGIN_SRC emacs-lisp
-  (set-variable 'ycmd-server-command `("/usr/bin/python" 
+  (if (eq window-system 'w32)
+    (set-variable 'ycmd-server-command `("python"  "-u"
 				       ,(file-truename "~/.emacs.d/third-party/ycmd/ycmd")))
+    (set-variable 'ycmd-server-command `("/usr/bin/python" 
+				       ,(file-truename "~/.emacs.d/third-party/ycmd/ycmd")))
+  )
 
   ;; loading ycmd global configuration from ~/.emacs.d/third-party/.ycm_extra_conf.py
   (set-variable 'ycmd-global-config (file-truename "~/.emacs.d/third-party/.ycm_extra_conf.py"))
@@ -1372,6 +1376,9 @@ define function to shutdown emacs server instance
   (setq frame-title-format
         (list (format "%s %%S: %%j " (system-name))
               '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+
+ ;; show total line number in the mode line
+ (add-to-list 'mode-line-front-space '("" (:eval (format "%s" (line-number-at-pos (point-max))))))
 
   ;;show fullpath in the headline
     (defmacro with-face (str &rest properties)
