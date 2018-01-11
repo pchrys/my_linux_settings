@@ -735,12 +735,12 @@ define function to shutdown emacs server instance
       flags you return from your FlagsForFile function in your .ycm_extra_conf.py file.
 
 #+BEGIN_SRC emacs-lisp
-  ;; on windows OS, we need set up path for python so that corect version of python
+  ;; We need set up path for python in OS so that correct version of python
   ;; is picked up
   (if (eq window-system 'w32)
     (set-variable 'ycmd-server-command `("python"  "-u"
 				       ,(file-truename "~/.emacs.d/third-party/ycmd/ycmd")))
-    (set-variable 'ycmd-server-command `("/usr/bin/python" 
+    (set-variable 'ycmd-server-command `("python" 
 				       ,(file-truename "~/.emacs.d/third-party/ycmd/ycmd")))
   )
 
