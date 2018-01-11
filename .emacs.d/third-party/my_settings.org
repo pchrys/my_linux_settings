@@ -774,14 +774,18 @@ define function to shutdown emacs server instance
   can try ycmd-display-completions which will dump a raw completion struct into a 
   buffer. This is more of a debugging tool than anything.
 
-
-  The important settings are search-paths for head files for a given project. When compling code, 
-  the compiler searchs for head files from a given set of path. In order to make ycmd work 
-  properly, we have to pass this set of path to FlagsForFile, which is defined at 
+  The important settings are search-paths for head files for a given project. When compiling code,
+  the compiler searchs for head files from a given set of path. In order to make ycmd work
+  properly, we have to pass this set of path to FlagsForFile, which is defined at
   .ycm_extra_conf. 
   
-  We put search paths inside .clang_complete; this file is located inside the root directory 
-  of the project. .ycm_extra_conf will automatically pick it up.  
+  We can also put search paths inside .clang_complete. This is the preferred approach
+  since we can easily support multiple projects witht the same .ycm_extra_conf.py.
+  Note that we need place .clang_complete inside the root directory of the project.
+  .ycm_extra_conf.py will automatically pick it up.
+
+  In this case, we don't need to touch emacs settings for new projects; what we need to do
+  is simply to add a .clang_complete file in the root of each project.
   
   We use absolute path inside .clang_complete 
   =========================================
