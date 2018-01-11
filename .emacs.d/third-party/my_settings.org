@@ -17,20 +17,17 @@
     (setq org-log-done 'time)
 
     (defun  my-org-mode-hook()
-          (local-set-key (kbd "C-c o i")        'org-insert-link)
-          (local-set-key (kbd "C-c o n t" )     'org-insert-todo-heading)
-          (local-set-key (kbd "C-c o n h" )     'org-insert-heading)
-          (local-set-key (kbd "C-c o o")        'org-open-at-point)
+          (define-key org-mode-map (kbd "C-c o i")        'org-insert-link)
+          (define-key org-mode-map (kbd "C-c o n t" )     'org-insert-todo-heading)
+          (define-key org-mode-map (kbd "C-c o n h" )     'org-insert-heading)
+          (define-key org-mode-map (kbd "C-c o o")        'org-open-at-point)
 
-          (local-set-key (kbd "C-c o h")    'outline-promote)
-          (local-set-key (kbd "C-c o l")    'outline-demote)
-          (local-set-key (kbd "C-c o k")    'outline-move-subtree-up)
-          (local-set-key (kbd "C-c o j")    'outline-move-subtree-down)
-
-          (local-set-key (kbd "C-S-<left>")       'outline-promote)
-          (local-set-key (kbd "C-S-<right>")      'outline-demote)
-          (local-set-key (kbd "C-M-<up>")         'outline-move-subtree-up)
-          (local-set-key (kbd "C-M-<down>")       'outline-move-subtree-down)
+          ;; these key bindings are used for terminal since default binding 
+          ;; M-S left/right/up/down does not work
+          (define-key org-mode-map (kbd "C-c o h")    'outline-promote)
+          (define-key org-mode-map (kbd "C-c o l")    'outline-demote)
+          (define-key org-mode-map (kbd "C-c o k")    'outline-move-subtree-up)
+          (define-key org-mode-map (kbd "C-c o j")    'outline-move-subtree-down)
 
           (if (string-lessp org-version "9.0")
               (setq org-latex-create-formula-image-program 'dvipng)  ;; for org-version before 9.0
