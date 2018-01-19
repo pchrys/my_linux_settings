@@ -1,4 +1,13 @@
 * basic settings
+** some common settings
+
+ M-x tabify: Change spaces to tabs where appropriate.
+ M-x untabify: Change all tabs to the correct number of spaces (controlled by tab-width).
+
+#+BEGIN_SRC emacs-lisp
+   (setq tab-width 4)
+   (setq indent-tabs-mode nil)
+#+END_SRC
 
 ** settings for org-mode
 
@@ -377,6 +386,7 @@ inside Bookmark list buffer, press C-h m to get more information
 
 
 ** settings for tab 
+   
 #+BEGIN_SRC emacs-lisp
   (defun my-tab-width()
    (c-set-offset 'substatement-open 0)
@@ -696,6 +706,19 @@ define function to shutdown emacs server instance
 
   ;;(setq clang-format-style-option "llvm")
   (setq clang-format-style-option "file")
+
+  (defun clang-format-buffer-smart ()
+  "Reformat buffer if .clang-format exists in the projectile root."
+  (when (f-exists? (expand-file-name ".clang-format" (projectile-project-root)))
+    (clang-format-buffer)))
+
+  (defun clang-format-buffer-smart-on-save ()
+  "Add auto-save hook for clang-format-buffer-smart."
+  (add-hook 'before-save-hook 'clang-format-buffer-smart nil t))
+
+  (add-hook 'c++-mode-hook #'clang-format-buffer-smart-on-save)
+  (add-hook 'c-mode-hook #'clang-format-buffer-smart-on-save)
+
 #+END_SRC
     
 
