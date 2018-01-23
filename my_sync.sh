@@ -82,7 +82,7 @@ elif [ "$1" == "update" ]; then
   ##cmd="rsync -arvpP ${src}/.emacs.d  ${dst}"
   ### only update packages and setting files
   #cmd="rsync -arvpP --include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
-  cmd="rsync -arvpP --exclude='bookmarks' --exclude='*.elc' --exclude='*.signed' --exclude='ycmd/' --include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
+  cmd="rsync -arvpP --exclude='bookmarks' --exclude='*.elc' --exclude='*.signed' --exclude='ycmd/' --exclude='ycmd-win/' --exclude='ycmd-linux/'  --include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
   echo "run cmd: $cmd"
   eval $cmd
 

@@ -1,0 +1,53 @@
+# Navico Clang-Format Rules
+# Refer to http://clang.llvm.org/docs/ClangFormatStyleOptions.html for information on the options,
+# or to the Navico CodingStyleStandard document for information on the rules.
+# Version: 1.1 (21/5/2015)
+
+# General Options
+Language: Cpp
+Standard: Cpp11
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 140
+PointerAlignment: Left
+SortIncludes: false
+
+# Whitespace Settings
+MaxEmptyLinesToKeep: 2
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+SpacesInAngles: false
+SpacesBeforeTrailingComments: 1
+SpaceInEmptyParentheses: false
+SpacesInCStyleCastParentheses: false
+SpaceAfterCStyleCast: false
+SpaceBeforeParens: ControlStatements
+SpaceBeforeAssignmentOperators: true
+
+# Single/Multiline Collapse/Expansion
+AllowShortBlocksOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+AlwaysBreakTemplateDeclarations: true
+BreakBeforeBraces: Allman
+BinPackArguments: false
+BinPackParameters: false
+BreakConstructorInitializersBeforeComma: true
+Cpp11BracedListStyle: true
+
+# Indentation Offsets
+AccessModifierOffset: -4
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 4
+IndentCaseLabels: false
+NamespaceIndentation: None
+AlignAfterOpenBracket: Align
+AlignOperands: true
+AllowAllParametersOfDeclarationOnNextLine: false
+
+# Penalties
+PenaltyReturnTypeOnItsOwnLine: 10000
