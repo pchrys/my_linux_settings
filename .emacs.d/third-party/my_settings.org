@@ -530,6 +530,7 @@ some functions for expand tags in speedbar windows
         (local-set-key (kbd "C-c z m") 'outline-hide-subtree)
         (local-set-key (kbd "C-c z R") 'outline-show-all)
         (local-set-key (kbd "C-c z M") 'outline-hide-other)
+        (local-set-key (kbd "C-c z l") 'outline-hide-sublevels)
         (local-set-key (kbd "C-c z SPC") 'outline-toggle-children)
         (outline-minor-mode t))
 
@@ -1372,6 +1373,41 @@ define function to shutdown emacs server instance
   ;;;     (define-key helm-gtags-mode-map "\e." 'helm-gtags-find-tag)
   ;;;     (define-key helm-gtags-mode-map "\C-x4." 'helm-gtags-find-tag-other-window)))
     
+
+** settings for js
+  #+BEGIN_SRC emacs-lisp
+    (require 'js2-mode)
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+    (add-hook 'js2-mode-hook #'js2-imenu-extras-mode)
+    (add-hook 'js2-mode-hook #'my-folding-hook)
+
+    ;;key bindings for js2 mode
+    (define-key js2-mode-map (kbd "C-c j h") #'js2-mode-hide-element)
+    (define-key js2-mode-map (kbd "C-c j s") #'js2-mode-show-element)
+    (define-key js2-mode-map (kbd "C-c j a") #'js2-mode-show-all)
+    (define-key js2-mode-map (kbd "C-c j f") #'js2-mode-toggle-hide-functions)
+    (define-key js2-mode-map (kbd "C-c j c") #'js2-mode-toggle-hide-comments)
+    (define-key js2-mode-map (kbd "C-c j t") #'js2-mode-toggle-element)
+    (define-key js2-mode-map (kbd "C-c j w") #'js2-mode-toggle-warnings-and-errors)
+
+    (require 'js2-refactor)
+    (require 'xref-js2)
+
+    (add-hook 'js2-mode-hook #'js2-refactor-mode)
+    ;;(js2r-add-keybindings-with-prefix "C-c C-r")
+    (js2r-add-keybindings-with-prefix "C-c j r")
+
+    (define-key js2-mode-map (kbd "C-k") #'js2r-kill)
+
+    ;; js-mode (which js2 is based on) binds "M-." which conflicts with xref, so
+    ;; unbind it.
+    (define-key js-mode-map (kbd "M-.") nil)
+
+    (add-hook 'js2-mode-hook (lambda ()
+                               (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
+
+  #+END_SRC
     
 ** settings for backup
 

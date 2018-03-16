@@ -15,6 +15,7 @@
                ; install package through package manager
                ; M-x package-list-packages
                ; select package for installlation, type "i"; type "x" to install package
+               ; select the package package you want to remove, type "d", then type "x"
 ;; configure emacs
 ;; 1. basic setting
 ;;    a. global linum mode
@@ -36,7 +37,9 @@
 ;;;  (setq max-mini-window-height 0.5)
   
 ;;(add-to-list 'load-path "~/.emacs.d/third-party")
-;;(load-file "~/.emacs.d/third-party/my_helm_config.el")
 ;;(load-file "~/.emacs.d/third-party/my_custom_settings.el")
 
+(add-to-list 'load-path "/usr/share/emacs/25.2/lisp/net")
+(add-to-list 'load-path "/usr/share/emacs/25.2/lisp")
+(load-file "/usr/share/emacs/25.2/lisp/net/tramp.elc")
 (org-babel-load-file  (expand-file-name "~/.emacs.d/third-party/my_settings.org"))
