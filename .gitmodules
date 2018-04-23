@@ -1,0 +1,24 @@
+[submodule ".vim/bundle/colorschemes"]
+	path = .vim/bundle/colorschemes
+	url = https://github.com/flazz/vim-colorschemes.git
+[submodule ".vim/bundle/bufexplorer.vim"]
+	path = .vim/bundle/bufexplorer.vim
+	url = https://github.com/jlanzarotta/bufexplorer.git
+[submodule ".vim/bundle/vim-opencl"]
+	path = .vim/bundle/vim-opencl
+	url = git://github.com/petRUShka/vim-opencl.git
+[submodule ".vim/bundle/vim-clang-format"]
+	path = .vim/bundle/vim-clang-format
+	url = https://github.com/rhysd/vim-clang-format
+[submodule ".vim/bundle/taglist.vim"]
+	path = .vim/bundle/taglist.vim
+	url = https://github.com/vim-scripts/taglist.vim
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule ".vim/bundle/ctrlp.vim"]
+	path = .vim/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule ".vim/bundle/cscope_maps"]
+	path = .vim/bundle/cscope_maps
+	url = https://github.com/chazy/cscope_maps
