@@ -1471,6 +1471,8 @@ define function to shutdown emacs server instance
   ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
   (setq case-fold-search t)   ; make searches case insensitive
+  (setq search-upper-case nil)
+  (setq isearch-case-fold-search t)
 
 
   (setq Buffer-menu-name-width 50)
