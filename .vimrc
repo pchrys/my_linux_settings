@@ -11,6 +11,8 @@ execute pathogen#infect()
 filetype plugin on
 set nocompatible
 set encoding=utf-8
+set ignorecase
+set smartcase
 
 "" enabled syntax, 
 "" What this command actually does is to execute the command
