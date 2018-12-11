@@ -42,4 +42,22 @@
 (add-to-list 'load-path "/usr/share/emacs/25.2/lisp/net")
 (add-to-list 'load-path "/usr/share/emacs/25.2/lisp")
 (load-file "/usr/share/emacs/25.2/lisp/net/tramp.elc")
+
+(when (string-equal system-type "windows-nt")
+  (let* (
+        (myBinPath0
+         '(
+		   "D:/program/emacs/emacs-25.2-x86_64/bin"
+		   "D:/program/linux/gnu_global_656wb/bin"
+		   "D:/program/linux/UnxUtils/usr/local/wbin"
+           )) 
+		   
+		(myBinPath1 (mapconcat 'identity myBinPath0 ";"))
+        )
+		
+    (setenv "PATH" (concat  myBinPath1 ";" (getenv "PATH")))
+
+    (setq exec-path (append myBinPath0 exec-path))
+  ) 
+)
 (org-babel-load-file  (expand-file-name "~/.emacs.d/third-party/my_settings.org"))
