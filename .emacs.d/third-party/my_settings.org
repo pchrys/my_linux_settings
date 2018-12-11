@@ -1067,6 +1067,8 @@ define function to shutdown emacs server instance
      (global-set-key (kbd "C-c h") 'helm-command-prefix)
      (global-unset-key (kbd "C-x c"))
 
+
+     (global-unset-key (kbd "C-z"))     ;; disable key-binding for suspend-frame 
      (global-unset-key (kbd "C-j"))
      (define-key helm-map (kbd "C-j") nil) ;
 
