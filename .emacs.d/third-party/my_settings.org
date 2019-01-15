@@ -8,6 +8,27 @@
    (setq tab-width 4)
    (setq indent-tabs-mode nil)
 #+END_SRC
+parenthesis matching
+C-M-n     forward-list  Move forward over a parenthetical group
+C-M-p     backward-list  Move backward over a parenthetical group
+C-M-f     forward-sexp Move forward over a balanced expression
+C-M-b     backward-sexp  Move backward over a balanced expression
+C-M-k     kill-sexp  Kill balanced expression forward
+C-M-SPC   mark-sexp  Put the mark at the end of the sexp.
+
+
+#+BEGIN_SRC emacs-lisp
+(global-set-key "%" 'forward-or-backward-sexp)
+(defun forward-or-backward-sexp (&optional arg)
+  "Go to the matching parenthesis character if one is adjacent to point."
+  (interactive "^p")
+  (cond ((looking-at "\\s(") (forward-sexp arg))
+        ((looking-back "\\s)" 1) (backward-sexp arg))
+        ;; Now, try to succeed from inside of a bracket
+        ((looking-at "\\s)") (forward-char) (backward-sexp arg))
+        ((looking-back "\\s(" 1) (backward-char) (forward-sexp arg))))
+#+END_SRC
+
  
 
 *** revert all buffers
