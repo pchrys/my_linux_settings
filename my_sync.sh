@@ -5,6 +5,10 @@ if [ $# -lt 1 ]; then
   echo " ========================ATTENTION ==========================="
   echo " Please run this script at the location wherer it is located;"
   echo " otherwise it will not work properly. "
+  echo " remember to run the following command first to update submodule "
+  echo " after cloning repo " 
+  echo " \$ git submodule update --init " 
+
   echo " ============================================================="
   echo ""
 
