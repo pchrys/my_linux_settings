@@ -22,3 +22,9 @@
 [submodule ".vim/bundle/cscope_maps"]
 	path = .vim/bundle/cscope_maps
 	url = https://github.com/chazy/cscope_maps
+[submodule ".vim/bundle/vim-colorscheme-switcher"]
+	path = .vim/bundle/vim-colorscheme-switcher
+	url = https://github.com/xolox/vim-colorscheme-switcher
+[submodule ".vim/bundle/vim-misc"]
+	path = .vim/bundle/vim-misc
+	url = https://github.com/xolox/vim-misc

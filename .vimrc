@@ -3,8 +3,27 @@
 
 execute pathogen#infect()
 
+""" with pathegen package manager, installing plugin is easy.
+""" just following the following steps
+""" cd ~/.vim/bundle
+""" unzip the plugin package
+""" Unzip delimitMate-master.zip in ~/.vim/bundle/delimitMate-master/.
+"
+""" or clone submodule
+""" cd ~/.vim/bundle
+""" git clone https://github.com/Raimondi/delimitMate.git
+
+""" With Git, using submodules:
+"""
+""" Assuming your .vim directory is already a Git repository…
+"""
+""" $ cd ~/.vim
+""" $ git submodule init
+""" $ git submodule add https://github.com/Raimondi/delimitMate.git bundle/delimitMate
+
+
 "" run :HelpTags to enable help documents for newly install packages
-" }}} 
+" }}}
 
 " basic set up{{{
 
@@ -14,18 +33,18 @@ set encoding=utf-8
 set ignorecase
 set smartcase
 
-"" enabled syntax, 
+"" enabled syntax,
 "" What this command actually does is to execute the command
 ""     :source $VIMRUNTIME/syntax/syntax.vim
 "" VIMRUNTIME is set inside .bashrc file
-"" export VIMRUNTIME="/usr/share/vim/vim80" 
+"" export VIMRUNTIME="/usr/share/vim/vim80"
 "" more detais: help syntax
-syntax enable 
+syntax enable
 
 
 """ set command prefix
 let mapleader=","       " leader is comma
-let maplocalleader="\\"       " leader is comma
+let maplocalleader="\\" " localleader is \
 
 " edit vimrc/zshrc and load vimrc bindings
 nnoremap <leader>ve :vsp $MYVIMRC<CR>
@@ -51,18 +70,18 @@ noremap <leader>wl :wincmd l<CR>
 
 """ build in command for jump between windows
 "" <C-w>  h/l/j/k
-"" <C-w> _/-    "" maximize the height of the current window  
-"" <C-w> |    "" maximize the width of the current window  
-"" <C-w> =    "" make windows are equal 
+"" <C-w> _/-    "" maximize the height of the current window
+"" <C-w> |    "" maximize the width of the current window
+"" <C-w> =    "" make windows are equal
 
-"" fold level 
+"" fold level
 nnoremap <leader>f :call FoldColumnToggle()<cr>
-" }}} 
+" }}}
 
 " Colors {{{
 
 " colorscheme badwolf
-colorscheme zenburn 
+colorscheme zenburn
 
 "set color
 if &term =~ "xterm"
@@ -77,6 +96,13 @@ if &term =~ "256color"
   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
   set t_ut=
 endif
+
+
+
+""" cycle through color
+"" F8, :NextColorScheme
+"" Shift+F8: PrevColorScheme
+"" :RandomColorScheme
 
 " }}}
 
@@ -141,7 +167,7 @@ set foldlevelstart=10   " start with fold level of 1
 
 " cscope, taglist, and NERDTree {{{
 ""cscope and taglist
-"" install cscope 
+"" install cscope
 ""build cscope database
 " use \ in the beginning at .vimrc and related files  for line continuation
 if has("win32") || has("win64")
@@ -160,22 +186,85 @@ elseif has("unix")
         \: cscope add cscope.out<CR>
 endif
 
-"""   on windows, using command in windows command prompt 
+"""   on windows, using command in windows command prompt
 """   dir /S /B *.h *.cpp *.hpp *.c  > cscope.files
-"""   to list files,  
+"""   to list files,
 """   then use the following command to build cscope database
 """   cscope.exe -b -i cscope.files -f cscope.out
 
+
+"""  Cscope is a very powerful interface allowing you to easily navigate C-like code files.
+"""  While Cscope comes with its own stand-alone interface, Vim provides the capability to
+"""  navigate code without ever leaving the editor. Using Cscope, you can search for
+"""  identifier or function definitions, their uses, or even any regular expression. With
+"""  the proper configuration, "standard" include files of your compiler are automatically
+"""  searched along with your sources. The output from :help :cscope says it all:
+"""
+"""  cscope commands:
+"""  add  : Add a new database             (Usage: add file|dir [pre-path] [flags])
+"""  find : Query for a pattern            (Usage: find c|d|e|f|g|i|s|t name)
+"""         c: Find functions calling this function
+"""         d: Find functions called by this function
+"""         e: Find this egrep pattern
+"""         f: Find this file
+"""         g: Find this definition
+"""         i: Find files #including this file
+"""         s: Find this C symbol
+"""         t: Find assignments to
+"""  help : Show this message              (Usage: help)
+"""  kill : Kill a connection              (Usage: kill #)
+"""  reset: Reinit all connections         (Usage: reset)
+"""  show : Show connections               (Usage: show)
+
+""" filter cscope result
+" Filter the quickfix list
+function! FilterQFList(type, action, pattern)
+    " get current quickfix list
+    let s:curList = getqflist()
+    let s:newList = []
+    for item in s:curList
+        if a:type == 0     " filter on file names
+            let s:cmpPat = bufname(item.bufnr)
+        elseif a:type == 1 " filter by line content
+            let s:cmpPat = item.text . item.pattern
+        endif
+        if item.valid
+            if a:action < 0
+                " Keep only nonmatching lines
+                if s:cmpPat !~ a:pattern
+                    let s:newList += [item]
+                endif
+            else
+                " Keep only matching lines
+                if s:cmpPat =~ a:pattern
+                    let s:newList += [item]
+                endif
+            endif
+        endif
+    endfor
+    call setqflist(s:newList)
+endfunction
+
+""" :help cscope-options
+set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
+"""" :copen to show all search result
+""" :copen 60  """ set quickfix window height to 60
+"""  :cnewer and :colder to jump through quickfix windows
+nnoremap mf  :call FilterQFList(0, 1, inputdialog('Keep only file names matching:', ''))<CR>
+nnoremap mF  :call FilterQFList(0, -1, inputdialog('Remove file names matching:', ''))<CR>
+nnoremap mL  :call FilterQFList(1, -1, inputdialog('Remove all lines matching:', ''))<CR>
+nnoremap ml  :call FilterQFList(1, 1, inputdialog('Keep only lines matching:', ''))<CR>
+
 "" taglist
 " let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-let Tlist_WinWidth = 48 
+let Tlist_WinWidth = 48
 noremap <leader>tl :TlistToggle<cr>
 noremap <F3> :TlistToggle<cr>
 
 
-"" NERDTree 
+"" NERDTree
 noremap <leader>nt :NERDTreeToggle<cr>
-let g:NERDTreeWinSize = 48 
+let g:NERDTreeWinSize = 48
 let g:NERDTreeWinPos = "right"
 
 
@@ -194,24 +283,24 @@ let g:NERDTreeWinPos = "right"
 " :tab help         open a new help window in its own tab page
 " :tab drop {file}  open {file} in a new tab, or jump to a window/tab containing the file if there is one
 " :tab split        copy the current window to a new tab of its own
-" 
+"
 
 """ navigation between tabs
 "" :tabs         list all tabs including their displayed windows
 "" :tabm 0       move current tab to first
 "" :tabm         move current tab to last
 "" :tabm {i}     move current tab to position i+1
-"" 
+""
 "" :tabn         go to next tab
 "" :tabp         go to previous tab
 "" :tabfirst     go to first tab
 "" :tablast      go to last tab
-"" 
+""
 "" In normal mode, you can type:
 "" gt            go to next tab
 "" gT            go to previous tab
 "" {i}gt         go to tab in position i
-"" 
+""
 
 nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
@@ -285,12 +374,12 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)|\build$'
 "" build-in completion: help ins-completion
 
 
-"" You complete me (YCM) , 
+"" You complete me (YCM) ,
 "" let g:ycm_global_ycm_extra_conf = ''
 " let g:ycm_global_ycm_extra_conf = '/home/shaobo/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 " let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py" 
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf = 0    "" disable confirmation
 "
 "" let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
@@ -301,14 +390,14 @@ let g:ycm_confirm_extra_conf = 0    "" disable confirmation
 
 let g:clang_format#code_style = "file"
 
-"" When this variable's value is 1, vim-clang-format automatically detects the style file 
+"" When this variable's value is 1, vim-clang-format automatically detects the style file
 "" like .clang-format or _clang-format and applies the style to formatting.
 let g:clang_format#detect_style_file = 1
 
 "" When the value is 1, a current buffer is automatically formatted on saving the buffer.
 let g:clang_format#auto_format = 0
 
-"" When the value is 1, inserted lines are automatically formatted on leaving insert mode. 
+"" When the value is 1, inserted lines are automatically formatted on leaving insert mode.
 "" Formatting is executed on InsertLeave event
 let g:clang_format#auto_format_on_insert_leave = 0
 
@@ -357,9 +446,9 @@ augroup configgroup
     autocmd BufEnter *.md setlocal filetype=markdown
 
     """ note no space between pattens
-    autocmd BufEnter *.h,*.hpp,*.cpp,*.c,*.cc setlocal foldmethod=syntax 
-    ""autocmd FileType cpp setlocal foldmethod=syntax 
-    "autocmd FileType python setlocal foldmethod=syntax 
+    autocmd BufEnter *.h,*.hpp,*.cpp,*.c,*.cc setlocal foldmethod=syntax
+    ""autocmd FileType cpp setlocal foldmethod=syntax
+    "autocmd FileType python setlocal foldmethod=syntax
     autocmd BufEnter *.py setlocal foldmethod=indent
 
     "" set folding method for .vimrc
@@ -370,10 +459,10 @@ augroup END
 
 " Backups {{{
 let backupRootDir = $HOME . "/.vim.backup"
-if !isdirectory(backupRootDir) 
+if !isdirectory(backupRootDir)
     call mkdir(backupRootDir)
 endif
-" let &backupdir = backupRootDir 
+" let &backupdir = backupRootDir
 
 set backupskip=/tmp/*,/private/tmp/*
 
@@ -398,18 +487,18 @@ au BufWritePre *
             \ let cmd = "set backupdir=" . verboseBackupDir |
             \ exe cmd
 
-" let has_windows = has("win16") || has("win32") || has("win64") 
-" 
+" let has_windows = has("win16") || has("win32") || has("win64")
+"
 " if has_windows
 "     substitute(backupdir, '\v^\u\zs:\ze\\','','')
 " endif
-" 
+"
 
 " }}}
 
 " Custom Functions {{{
-" " We can move all custom function to .vim/bundle/myplugin/plugin, and 
-" pathogen package manager will load them automatically. 
+" " We can move all custom function to .vim/bundle/myplugin/plugin, and
+" pathogen package manager will load them automatically.
 "
 " toggle between number and relativenumber
 function! ToggleNumber()
