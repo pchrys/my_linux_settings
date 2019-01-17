@@ -80,8 +80,9 @@ nnoremap <leader>f :call FoldColumnToggle()<cr>
 
 " Colors {{{
 
-" colorscheme badwolf
 colorscheme zenburn
+"" light colorscheme: autumn, ashen, desert
+"" dark colorscheme: badwolf
 
 "set color
 if &term =~ "xterm"
@@ -96,7 +97,6 @@ if &term =~ "256color"
   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
   set t_ut=
 endif
-
 
 
 """ cycle through color
@@ -250,6 +250,12 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
 """" :copen to show all search result
 """ :copen 60  """ set quickfix window height to 60
 """  :cnewer and :colder to jump through quickfix windows
+" command for jump in quickfix window
+""" :cc      see the current error
+""" :cn      next error
+""" :cp      previous error
+""" :clist   list all errors
+
 nnoremap mf  :call FilterQFList(0, 1, inputdialog('Keep only file names matching:', ''))<CR>
 nnoremap mF  :call FilterQFList(0, -1, inputdialog('Remove file names matching:', ''))<CR>
 nnoremap mL  :call FilterQFList(1, -1, inputdialog('Remove all lines matching:', ''))<CR>
