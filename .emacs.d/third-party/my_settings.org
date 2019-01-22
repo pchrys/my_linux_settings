@@ -1086,7 +1086,8 @@ define function to shutdown emacs server instance
      (global-unset-key (kbd "C-x c"))
 
 
-     (global-unset-key (kbd "C-z"))     ;; disable key-binding for suspend-frame 
+     (global-unset-key (kbd "C-z"))         ;; disable key-binding for suspend-frame 
+     (global-unset-key (kbd "C-x C-z"))     ;; disable key-binding for suspend-frame 
      (global-unset-key (kbd "C-j"))
      (define-key helm-map (kbd "C-j") nil) ;
 
@@ -1564,8 +1565,8 @@ define function to shutdown emacs server instance
 
 
 *** repeat commands
-On the terminal C-x z will suspend emacs; so we remap keys , and bound C-c z to repeat.
-press C-c Z to repeat the prevous command
+On the terminal C-z will suspend emacs; so we remap keys , and bound C-c z to repeat.
+press C-c z to repeat the prevous command
 #+BEGIN_SRC emacs-lisp
   ;;(global-set-key (kbd "C-c z")  'repeat)
 #+END_SRC
