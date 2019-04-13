@@ -33,6 +33,9 @@ set encoding=utf-8
 set ignorecase
 set smartcase
 
+"" automatically save file while switching to another buffer 
+set autowrite
+
 "" enabled syntax,
 "" What this command actually does is to execute the command
 ""     :source $VIMRUNTIME/syntax/syntax.vim
@@ -67,6 +70,10 @@ noremap <leader>wj :wincmd j<CR>
 noremap <leader>wk :wincmd k<CR>
 noremap <leader>wh :wincmd h<CR>
 noremap <leader>wl :wincmd l<CR>
+
+""fix the issue that backspace does not delte delete command
+set backspace=indent,eol,start
+""  set t_kb=^?
 
 """ build in command for jump between windows
 "" <C-w>  h/l/j/k
