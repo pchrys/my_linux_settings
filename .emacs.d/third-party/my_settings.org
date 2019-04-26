@@ -18,7 +18,7 @@ C-M-SPC   mark-sexp  Put the mark at the end of the sexp.
 
 
 #+BEGIN_SRC emacs-lisp
-(global-set-key "%" 'forward-or-backward-sexp)
+(global-set-key (kbd "C-%") 'forward-or-backward-sexp)
 (defun forward-or-backward-sexp (&optional arg)
   "Go to the matching parenthesis character if one is adjacent to point."
   (interactive "^p")
@@ -41,6 +41,15 @@ C-M-SPC   mark-sexp  Put the mark at the end of the sexp.
         (when (and (buffer-file-name) (file-exists-p (buffer-file-name)) (not (buffer-modified-p)))
           (revert-buffer t t t) )))
     (message "Refreshed open files.") )
+#+END_SRC
+
+*** setting for diff for emacs
+#+BEGIN_SRC emacs-lisp
+(setq ediff-split-window-function 'split-window-horizontally)
+
+(require 'vdiff)
+(define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map)
+
 #+END_SRC
 
     
@@ -249,6 +258,8 @@ C-M-SPC   mark-sexp  Put the mark at the end of the sexp.
     )
 
     (add-hook 'text-scale-mode-hook 'update-latex-preview-scale)
+    
+
 
 #+END_SRC
 
@@ -893,7 +904,7 @@ define function to shutdown emacs server instance
   {
     A objA; 
     objA.           
-    ### while we tried to auto complete, objA cannot recognized newly added members in class A, unless
+    ### while we tried to auto complete, objA cannot recognize newly added members in class A, unless
     # we restart emacs or revert file head1.h by M-x revert-buffer
 
     return 0;
@@ -901,6 +912,7 @@ define function to shutdown emacs server instance
 
   =======================================
 
+  
 
 *** settings for company-mode
 ;;; debug ycmd mode: M-x ycmd-show-debug-info
@@ -963,7 +975,7 @@ define function to shutdown emacs server instance
 *** auto-complete, yasnippet
 
     company-mode and auto-complete mode provide the similar feature; 
-    we just need to enable one o the other; from emacs24 or later, 
+    we just need to enable one or the other; from emacs24 or later, 
     company-mode is the way to go
     ;;; M-x describe-function RET company-mode
     ;;; M-x describe-function RET auto-complete 
@@ -1086,8 +1098,7 @@ define function to shutdown emacs server instance
      (global-unset-key (kbd "C-x c"))
 
 
-     (global-unset-key (kbd "C-z"))         ;; disable key-binding for suspend-frame 
-     (global-unset-key (kbd "C-x C-z"))     ;; disable key-binding for suspend-frame 
+     (global-unset-key (kbd "C-z"))     ;; disable key-binding for suspend-frame 
      (global-unset-key (kbd "C-j"))
      (define-key helm-map (kbd "C-j") nil) ;
 
@@ -1265,6 +1276,17 @@ define function to shutdown emacs server instance
     to create/add/remove files for a virtual directory manager
 
 *** key binings
+
+   Projectile's default keymap prefix is defined by the variable projectile-keymap-prefix
+
+   #+BEGIN_SRC emacs-lisp
+     (define-key projectile-mode-map (kbd "C-c p R")   nil)
+     (define-key projectile-mode-map (kbd "C-c p A")   'projectile-regenerate-tags)
+     (define-key projectile-mode-map (kbd "C-c p R")   'projectile-replace-regexp)
+   #+END_SRC
+
+
+
 ;;; more bindings are available by running C-c p C-h
 **** a few commands  for projectile
 ;;; more can be found at https://projectile.readthedocs.io/en/latest/usage/
@@ -1565,10 +1587,10 @@ define function to shutdown emacs server instance
 
 
 *** repeat commands
-On the terminal C-z will suspend emacs; so we remap keys , and bound C-c z to repeat.
-press C-c z to repeat the prevous command
+On the terminal C-x z will suspend emacs; so we remap keys , and bound C-c z to repeat.
+press C-c Z to repeat the prevous command
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c z")  'repeat)
+  ;(global-set-key (kbd "C-x z")  'repeat)
 #+END_SRC
 
    
