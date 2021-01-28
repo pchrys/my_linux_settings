@@ -9,9 +9,10 @@
 (require 'package)
 
 ; add MELPA to repository list
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-             ("marmalade" . "http://marmalade-repo.org/packages/")
-             ("melpa" . "http://melpa.org/packages/")))
+(setq package-archives '(;("gnu" . "http://elpa.gnu.org/packages/")
+             ;("marmalade" . "http://marmalade-repo.org/packages/")
+             ("melpa" . "http://melpa.org/packages/")
+             ("melpa-stable" . "http://stable.melpa.org/packages/")))
                ; install package through package manager
                ; M-x package-list-packages
                ; select package for installlation, type "i"; type "x" to install package
@@ -39,9 +40,9 @@
 ;;(add-to-list 'load-path "~/.emacs.d/third-party")
 ;;(load-file "~/.emacs.d/third-party/my_custom_settings.el")
 
-(add-to-list 'load-path "/usr/share/emacs/25.2/lisp/net")
-(add-to-list 'load-path "/usr/share/emacs/25.2/lisp")
-(load-file "/usr/share/emacs/25.2/lisp/net/tramp.elc")
+(add-to-list 'load-path "/usr/share/emacs/26.3/lisp/net")
+(add-to-list 'load-path "/usr/share/emacs/26.3/lisp")
+(load-file "/usr/share/emacs/26.3/lisp/net/tramp.elc")
 
 (when (string-equal system-type "windows-nt")
   (let* (
