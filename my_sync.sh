@@ -54,7 +54,8 @@ cmd="rsync -arvpP ${src}/.vimrc  ${dst}"
 echo "run cmd: $cmd"
 eval $cmd
 
-cmd="rsync -arvpP --exclude="YouCompleteMe" ${src}/.vim  ${dst}"
+#cmd="rsync -arvpP --exclude="YouCompleteMe" ${src}/.vim  ${dst}"
+cmd="rsync -arvpP  ${src}/.vim  ${dst}"
 echo "run cmd: $cmd"
 eval $cmd
 
@@ -85,8 +86,9 @@ elif [ "$1" == "update" ]; then
 
   ##cmd="rsync -arvpP ${src}/.emacs.d  ${dst}"
   ### only update packages and setting files
-  #cmd="rsync -arvpP --include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
-  cmd="rsync -arvpP --exclude='bookmarks' --exclude='*.elc' --exclude='*.signed' --exclude='ycmd/' --exclude='ycmd-win/' --exclude='ycmd-linux/'  --include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
+  cmd="rsync -arvpP --include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
+  #cmd="rsync -arvpP --exclude='bookmarks' --exclude='*.elc' --exclude='*.signed' --exclude='ycmd/' --exclude='ycmd-win/' --exclude='ycmd-linux/'  --include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
+  #cmd="rsync -arvpP --exclude='bookmarks' --exclude='*.elc' --exclude='*.signed' --exclude='ycmd/' --exclude='ycmd-win/' --exclude='ycmd-linux/'  --include='.emacs.d/' --include='elpa/***' --include='third-party/***' --exclude='*' ${src}/.emacs.d  ${dst}"
   echo "run cmd: $cmd"
   eval $cmd
 

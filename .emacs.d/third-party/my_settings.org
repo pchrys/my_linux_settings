@@ -340,6 +340,9 @@ C-M-SPC   mark-sexp  Put the mark at the end of the sexp.
 (define-key bookmark-map (kbd "/ i")    'bmkp-insert-bookmark-link)     ; C-c b / i
 (define-key bookmark-map (kbd "/ s")    'bmkp-store-org-link)           ; C-c b / s
 
+
+(define-key bookmark-map (kbd "c A")    'bmkp-set-autonamed-bookmark)   ; C-c b c A
+
 (setq bookmark-bmenu-file-column 65)
 
 (defun my-auto-line-column-name (position)
@@ -542,6 +545,9 @@ some functions for expand tags in speedbar windows
 
 #+END_SRC
 
+
+** settings for git
+   (require 'git)
 
 ** settings for foldings
 
@@ -823,8 +829,13 @@ define function to shutdown emacs server instance
   (if (eq window-system 'w32)
     (set-variable 'ycmd-server-command `("python"  "-u"
 				       ,(file-truename "~/.emacs.d/third-party/ycmd/ycmd")))
-    (set-variable 'ycmd-server-command `("python" 
-				       ,(file-truename "~/.emacs.d/third-party/ycmd/ycmd")))
+    ;; (set-variable 'ycmd-server-command `("python" 
+    ;;				       ,(file-truename "~/.emacs.d/third-party/ycmd/ycmd")))
+    ;; need user python3 instead
+    ;;(set-variable 'ycmd-server-command `("python3" 
+    ;;				       ,(file-truename "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd")))
+    (set-variable 'ycmd-server-command `("python3" 
+    				       ,(file-truename "~/.emacs.d/third-party/YouCompleteMe/third_party/ycmd/ycmd")))
   )
 
   ;; loading ycmd global configuration from ~/.emacs.d/third-party/.ycm_extra_conf.py
