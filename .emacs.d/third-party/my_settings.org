@@ -832,10 +832,10 @@ define function to shutdown emacs server instance
     ;; (set-variable 'ycmd-server-command `("python" 
     ;;				       ,(file-truename "~/.emacs.d/third-party/ycmd/ycmd")))
     ;; need user python3 instead
-    ;;(set-variable 'ycmd-server-command `("python3" 
-    ;;				       ,(file-truename "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd")))
     (set-variable 'ycmd-server-command `("python3" 
-    				       ,(file-truename "~/.emacs.d/third-party/YouCompleteMe/third_party/ycmd/ycmd")))
+    				       ,(file-truename "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd")))
+    ;; (set-variable 'ycmd-server-command `("python3" 
+    ;; 				       ,(file-truename "~/.emacs.d/third-party/YouCompleteMe/third_party/ycmd/ycmd")))
   )
 
   ;; loading ycmd global configuration from ~/.emacs.d/third-party/.ycm_extra_conf.py

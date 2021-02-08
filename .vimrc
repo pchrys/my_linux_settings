@@ -315,14 +315,13 @@ let g:NERDTreeWinPos = "right"
 "" {i}gt         go to tab in position i
 ""
 
-nnoremap th  :tabfirst<CR>
-nnoremap tj  :tabnext<CR>
-nnoremap tk  :tabprev<CR>
+nnoremap tf  :tabfirst<CR>
 nnoremap tl  :tablast<CR>
+nnoremap tp  :tabprev<CR>
+nnoremap tn  :tabnext<CR>
+nnoremap tc  :tabclose<CR>
 nnoremap te  :tabedit<Space>
-nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
-nnoremap td  :tabclose<CR>
 " Alternatively use
 " "nnoremap th :tabnext<CR>
 " "nnoremap tl :tabprev<CR>
@@ -390,7 +389,7 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)|\build$'
 "" You complete me (YCM) ,
 "" let g:ycm_global_ycm_extra_conf = ''
 " let g:ycm_global_ycm_extra_conf = '/home/shaobo/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-" let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+ let g:ycm_global_ycm_extra_conf = $HOME . '/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf = 0    "" disable confirmation
