@@ -315,13 +315,13 @@ let g:NERDTreeWinPos = "right"
 "" {i}gt         go to tab in position i
 ""
 
-nnoremap tf  :tabfirst<CR>
-nnoremap tl  :tablast<CR>
-nnoremap tp  :tabprev<CR>
-nnoremap tn  :tabnext<CR>
-nnoremap tc  :tabclose<CR>
-nnoremap te  :tabedit<Space>
-nnoremap tm  :tabm<Space>
+nnoremap <Leader>tf  :tabfirst<CR>
+nnoremap <Leader>tl  :tablast<CR>
+nnoremap <Leader>tp  :tabprev<CR>
+nnoremap <Leader>tn  :tabnext<CR>
+nnoremap <Leader>tc  :tabclose<CR>
+nnoremap <Leader>te  :tabedit<Space>
+nnoremap <Leader>tm  :tabm<Space>
 " Alternatively use
 " "nnoremap th :tabnext<CR>
 " "nnoremap tl :tabprev<CR>

@@ -296,24 +296,46 @@ else " Manual loading with :packadd.
 endif
 
 " key mapping for YouCompleteMe
+    nnoremap <Leader>y. :YcmCompleter GoTo                             <CR>
+    nnoremap <Leader>yF :YcmCompleter Format                           <CR>
+    nnoremap <Leader>yd :YcmCompleter GetDoc                           <CR>
+    nnoremap <Leader>yD :YcmCompleter GetDocImprecise                  <CR>
+    nnoremap <Leader>yt :YcmCompleter GetType                          <CR>
+    nnoremap <Leader>yT :YcmCompleter GetTypeImprecise                 <CR>
+    nnoremap <Leader>yf :YcmCompleter FixIt                            <CR>
+    nnoremap <Leader>yr :YcmCompleter RefactorRename 
+    nnoremap <Leader>yo :YcmCompleter RestartServer                    <CR>
+    nnoremap <Leader>yO :YcmRestartServer                              <CR>
 
-    nnoremap ,ys :YcmCompleter GoToSymbol                        <C-R>=expand("<cword>")<CR><CR>
-    nnoremap ,yd :YcmCompleter GoToDefinition                    <CR>
-    nnoremap ,yD :YcmCompleter GoToDeclaration                   <CR>
-    nnoremap ,yi :YcmCompleter GoToInclude                       <CR>
-    nnoremap ,yr :YcmCompleter GoToReferences                    <CR>
-    nnoremap ,yt :YcmCompleter GetType                           <CR>
-    nnoremap ,yp :YcmCompleter GoToImprecise                     <CR>
-    nnoremap ,yg :YcmCompleter GoToImplementationElseDeclaration <CR>
 
-    nnoremap <C-\>ys :YcmCompleter GoToSymbol                        <CR>
-    nnoremap <C-\>yd :YcmCompleter GoToDefinition                    <CR>
-    nnoremap <C-\>yD :YcmCompleter GoToDeclaration                   <CR>
-    nnoremap <C-\>yi :YcmCompleter GoToInclude                       <CR>
-    nnoremap <C-\>yr :YcmCompleter GoToReferences                    <CR>
-    nnoremap <C-\>yt :YcmCompleter GoToType                          <CR>
-    nnoremap <C-\>yp :YcmCompleter GoToImprecise                     <CR>
-    nnoremap <C-\>yg :YcmCompleter GoToImplementationElseDeclaration <CR>
+    nnoremap <Leader>ys :YcmCompleter GoToSymbol                         <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <Leader>ygd :YcmCompleter GoToDefinition                    <CR>
+    nnoremap <Leader>ygD :YcmCompleter GoToDeclaration                   <CR>
+    nnoremap <Leader>ygi :YcmCompleter GoToInclude                       <CR>
+    nnoremap <Leader>ygr :YcmCompleter GoToReferences                    <CR>
+    nnoremap <Leader>ygt :YcmCompleter GetType                           <CR>
+    nnoremap <Leader>ygp :YcmCompleter GoToImprecise                     <CR>
+    nnoremap <Leader>ygg :YcmCompleter GoToImplementationElseDeclaration <CR>
+
+    nnoremap <C-\>y. :YcmCompleter GoTo                             <CR>
+    nnoremap <C-\>yF :YcmCompleter Format                           <CR>
+    nnoremap <C-\>yd :YcmCompleter GetDoc                           <CR>
+    nnoremap <C-\>yD :YcmCompleter GetDocImprecise                  <CR>
+    nnoremap <C-\>yt :YcmCompleter GetType                          <CR>
+    nnoremap <C-\>yT :YcmCompleter GetTypeImprecise                 <CR>
+    nnoremap <C-\>yf :YcmCompleter FixIt                            <CR>
+    nnoremap <C-\>yr :YcmCompleter RefactorRename  
+    nnoremap <C-\>yo :YcmCompleter RestartServer                    <CR>
+    nnoremap <C-\>yO :YcmRestartServer                              <CR>
+
+    nnoremap <C-\>ygs :YcmCompleter GoToSymbol                        <CR>
+    nnoremap <C-\>ygd :YcmCompleter GoToDefinition                    <CR>
+    nnoremap <C-\>ygD :YcmCompleter GoToDeclaration                   <CR>
+    nnoremap <C-\>ygi :YcmCompleter GoToInclude                       <CR>
+    nnoremap <C-\>ygr :YcmCompleter GoToReferences                    <CR>
+    nnoremap <C-\>ygt :YcmCompleter GoToType                          <CR>
+    nnoremap <C-\>ygp :YcmCompleter GoToImprecise                     <CR>
+    nnoremap <C-\>ygg :YcmCompleter GoToImplementationElseDeclaration <CR>
     "
     "
 
