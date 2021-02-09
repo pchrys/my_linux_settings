@@ -791,6 +791,8 @@ define function to shutdown emacs server instance
   (add-hook 'after-init-hook #'global-ycmd-mode)
   ;(add-hook 'c++-mode-hook 'ycmd-mode)
 
+  (set-variable 'ycm_echo_current_diagnostic 1)
+
   (set-variable 'ycmd-min-num-chars-for-completion 0)
   (set-variable 'ycmd-max-num-identifier-candidates 200)
 #+END_SRC
@@ -955,6 +957,10 @@ define function to shutdown emacs server instance
 (add-hook 'after-init-hook #'global-company-mode)
 
 (add-to-list 'company-backends 'company-c-headers)
+
+;;; The maximum number of candidates 
+;;; (set-variable company-tooltip-limit 10)
+(set-variable company-tooltip-limit 100)
 
 ;;;; Set always complete immediately
 (setq company-idle-delay 0)

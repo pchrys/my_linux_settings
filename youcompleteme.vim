@@ -307,6 +307,7 @@ endif
     nnoremap <Leader>yo :YcmCompleter RestartServer                    <CR>
     nnoremap <Leader>yO :YcmRestartServer                              <CR>
 
+
     nnoremap <Leader>ys :YcmCompleter GoToSymbol                         <C-R>=expand("<cword>")<CR><CR>
     nnoremap <Leader>ygd :YcmCompleter GoToDefinition                    <CR>
     nnoremap <Leader>ygD :YcmCompleter GoToDeclaration                   <CR>
