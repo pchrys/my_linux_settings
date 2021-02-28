@@ -960,7 +960,7 @@ define function to shutdown emacs server instance
 
 ;;; The maximum number of candidates 
 ;;; (set-variable company-tooltip-limit 10)
-(set-variable company-tooltip-limit 100)
+(set-variable 'company-tooltip-limit 100)
 
 ;;;; Set always complete immediately
 (setq company-idle-delay 0)
