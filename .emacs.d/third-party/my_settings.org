@@ -1004,6 +1004,7 @@ define function to shutdown emacs server instance
  
     #+BEGIN_SRC emacs-lisp
       ;;========================= settings for auto-complete =====================
+      (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode) 
       (require 'auto-complete)
       (require 'auto-complete-config)
 

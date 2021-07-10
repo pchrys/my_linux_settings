@@ -25,6 +25,8 @@ alias w="cd ~/work"
 alias ls="ls --color"
 alias tm="tmux"
 alias gl="cd /cygdrive/e/navico/other/openGL"
+alias wd="cd /data/hdd1/data/shaobo/win10Data/shaobo/work"
+alias ll="ls -al --color=never"
 
 
 export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH
@@ -87,3 +89,15 @@ export PATH=$PATH:/usr/sbin
 export TEXINPUTS=$TEXINPUTS:~/.texmf/tex/latex/local/
 
 export PYTHONPATH=/home/shaobo/work/AI/cs231/assignments/assignment1/cs231n:$PYTHONPATH
+
+###change qtcreator font size
+## export QT_SCALE_FACTOR=1.5
+
+#export QT_QPA_PLATFORM_PLUGIN_PATH=/home/shaobo/work/qt/5.15.0/gcc_64/plugins/platforms
+
+export export PATH=/usr/local/gcc-10.2.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/gcc-10.2.0/lib64:$LD_LIBRARY_PATH
+
+
+
+
